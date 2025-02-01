@@ -37,6 +37,33 @@ import bookshelfc from "../products/bookshelf-c.png";
 import floorlampa from "../products/floorlamp-a.png";
 import floorlampb from "../products/floorlamp-b.png";
 import floorlampc from "../products/floorlamp-c.png";
+import luxurysofaa from "../products/luxurysofaa.webp";
+import luxurysofab from "../products/luxurysofab.png";
+import luxurysofac from "../products/luxurysofac.png";
+import ottomana from "../products/ottomana.png";
+import ottomanb from "../products/ottomanb.webp";
+import ottomanc from "../products/ottomanc.webp";
+import modernchaira from "../products/modernchaira.png";
+import modernchairb from "../products/modernchairb.png";
+import modernchairc from "../products/modernchairc.png";
+import dinningchaira from "../products/diningchaira.webp";
+import dinningchairb from "../products/diningchairb.png";
+import dinningchairc from "../products/diningchairc.png";
+import coffeeTablea from "../products/coffeetablea.webp";
+import coffeeTableb from "../products/coffeetableb.png";
+import coffeeTablec from "../products/coffeetablec.png";
+import barstoola from "../products/barstoola.png";
+import barstoolb from "../products/barstoolb.png";
+import barstoolc from "../products/barstoolc.webp";
+import reclinearchaira from "../products/reclinearchaira.png";
+import reclinearchairb from "../products/reclinearchairb.png";
+import reclinearchairc from "../products/reclinearchairc.webp";
+import tvstanda from "../products/tvstanda.png";
+import tvstandb from "../products/tvstandb.png";
+import tvstandc from "../products/tvstandc.png";
+import foldablechaira from "../products/foldablechaira.png";
+import foldablechairb from "../products/foldablechairb.png";
+import foldablechairc from "../products/foldablechairc.webp";
 
 export const data = {
   storeDetails: {
@@ -100,7 +127,7 @@ export const data = {
       images: [sofab, sofac],
       inStock: true,
       featured: true,
-      recommended: true,
+      recommended: false,
       bestSelling: true,
       topProduct: false,
       additionalInformation: {
@@ -180,7 +207,7 @@ export const data = {
       mainImage: dinninga,
       images: [dinningb, dinningc],
       inStock: true,
-      recommended: true,
+      recommended: false,
       bestSelling: false,
       topProduct: false,
       featured: true,
@@ -218,7 +245,7 @@ export const data = {
       inStock: true,
       recommended: false,
       featured: true,
-      bestSelling: true,
+      bestSelling: false,
       topProduct: false,
       additionalInformation: {
         dimensions: "40 x 20 x 18 inches",
@@ -252,9 +279,9 @@ export const data = {
       mainImage: beda,
       images: [bedb, bedc],
       inStock: true,
-      recommended: true,
+      recommended: false,
       featured: false,
-      bestSelling: true,
+      bestSelling: false,
       topProduct: true,
       additionalInformation: {
         dimensions: "80 x 60 x 45 inches",
@@ -287,7 +314,7 @@ export const data = {
       mainImage: deska,
       images: [deskb, deskc],
       inStock: true,
-      recommended: true,
+      recommended: false,
       featured: false,
       bestSelling: false,
       topProduct: true,
@@ -328,8 +355,8 @@ export const data = {
       images: [loungechairb, loungechairc],
       inStock: true,
       featured: false,
-      recommended: true,
-      bestSelling: true,
+      recommended: false,
+      bestSelling: false,
       topProduct: true,
       additionalInformation: {
         dimensions: "72 x 30 x 32 inches",
@@ -422,6 +449,7 @@ export const data = {
       id: 110,
       name: "Outdoor Dining Set",
       category: "Outdoor",
+      rating: 4,
       price: {
         oldPrice: 1400.0,
         newPrice: 1200.0,
@@ -486,6 +514,335 @@ export const data = {
           rating: 4,
           comment: "Stylish and provides great lighting.",
           image: "https://www.furnistyle.com/reviews/davidblue.jpg"
+        }
+      ]
+    },
+    {
+      id: 112,
+      name: "Foldable Office Chair",
+      category: "Office",
+      rating: 3,
+      price: {
+        oldPrice: 350.0,
+        newPrice: 300.0,
+        currency: "USD"
+      },
+      tags: ["office chair", "ergonomic", "foldable"],
+      features: [
+        "Adjustable height",
+        "Foldable design",
+        "Breathable mesh fabric"
+      ],
+      description:
+        "An ergonomic, foldable office chair with adjustable height and breathable mesh.",
+      mainImage: foldablechaira,
+      images: [foldablechairb, foldablechairc],
+      inStock: true,
+      featured: false,
+      recommended: true,
+      bestSelling: false,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "24 x 24 x 38 inches",
+        material: "Mesh fabric, metal frame",
+        colorOptions: ["Black", "Gray"],
+        warranty: "2 years warranty on frame and mechanism"
+      },
+      reviews: [
+        {
+          user: "Daniel Wright",
+          rating: 5,
+          comment: "Very comfortable and great for long hours of work.",
+          image: "https://www.furnistyle.com/reviews/danielwright.jpg"
+        }
+      ]
+    },
+    {
+      id: 113,
+
+      name: "Compact TV Stand",
+      rating: 5,
+      category: "Living Room",
+      price: {
+        oldPrice: 250.0,
+        newPrice: 200.0,
+        currency: "USD"
+      },
+      tags: ["TV stand", "compact", "living room"],
+      features: ["Sleek design", "Cable management system", "Solid wood"],
+      description:
+        "A compact TV stand that fits perfectly in smaller living rooms and comes with cable management.",
+      mainImage: tvstanda,
+      images: [tvstandb, tvstandc],
+      inStock: true,
+      featured: false,
+      recommended: false,
+      bestSelling: true,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "48 x 16 x 22 inches",
+        material: "Wood, MDF",
+        colorOptions: ["Dark Oak", "Light Oak"],
+        warranty: "1 year warranty"
+      },
+      reviews: [
+        {
+          user: "Samantha Rose",
+          rating: 4,
+          comment: "Great TV stand, but a bit smaller than I expected.",
+          image: "https://www.furnistyle.com/reviews/samantharose.jpg"
+        }
+      ]
+    },
+    {
+      id: 114,
+      name: "Luxury Recliner Chair",
+      category: "Living Room",
+      rating: 4,
+      price: {
+        oldPrice: 950.0,
+        newPrice: 850.0,
+        currency: "USD"
+      },
+      tags: ["recliner", "luxury", "chair"],
+      features: ["Massage function", "Heated seat", "Adjustable recline"],
+      description:
+        "A luxury recliner chair with built-in massage and heated seat features.",
+      mainImage: reclinearchaira,
+      images: [reclinearchairb, reclinearchairc],
+      inStock: true,
+      featured: false,
+      recommended: true,
+      bestSelling: false,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "36 x 32 x 40 inches",
+        material: "Leather, memory foam",
+        colorOptions: ["Brown", "Black"],
+        warranty: "5 years mechanical warranty"
+      },
+      reviews: [
+        {
+          user: "Jennifer Moore",
+          rating: 5,
+          comment: "Super comfortable, I can relax for hours!",
+          image: "https://www.furnistyle.com/reviews/jennifermoore.jpg"
+        }
+      ]
+    },
+    {
+      id: 115,
+      name: "Adjustable Bar Stool",
+      rating: 4,
+      category: "Dining Room",
+      price: {
+        oldPrice: 150.0,
+        newPrice: 120.0,
+        currency: "USD"
+      },
+      tags: ["bar stool", "adjustable", "dining room"],
+      features: ["360-degree swivel", "Height adjustable", "Modern design"],
+      description:
+        "A sleek, adjustable bar stool perfect for your dining counter or kitchen island.",
+      mainImage: barstoola,
+      images: [barstoolb, barstoolc],
+      inStock: true,
+      featured: false,
+      recommended: true,
+      bestSelling: false,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "18 x 18 x 45 inches",
+        material: "Metal frame, faux leather seat",
+        colorOptions: ["Black", "White"],
+        warranty: "2 years on frame"
+      },
+      reviews: [
+        {
+          user: "Rachel Scott",
+          rating: 4,
+          comment: "Great for my kitchen counter, but a bit hard to assemble.",
+          image: "https://www.furnistyle.com/reviews/rachelscott.jpg"
+        }
+      ]
+    },
+    {
+      id: 116,
+      name: "Minimalist Coffee Table",
+      category: "Living Room",
+      rating: 3,
+      price: {
+        oldPrice: 350.0,
+        newPrice: 300.0,
+        currency: "USD"
+      },
+      tags: ["coffee table", "minimalist", "living room"],
+      features: ["Compact design", "Durable glass top", "Sleek metal legs"],
+      description:
+        "A modern and minimalist coffee table with a glass top and metal legs.",
+      mainImage: coffeeTablea,
+      images: [coffeeTableb, coffeeTablec],
+      inStock: true,
+      featured: false,
+      recommended: false,
+      bestSelling: true,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "42 x 24 x 16 inches",
+        material: "Glass top, metal frame",
+        colorOptions: ["Black", "White"],
+        warranty: "1 year warranty"
+      },
+      reviews: [
+        {
+          user: "John Davis",
+          rating: 5,
+          comment: "Elegant and perfect for my living room.",
+          image: "https://www.furnistyle.com/reviews/johndavis.jpg"
+        }
+      ]
+    },
+    {
+      id: 117,
+      name: "Upholstered Dining Chair",
+      category: "Dining Room",
+      rating: 4,
+      price: {
+        oldPrice: 180.0,
+        newPrice: 150.0,
+        currency: "USD"
+      },
+      tags: ["dining chair", "upholstered", "comfortable"],
+      features: ["Soft upholstery", "Wooden legs", "Durable fabric"],
+      description:
+        "A comfortable upholstered dining chair designed to complement your dining room.",
+      mainImage: dinningchaira,
+      images: [dinningchairb, dinningchairc],
+      inStock: true,
+      featured: false,
+      recommended: false,
+      bestSelling: true,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "18 x 18 x 36 inches",
+        material: "Upholstered fabric, wood frame",
+        colorOptions: ["Beige", "Gray"],
+        warranty: "2 years warranty"
+      },
+      reviews: [
+        {
+          user: "Megan Lee",
+          rating: 4,
+          comment: "Very comfortable, but a little too large for my table.",
+          image: "https://www.furnistyle.com/reviews/meganlee.jpg"
+        }
+      ]
+    },
+    {
+      id: 118,
+      name: "Modern Accent Chair",
+      category: "Living Room",
+      rating: 4,
+      price: {
+        oldPrice: 350.0,
+        newPrice: 310.0,
+        currency: "USD"
+      },
+      tags: ["accent chair", "modern", "living room"],
+      features: ["Stylish design", "Comfortable seating", "Sturdy frame"],
+      description:
+        "A modern accent chair to enhance the décor and comfort of your living room.",
+      mainImage: modernchaira,
+      images: [modernchairc, modernchairb],
+      inStock: true,
+      featured: false,
+      recommended: true,
+      bestSelling: false,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "28 x 28 x 34 inches",
+        material: "Fabric upholstery, wood legs",
+        colorOptions: ["Teal", "Charcoal"],
+        warranty: "1 year warranty"
+      },
+      reviews: [
+        {
+          user: "Eva Johnson",
+          rating: 5,
+          comment: "This chair adds a pop of color to my living room!",
+          image: "https://www.furnistyle.com/reviews/evajohnson.jpg"
+        }
+      ]
+    },
+    {
+      id: 119,
+      name: "Storage Ottoman",
+      category: "Living Room",
+      rating: 4,
+      price: {
+        oldPrice: 150.0,
+        newPrice: 120.0,
+        currency: "USD"
+      },
+      tags: ["ottoman", "storage", "living room"],
+      features: ["Hidden storage", "Comfortable cushion", "Versatile design"],
+      description:
+        "A stylish ottoman that doubles as storage space for your living room essentials.",
+      mainImage: ottomana,
+      images: [ottomanb, ottomanc],
+      inStock: true,
+      featured: false,
+      recommended: true,
+      bestSelling: false,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "30 x 30 x 18 inches",
+        material: "Fabric, wood frame",
+        colorOptions: ["Gray", "Black"],
+        warranty: "2 years warranty"
+      },
+      reviews: [
+        {
+          user: "Olivia Turner",
+          rating: 4,
+          comment: "Good storage space, but the cushion could be firmer.",
+          image: "https://www.furnistyle.com/reviews/oliviaturner.jpg"
+        }
+      ]
+    },
+    {
+      id: 120,
+      name: "Luxury Sectional Sofa",
+      category: "Living Room",
+      rating: 5,
+      price: {
+        oldPrice: 2500.0,
+        newPrice: 2200.0,
+        currency: "USD"
+      },
+      tags: ["sectional sofa", "luxury", "living room"],
+      features: ["Deep seating", "High-end fabric", "Spacious design"],
+      description:
+        "A luxury sectional sofa perfect for a modern living room. Spacious and comfortable for large families.",
+      mainImage: luxurysofaa,
+      images: [luxurysofab, luxurysofac],
+      inStock: true,
+      recommended: false,
+      featured: false,
+      bestSelling: true,
+      topProduct: false,
+      additionalInformation: {
+        dimensions: "96 x 72 x 35 inches",
+        material: "High-density foam, fabric upholstery",
+        colorOptions: ["Charcoal", "Beige"],
+        warranty: "5 years warranty"
+      },
+      reviews: [
+        {
+          user: "Lily Brown",
+          rating: 5,
+          comment: "The best sofa I've ever bought, so comfortable!",
+          image: "https://www.furnistyle.com/reviews/lilybrown.jpg"
         }
       ]
     }

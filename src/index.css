@@ -39,7 +39,7 @@
     --category: #f7f5f5;
     --banner: #043224;
     --banner-overlay: #00000092;
-    --background: 222.2 84% 4.9%;
+    --background: #474848;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -76,7 +76,7 @@
 }
 @layer components {
   .circle {
-    @apply bg-red-600 text-white size-[1rem] p-3 rounded-full flex items-center justify-center absolute top-[-1rem] left-[1rem];
+    @apply bg-red-600 text-white size-[10px] p-[10px] rounded-full flex items-center justify-center absolute top-[-12px] left-[0.8rem];
   }
   .link {
     @apply relative hover:text-gray-500;

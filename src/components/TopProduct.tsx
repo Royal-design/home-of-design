@@ -11,7 +11,7 @@ export const TopProduct = () => {
           <h1 className="text-2xl font-bold text-center">Top Product</h1>
           <Separator className="w-[400px]  " />
         </div>
-        <p>
+        <p className="text-sm">
           Discover our most loved furniture pieces, carefully crafted for
           comfort and style.
         </p>

@@ -1,7 +1,6 @@
 import { data } from "@/assets/data/data";
 export const Category = () => {
   const categories = data.categories;
-  console.log(categories);
 
   return (
     <div className="h-auto px-[6rem] absolute mt-[-4rem]  w-full flex justify-center">
