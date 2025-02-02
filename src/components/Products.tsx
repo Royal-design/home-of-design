@@ -81,6 +81,11 @@ export const Products = () => {
           : filterProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+        {filterProducts.length === 0 && (
+          <p className="mt-4 text-slate-500 text-center">
+            No products found. Check back later :)
+          </p>
+        )}
       </div>
       <div className="w-full flex justify-center mt-4">
         <Button className="border-2" variant="ghost">

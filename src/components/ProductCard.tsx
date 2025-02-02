@@ -10,11 +10,13 @@ import {
   CardTitle
 } from "./ui/card";
 import { formatter } from "@/features/formatter";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   product: (typeof data.products)[0];
 }
 export const ProductCard = ({ product }: ProductCardProps) => {
+  const navigate = useNavigate();
   return (
     <Card className="w-[220px]  bg-background border h-[250px] shadow-none  overflow-hidden rounded-none">
       <CardHeader className="p-0">
@@ -31,7 +33,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div className="position h-full w-full absolute bottom-[-2rem] opacity-0 flex hover:opacity-100  hover:bottom-0 duration-200 items-center justify-center ">
           <div className="bg-black flex gap-2 backdrop-filter backdrop-blur-sm bg-opacity-20 p-2 ">
             <FaRegHeart className="text-white cursor-pointer" />
-            <IoIosEye className="text-white cursor-pointer" />
+            <IoIosEye
+              className="text-white cursor-pointer"
+              onClick={() => {
+                navigate(`/products/${product.id}`);
+              }}
+            />
           </div>
         </div>
       </CardContent>
@@ -67,7 +74,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
           <div className="flex gap-2">
             <FaRegHeart className=" cursor-pointer" />
-            <IoIosEye className=" cursor-pointer" />
+            <IoIosEye
+              className=" cursor-pointer"
+              onClick={() => {
+                navigate(`/products/${product.id}`);
+              }}
+            />
           </div>
         </div>
       </CardFooter>

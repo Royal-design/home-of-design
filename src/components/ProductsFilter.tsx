@@ -7,6 +7,7 @@ import {
 import { Button } from "./ui/button";
 import { CategoryCommand } from "./CategoryCommand";
 import { PriceSlider } from "./PriceSlider";
+import { Sort } from "./Sort";
 // import { BrandsCommand } from "./BrandsCommand";
 
 export const ProductsFilter = () => {
@@ -18,7 +19,7 @@ export const ProductsFilter = () => {
       className="w-full  font-rajdhani flex flex-col gap-2 "
     >
       <AccordionItem value="item-1">
-        <AccordionTrigger className="text-xl max-md:text-lg ">
+        <AccordionTrigger className="text-lg ">
           PRODUCT CATEGORIES
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-2 text-[16px]">
@@ -26,9 +27,7 @@ export const ProductsFilter = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
-        <AccordionTrigger className="text-xl uppercase max-md:text-lg ">
-          Colors
-        </AccordionTrigger>
+        <AccordionTrigger className="text-lg ">Colors</AccordionTrigger>
         <AccordionContent className="flex gap-3">
           <div className="bg-[#000000] w-6 h-6 rounded-full"></div>
           <div className="bg-[#e4181a] w-6 h-6 rounded-full"></div>
@@ -38,15 +37,13 @@ export const ProductsFilter = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
-        <AccordionTrigger className="text-xl uppercase max-md:text-lg ">
-          Sizes
-        </AccordionTrigger>
+        <AccordionTrigger className="text-lg ">Sizes</AccordionTrigger>
         <AccordionContent className="flex gap-2 flex-wrap">
           {sizes.map((size, i) => (
             <Button
               variant="ghost"
               key={i}
-              className="border border-black border-solid"
+              className=" px-4 py-2 text-xs p-1 h-6 focus:bg-slate-400 focus:text-white  border-2 border-solid"
             >
               {size}
             </Button>
@@ -54,11 +51,15 @@ export const ProductsFilter = () => {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
-        <AccordionTrigger className="text-xl uppercase max-md:text-lg ">
-          Price Slider
-        </AccordionTrigger>
-        <AccordionContent className="flex gap-2 justify-start w-full  mt-6 flex-wrap">
+        <AccordionTrigger className="text-lg ">Price</AccordionTrigger>
+        <AccordionContent className="flex ml-3  gap-2 justify-start w-full  mt-6 flex-wrap">
           <PriceSlider />
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger className="text-lg ">Sort</AccordionTrigger>
+        <AccordionContent className=" justify-start w-full  mt-2 ">
+          <Sort />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

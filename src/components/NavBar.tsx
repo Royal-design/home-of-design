@@ -10,12 +10,18 @@ import { useAppSelector } from "@/redux/store";
 import { Button } from "./ui/button";
 import { ProfileMenu } from "./ProfileMenu";
 import NavbarSheet from "./NavbarSheet";
+import { Search } from "./Search";
 
 export const NavBar = () => {
   const [isPinned, setIsPinned] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const { user } = useAppSelector((state) => state.auth);
 
+  const handlePageScroll = () => {
+    window.scrollTo({
+      top: 0
+    });
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -52,29 +58,22 @@ export const NavBar = () => {
             <NavLink to="/" className="link">
               Home
             </NavLink>
-            <NavLink
-              to="/shop"
-              className="link"
-              onClick={() => {
-                window.scrollTo({
-                  top: 0
-                });
-              }}
-            >
+            <NavLink to="/products" className="link" onClick={handlePageScroll}>
               Shop
             </NavLink>
-            <NavLink to="/blog" className="link">
+            <NavLink to="/blog" className="link" onClick={handlePageScroll}>
               Blog
             </NavLink>
-            <NavLink to="/about" className="link">
+            <NavLink to="/about" className="link" onClick={handlePageScroll}>
               About
             </NavLink>
-            <NavLink to="/contact" className="link">
+            <NavLink to="/contact" className="link" onClick={handlePageScroll}>
               Contact
             </NavLink>
           </div>
 
           <div className="actions items-center flex gap-6">
+            <Search />
             <Theme />
             {user ? (
               <ProfileMenu />
@@ -87,9 +86,6 @@ export const NavBar = () => {
                 </NavLink>
               </div>
             )}
-            <div className=" relative cursor-pointer ">
-              <IoIosSearch size={20} />
-            </div>
             <div className=" relative cursor-pointer">
               <IoCartSharp size={20} />
               <p className=" circle">2</p>

@@ -35,6 +35,21 @@ export const PriceSlider = () => {
         valueLabelFormat={valuetext}
         min={0}
         max={1000}
+        sx={{
+          color: "",
+          "& .MuiSlider-thumb": {
+            backgroundColor: "#d3cfcf"
+          },
+          "& .MuiSlider-track": {
+            backgroundColor: "#cbcbcb"
+          },
+          "& .MuiSlider-rail": {
+            backgroundColor: "#4f4f4f"
+          },
+          "& .MuiSlider-valueLabel": {
+            backgroundColor: "#3a3a3a"
+          }
+        }}
       />
     </Box>
   );

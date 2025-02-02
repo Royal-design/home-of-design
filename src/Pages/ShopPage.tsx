@@ -1,14 +1,34 @@
-import { data } from "@/assets/data/data";
 import { AllProducts } from "@/components/AllProducts";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
-import { ProductCard } from "@/components/ProductCard";
 import { ProductsFilter } from "@/components/ProductsFilter";
-import { Button } from "@/components/ui/button";
-import { MoveLeft, MoveRight } from "lucide-react";
-import { FC, useState } from "react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FC } from "react";
+import { PiPhoneCallLight } from "react-icons/pi";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import { RiSecurePaymentLine } from "react-icons/ri";
 
 export const ShopPage: FC = () => {
+  const deliveryInfo = [
+    {
+      id: 1,
+      icon: <LiaShippingFastSolid size={30} />,
+      heading: "Free Shipping",
+      text: "Fast and reliable delivery at no extra cost"
+    },
+    {
+      id: 2,
+      icon: <PiPhoneCallLight size={30} />,
+      heading: "Customer Support",
+      text: "24/7 friendly and professional assistance"
+    },
+    {
+      id: 3,
+      icon: <RiSecurePaymentLine size={30} />,
+      heading: "Secure Payment",
+      text: "Safe and encrypted transactions guaranteed"
+    }
+  ];
   return (
     <div>
       <main className="">
@@ -46,7 +66,20 @@ export const ShopPage: FC = () => {
           </div>
         </div>
       </main>
-
+      <div className="flex items-center justify-between w-full my-[4rem] px-[6rem] ">
+        {deliveryInfo.map((info) => (
+          <Card key={info.id} className="h-auto bg-background p-0 rounded-sm">
+            <CardHeader className="p-0" />
+            <CardContent className="flex gap-2 p-2 items-center">
+              <div className="">{info.icon}</div>
+              <div className="flex flex-col gap-1">
+                <h1 className="font-bold">{info.heading}</h1>
+                <p className="text-sm">{info.text}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
       <Footer />
     </div>
   );

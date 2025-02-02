@@ -47,6 +47,11 @@ const EditProfilepage = lazy(() =>
     default: EditProfilepage
   }))
 );
+const ProductPage = lazy(() =>
+  import("./Pages/ProductPage").then(({ ProductPage }) => ({
+    default: ProductPage
+  }))
+);
 const ErrorPage = lazy(() =>
   import("./Pages/ErrorPage").then(({ ErrorPage }) => ({
     default: ErrorPage
@@ -71,8 +76,12 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: "/shop",
+        path: "/products",
         element: <ShopPage />
+      },
+      {
+        path: "/products/:id",
+        element: <ProductPage />
       },
       {
         path: "/blog",
