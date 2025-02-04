@@ -37,6 +37,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               className="text-white cursor-pointer"
               onClick={() => {
                 navigate(`/products/${product.id}`);
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                });
               }}
             />
           </div>
@@ -78,6 +82,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               className=" cursor-pointer"
               onClick={() => {
                 navigate(`/products/${product.id}`);
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                });
               }}
             />
           </div>

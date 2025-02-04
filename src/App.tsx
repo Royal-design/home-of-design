@@ -4,7 +4,7 @@ import { RootLayout } from "./Layouts/RootLayout";
 import { Suspense, lazy, useEffect } from "react";
 import { SpinnerLoader } from "./components/SpinnerLoader";
 import { checkAuthState, getUsers } from "./redux/slice/authSlice";
-import { useAppDispatch, useAppSelector } from "./redux/store";
+import { useAppDispatch } from "./redux/store";
 import { PublicLayout } from "./Layouts/PublicLayout";
 import { PrivateLayout } from "./Layouts/PrivateLayout";
 import { setProducts } from "./redux/slice/productSlice";

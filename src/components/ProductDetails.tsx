@@ -1,10 +1,10 @@
 import BreadCrumbs from "./BreadCrumbs";
-import { Heart, Share2 } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { Button } from "./ui/button";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import { motion } from "framer-motion";
 import { data } from "@/assets/data/data";
+import { formatter } from "@/features/formatter";
+import { useEffect } from "react";
 
 interface ProductDetailsProps {
   product: (typeof data.products)[0];
@@ -20,6 +20,26 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
   const addToCartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    const viewedProducts = JSON.parse(
+      localStorage.getItem("recentProducts") || "[]"
+    );
+
+    // Remove duplicate if it exists
+    const updatedProducts = viewedProducts.filter(
+      (p: (typeof data.products)[0]) => p.id !== product.id
+    );
+
+    // Add current product to the beginning of the list
+    updatedProducts.unshift(product);
+
+    // Store max 5 products
+    localStorage.setItem(
+      "recentProducts",
+      JSON.stringify(updatedProducts.slice(0, 5))
+    );
+  }, [product]);
 
   return (
     <div className="p-4 max-sm:p-0">
@@ -40,9 +60,12 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
         </div>
         <div className="flex items-center gap-4 mt-6">
           <p className="text-lg max-sm:text-base line-through text-gray-500 font-semibold">
-            ₦{product.price.oldPrice}
+            {formatter.format(product.price.oldPrice)}
           </p>
-          <p className="text-lg font-semibold">₦{product.price.newPrice}</p>
+          <p className="text-lg font-semibold">
+            {" "}
+            {formatter.format(product.price.newPrice)}
+          </p>
         </div>
         <p className="text-sm mt-4">{product.description}</p>
         <form>

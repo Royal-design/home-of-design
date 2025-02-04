@@ -141,13 +141,15 @@ export const data = {
           user: "John Doe",
           rating: 5,
           comment: "Beautiful design and super comfortable.",
-          image: "https://www.furnistyle.com/reviews/johndoe.jpg"
+          image: "https://randomuser.me/api/portraits/men/11.jpg",
+          date: "2025-02-17"
         },
         {
           user: "Jane Smith",
           rating: 4,
           comment: "Great quality, but delivery was slow.",
-          image: "https://www.furnistyle.com/reviews/janesmith.jpg"
+          image: "https://randomuser.me/api/portraits/women/1.jpg",
+          date: "2025-01-07"
         }
       ]
     },
@@ -187,7 +189,8 @@ export const data = {
           user: "Michael Brown",
           rating: 5,
           comment: "Perfect size and great quality.",
-          image: "https://www.furnistyle.com/reviews/michaelbrown.jpg"
+          image: "https://randomuser.me/api/portraits/men/1.jpg",
+          date: "2025-01-05"
         }
       ]
     },
@@ -222,7 +225,8 @@ export const data = {
           user: "Alice Brown",
           rating: 5,
           comment: "Perfect for family dinners!",
-          image: "https://www.furnistyle.com/reviews/alicebrown.jpg"
+          image: "https://randomuser.me/api/portraits/women/2.jpg",
+          date: "2025-01-06"
         }
       ]
     },
@@ -258,7 +262,8 @@ export const data = {
           user: "Sandra Lee",
           rating: 4,
           comment: "Looks great in my living room.",
-          image: "https://www.furnistyle.com/reviews/sandralee.jpg"
+          image: "https://randomuser.me/api/portraits/men/2.jpg",
+          date: "2025-01-08"
         }
       ]
     },
@@ -294,7 +299,8 @@ export const data = {
           user: "Kevin Adams",
           rating: 5,
           comment: "Sturdy and comfortable. Highly recommended!",
-          image: "https://www.furnistyle.com/reviews/kevinadams.jpg"
+          image: "https://randomuser.me/api/portraits/women/3.jpg",
+          date: "2025-01-09"
         }
       ]
     },
@@ -329,7 +335,8 @@ export const data = {
           user: "Emily Johnson",
           rating: 5,
           comment: "Perfect for my small home office.",
-          image: "https://www.furnistyle.com/reviews/emilyjohnson.jpg"
+          image: "https://randomuser.me/api/portraits/men/3.jpg",
+          date: "2025-01-10"
         }
       ]
     },
@@ -369,7 +376,8 @@ export const data = {
           user: "Chris Taylor",
           rating: 5,
           comment: "Super comfortable and durable.",
-          image: "https://www.furnistyle.com/reviews/christaylor.jpg"
+          image: "https://randomuser.me/api/portraits/women/4.jpg",
+          date: "2025-01-11"
         }
       ]
     },
@@ -405,7 +413,8 @@ export const data = {
           user: "Grace White",
           rating: 4,
           comment: "Compact and functional. Works perfectly in my bedroom.",
-          image: "https://www.furnistyle.com/reviews/gracewhite.jpg"
+          image: "https://randomuser.me/api/portraits/men/4.jpg",
+          date: "2025-01-13"
         }
       ]
     },
@@ -441,7 +450,8 @@ export const data = {
           user: "Liam King",
           rating: 5,
           comment: "Love the rustic charm! Holds all my books perfectly.",
-          image: "https://www.furnistyle.com/reviews/liamking.jpg"
+          image: "https://randomuser.me/api/portraits/men/4.jpg",
+          date: "2025-01-11"
         }
       ]
     },
@@ -477,7 +487,8 @@ export const data = {
           user: "Sophia Green",
           rating: 5,
           comment: "Sturdy and weatherproof. Perfect for my patio!",
-          image: "https://www.furnistyle.com/reviews/sophiagreen.jpg"
+          image: "https://randomuser.me/api/portraits/women/5.jpg",
+          date: "2025-01-14"
         }
       ]
     },
@@ -513,7 +524,8 @@ export const data = {
           user: "David Blue",
           rating: 4,
           comment: "Stylish and provides great lighting.",
-          image: "https://www.furnistyle.com/reviews/davidblue.jpg"
+          image: "https://randomuser.me/api/portraits/men/5.jpg",
+          date: "2025-01-15"
         }
       ]
     },
@@ -553,7 +565,8 @@ export const data = {
           user: "Daniel Wright",
           rating: 5,
           comment: "Very comfortable and great for long hours of work.",
-          image: "https://www.furnistyle.com/reviews/danielwright.jpg"
+          image: "https://randomuser.me/api/portraits/women/6.jpg",
+          date: "2025-01-16"
         }
       ]
     },
@@ -590,7 +603,8 @@ export const data = {
           user: "Samantha Rose",
           rating: 4,
           comment: "Great TV stand, but a bit smaller than I expected.",
-          image: "https://www.furnistyle.com/reviews/samantharose.jpg"
+          image: "https://randomuser.me/api/portraits/men/6.jpg",
+          date: "2025-01-17"
         }
       ]
     },
@@ -626,7 +640,8 @@ export const data = {
           user: "Jennifer Moore",
           rating: 5,
           comment: "Super comfortable, I can relax for hours!",
-          image: "https://www.furnistyle.com/reviews/jennifermoore.jpg"
+          image: "https://randomuser.me/api/portraits/women/7.jpg",
+          date: "2025-02-04"
         }
       ]
     },
@@ -662,7 +677,8 @@ export const data = {
           user: "Rachel Scott",
           rating: 4,
           comment: "Great for my kitchen counter, but a bit hard to assemble.",
-          image: "https://www.furnistyle.com/reviews/rachelscott.jpg"
+          image: "https://randomuser.me/api/portraits/men/7.jpg",
+          date: "2025-02-05"
         }
       ]
     },
@@ -698,7 +714,8 @@ export const data = {
           user: "John Davis",
           rating: 5,
           comment: "Elegant and perfect for my living room.",
-          image: "https://www.furnistyle.com/reviews/johndavis.jpg"
+          image: "https://randomuser.me/api/portraits/women/8.jpg",
+          date: "2025-02-06"
         }
       ]
     },
@@ -734,7 +751,8 @@ export const data = {
           user: "Megan Lee",
           rating: 4,
           comment: "Very comfortable, but a little too large for my table.",
-          image: "https://www.furnistyle.com/reviews/meganlee.jpg"
+          image: "https://randomuser.me/api/portraits/men/8.jpg",
+          date: "2025-02-07"
         }
       ]
     },
@@ -770,7 +788,8 @@ export const data = {
           user: "Eva Johnson",
           rating: 5,
           comment: "This chair adds a pop of color to my living room!",
-          image: "https://www.furnistyle.com/reviews/evajohnson.jpg"
+          image: "https://randomuser.me/api/portraits/women/9.jpg",
+          date: "2025-02-09"
         }
       ]
     },
@@ -806,7 +825,8 @@ export const data = {
           user: "Olivia Turner",
           rating: 4,
           comment: "Good storage space, but the cushion could be firmer.",
-          image: "https://www.furnistyle.com/reviews/oliviaturner.jpg"
+          image: "https://randomuser.me/api/portraits/men/9.jpg",
+          date: "2025-02-15"
         }
       ]
     },
@@ -842,7 +862,8 @@ export const data = {
           user: "Lily Brown",
           rating: 5,
           comment: "The best sofa I've ever bought, so comfortable!",
-          image: "https://www.furnistyle.com/reviews/lilybrown.jpg"
+          image: "https://randomuser.me/api/portraits/women/10.jpg",
+          date: "2025-02-16"
         }
       ]
     }
