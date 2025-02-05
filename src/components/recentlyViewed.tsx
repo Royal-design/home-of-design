@@ -3,8 +3,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
-import { ProductCard } from "./ProductCard";
 import { data } from "@/assets/data/data";
+import { RelatedProductCard } from "./RelatedProductCard";
 
 type ProductsType = typeof data.products;
 export const RecentlyViewed: React.FC = () => {
@@ -34,7 +34,7 @@ export const RecentlyViewed: React.FC = () => {
         >
           {recentlyViewedProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
+              <RelatedProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -50,7 +50,7 @@ export const RecentlyViewed: React.FC = () => {
         >
           {recentlyViewedProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
+              <RelatedProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -66,7 +66,7 @@ export const RecentlyViewed: React.FC = () => {
         >
           {recentlyViewedProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
+              <RelatedProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -15,10 +15,12 @@ import { useNavigate } from "react-router-dom";
 interface ProductCardProps {
   product: (typeof data.products)[0];
 }
-export const ProductCard = ({ product }: ProductCardProps) => {
+
+export const RelatedProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/products/${product.id}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
     <Card className="w-[220px]  bg-background border h-[250px] shadow-none  overflow-hidden rounded-none">

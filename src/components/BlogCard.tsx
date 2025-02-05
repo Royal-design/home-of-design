@@ -9,11 +9,16 @@ import {
 import { CiCalendar } from "react-icons/ci";
 import { FaRegCommentDots } from "react-icons/fa";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface BlogCardProps {
   blog: (typeof blogs)[0];
 }
 export const BlogCard = ({ blog }: BlogCardProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/blogs/${blog.id}`);
+  };
   return (
     <Card className="w-[220px]  bg-background border h-[290px] shadow-none  overflow-hidden rounded-none">
       <CardHeader className="p-0">
@@ -51,7 +56,9 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             <p className="text-xs text-slate-500">{blog.author}</p>
           </div>
         </div>
-        <Button className="h-[30px] mt-2">Read More</Button>
+        <Button className="h-[30px] mt-2" onClick={handleClick}>
+          Read More
+        </Button>
       </CardFooter>
     </Card>
   );

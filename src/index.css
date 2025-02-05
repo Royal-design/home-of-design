@@ -303,7 +303,6 @@
 
 .product-swiper {
   display: flex;
-
   height: 100%;
   .swiper {
     z-index: 0;

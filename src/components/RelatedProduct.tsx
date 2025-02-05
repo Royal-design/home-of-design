@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
 import { data } from "@/assets/data/data";
-import { ProductCard } from "./ProductCard";
+import { RelatedProductCard } from "./RelatedProductCard";
 
 interface CategoryType {
   category: string;
@@ -33,7 +33,7 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         >
           {relatedProducts.map((product, i) => (
             <SwiperSlide key={i}>
-              <ProductCard product={product} />
+              <RelatedProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -50,7 +50,7 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         >
           {relatedProducts.map((product, i) => (
             <SwiperSlide key={i}>
-              <ProductCard product={product} />
+              <RelatedProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -66,7 +66,7 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         >
           {relatedProducts.map((product, i) => (
             <SwiperSlide key={i}>
-              <ProductCard product={product} />
+              <RelatedProductCard product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -8,9 +8,8 @@ import { Footer } from "@/components/Footer";
 import { PartnerInfiniteCard } from "@/components/PartnerInfiniteCard";
 import { Products } from "@/components/Products";
 import { TopProduct } from "@/components/TopProduct";
-import { FC } from "react";
 
-export const HomePage: FC = () => {
+export const HomePage = () => {
   return (
     <div className="bg-background">
       <Banner />

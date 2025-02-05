@@ -61,7 +61,7 @@ export const NavBar = () => {
             <NavLink to="/products" className="link" onClick={handlePageScroll}>
               Shop
             </NavLink>
-            <NavLink to="/blog" className="link" onClick={handlePageScroll}>
+            <NavLink to="/blogs" className="link" onClick={handlePageScroll}>
               Blog
             </NavLink>
             <NavLink to="/about" className="link" onClick={handlePageScroll}>

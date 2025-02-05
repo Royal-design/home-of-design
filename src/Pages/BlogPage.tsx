@@ -1,10 +1,10 @@
-import { blogs } from "@/assets/data/blogs";
 import { BlogCard } from "@/components/BlogCard";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
-import { FC } from "react";
+import { useAppSelector } from "@/redux/store";
 
-export const BlogPage: FC = () => {
+export const BlogPage = () => {
+  const { blogs } = useAppSelector((state) => state.blogs);
   return (
     <div>
       <main>

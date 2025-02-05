@@ -6,8 +6,9 @@ import { data } from "@/assets/data/data";
 import { formatter } from "@/features/formatter";
 import { useEffect } from "react";
 
+type ProductType = (typeof data.products)[0];
 interface ProductDetailsProps {
-  product: (typeof data.products)[0];
+  product: ProductType;
 }
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
   const handleIncrement = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,7 +29,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
 
     // Remove duplicate if it exists
     const updatedProducts = viewedProducts.filter(
-      (p: (typeof data.products)[0]) => p.id !== product.id
+      (p: ProductType) => p.id !== product.id
     );
 
     // Add current product to the beginning of the list

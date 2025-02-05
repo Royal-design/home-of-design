@@ -22,13 +22,15 @@ export const blogs = [
         avatar: "https://randomuser.me/api/portraits/women/2.jpg",
         comment:
           "Loved this blog! It gave me practical tips to improve my living space.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-11"
       },
       {
         name: "Lisa White",
         avatar: "https://randomuser.me/api/portraits/men/1.jpg",
         comment: "Great insights, but I would have liked more examples.",
-        rating: 4
+        rating: 4,
+        date: "2025-01-12"
       }
     ]
   },
@@ -53,13 +55,15 @@ export const blogs = [
         name: "Emily Johnson",
         avatar: "https://randomuser.me/api/portraits/women/3.jpg",
         comment: "Very helpful! I finally found a sofa that fits my needs.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-13"
       },
       {
         name: "Paul Brown",
         avatar: "https://randomuser.me/api/portraits/men/3.jpg",
         comment: "Good advice, but more budget-friendly options would be nice.",
-        rating: 4
+        rating: 4,
+        date: "2025-01-14"
       }
     ]
   },
@@ -85,13 +89,15 @@ export const blogs = [
         name: "Mike Lee",
         avatar: "https://randomuser.me/api/portraits/men/4.jpg",
         comment: "Excellent overview of modern styles!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-15"
       },
       {
         name: "Rachel Green",
         avatar: "https://randomuser.me/api/portraits/women/5.jpg",
         comment: "Nice suggestions, but I wanted more color options.",
-        rating: 4
+        rating: 4,
+        date: "2025-01-16"
       }
     ]
   },
@@ -117,7 +123,8 @@ export const blogs = [
         name: "Harry Green",
         avatar: "https://randomuser.me/api/portraits/men/6.jpg",
         comment: "Fantastic tips for small apartment living!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-17"
       }
     ]
   },
@@ -143,7 +150,8 @@ export const blogs = [
         name: "Mia Taylor",
         avatar: "https://randomuser.me/api/portraits/men/7.jpg",
         comment: "Exactly what I needed to redesign my bedroom!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-18"
       }
     ]
   },
@@ -170,7 +178,8 @@ export const blogs = [
         avatar: "https://randomuser.me/api/portraits/men/10.jpg",
         comment:
           "Very insightful! I implemented some of these tips in my office.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-19"
       }
     ]
   },
@@ -196,7 +205,8 @@ export const blogs = [
         name: "Sophie Harris",
         avatar: "https://randomuser.me/api/portraits/women/8.jpg",
         comment: "Very helpful guide! My dining table looks brand new.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-20"
       }
     ]
   },
@@ -222,7 +232,8 @@ export const blogs = [
         name: "Ella Davis",
         avatar: "https://randomuser.me/api/portraits/men/11.jpg",
         comment: "Great ideas! I'm inspired to redecorate my living room.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-21"
       }
     ]
   },
@@ -248,7 +259,8 @@ export const blogs = [
         name: "James Clark",
         avatar: "https://randomuser.me/api/portraits/men/13.jpg",
         comment: "Love the sustainable ideas!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-22"
       }
     ]
   },
@@ -274,7 +286,8 @@ export const blogs = [
         name: "Grace Young",
         avatar: "https://randomuser.me/api/portraits/women/11.jpg",
         comment: "Helpful guide! I finally found my dream mattress.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-23"
       }
     ]
   },
@@ -300,7 +313,8 @@ export const blogs = [
         name: "Ethan Hall",
         avatar: "https://randomuser.me/api/portraits/men/14.jpg",
         comment: "Great tips! My couch looks brand new.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-24"
       }
     ]
   },
@@ -325,7 +339,8 @@ export const blogs = [
         name: "Chloe Adams",
         avatar: "https://randomuser.me/api/portraits/men/15.jpg",
         comment: "Absolutely love vintage styles! Great blog.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-25"
       }
     ]
   },
@@ -350,7 +365,8 @@ export const blogs = [
         name: "Liam Brown",
         avatar: "https://randomuser.me/api/portraits/women/13.jpg",
         comment: "Really useful tips! I love multi-functional pieces.",
-        rating: 5
+        rating: 5,
+        date: "2025-01-26"
       }
     ]
   },
@@ -375,7 +391,8 @@ export const blogs = [
         name: "Ava Wilson",
         avatar: "https://randomuser.me/api/portraits/men/18.jpg",
         comment: "Great insights on current trends!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-27"
       }
     ]
   },
@@ -401,7 +418,8 @@ export const blogs = [
         name: "Ethan Walker",
         avatar: "https://randomuser.me/api/portraits/women/20.jpg",
         comment: "I love the idea of creating a reading space!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-28"
       }
     ]
   },
@@ -428,7 +446,8 @@ export const blogs = [
         avatar: "https://example.com/avatars/lily.png",
         comment:
           "This blog helped me choose the perfect statement sofa for my living room!",
-        rating: 5
+        rating: 5,
+        date: "2025-01-29"
       }
     ]
   }

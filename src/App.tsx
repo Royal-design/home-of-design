@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RootLayout } from "./Layouts/RootLayout";
-
 import { Suspense, lazy, useEffect } from "react";
 import { SpinnerLoader } from "./components/SpinnerLoader";
 import { checkAuthState, getUsers } from "./redux/slice/authSlice";
@@ -9,6 +8,9 @@ import { PublicLayout } from "./Layouts/PublicLayout";
 import { PrivateLayout } from "./Layouts/PrivateLayout";
 import { setProducts } from "./redux/slice/productSlice";
 import { data } from "./assets/data/data";
+import { BlogDetailPage } from "./Pages/BlogDetailPage";
+import { setBlogs } from "./redux/slice/blogSlice";
+import { blogs } from "./assets/data/blogs";
 
 const HomePage = lazy(() =>
   import("./Pages/HomePage").then(({ HomePage }) => ({ default: HomePage }))
@@ -84,8 +86,12 @@ const router = createBrowserRouter([
         element: <ProductPage />
       },
       {
-        path: "/blog",
+        path: "/blogs",
         element: <BlogPage />
+      },
+      {
+        path: "/blogs/:id",
+        element: <BlogDetailPage />
       },
       {
         path: "/about",
@@ -131,6 +137,7 @@ function App() {
     dispatch(checkAuthState());
     dispatch(getUsers());
     dispatch(setProducts(data.products));
+    dispatch(setBlogs(blogs));
   }, [dispatch]);
 
   return <RouterProvider router={router} />;

@@ -1,5 +1,3 @@
-import { FC } from "react";
-
-export const ContactPage: FC = () => {
+export const ContactPage = () => {
   return <div>ContactPage</div>;
 };

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/redux/store";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useState } from "react";
-import { SpinnerLoader } from "./SpinnerLoader";
 import { ProductSkeleton } from "./ProductSkeleton";
 
 export const AllProducts = () => {

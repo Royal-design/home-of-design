@@ -37,7 +37,7 @@ export const ProductPage = () => {
       </div>
 
       <div className="flex h-[30rem] px-[6rem]  max-sm:hidden max-md:hidden w-full mt-6 gap-6">
-        <div className="product-swiper   w-[50%] max-sm:w-full">
+        <div className="product-swiper h-full w-[50%] max-sm:w-full">
           {/* Thumbnail Swiper */}
           <Swiper
             onSwiper={setThumbsSwiper}

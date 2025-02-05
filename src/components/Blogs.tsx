@@ -1,8 +1,9 @@
+import { useAppSelector } from "@/redux/store";
 import { BlogCard } from "./BlogCard";
-import { blogs } from "@/assets/data/blogs";
 import { Separator } from "./ui/separator";
 
 export const Blogs = () => {
+  const { blogs } = useAppSelector((state) => state.blogs);
   const displayBlogs = blogs.slice(0, 4);
   return (
     <div className="px-[6rem] mt-[2rem]">

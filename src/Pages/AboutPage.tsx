@@ -1,5 +1,3 @@
-import { FC } from "react";
-
-export const AboutPage: FC = () => {
+export const AboutPage = () => {
   return <div>AboutPage</div>;
 };

@@ -1,8 +1,9 @@
-import { data } from "@/assets/data/data";
 import { ProductCard } from "./ProductCard";
 import { Separator } from "./ui/separator";
+import { useAppSelector } from "@/redux/store";
 
 export const FeaturedProduct = () => {
+  const { products } = useAppSelector((state) => state.products);
   return (
     <div className="px-[6rem] max-sm:px-[1rem] mt-[8rem]">
       <div className="flex flex-col items-center gap-1">
@@ -18,7 +19,7 @@ export const FeaturedProduct = () => {
       </div>
 
       <div className="grid grid-cols-4 max-md:grid-cols-3  max-sm:grid-cols-2 mt-[2rem] max-sm:mt-[2rem]  gap-4">
-        {data.products
+        {products
           .filter((product) => product.featured)
           .map((product) => (
             <ProductCard key={product.id} product={product} />
