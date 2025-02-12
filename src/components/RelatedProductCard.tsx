@@ -1,7 +1,7 @@
-import { data } from "@/assets/data/data";
-import { FaRegHeart } from "react-icons/fa";
 import { IoIosEye } from "react-icons/io";
 import { FaCirclePlus } from "react-icons/fa6";
+import { motion } from "framer-motion";
+
 import {
   Card,
   CardContent,
@@ -11,12 +11,22 @@ import {
 } from "./ui/card";
 import { formatter } from "@/features/formatter";
 import { useNavigate } from "react-router-dom";
+import { ProductType } from "@/types";
+import { Heart } from "lucide-react";
 
 interface ProductCardProps {
-  product: (typeof data.products)[0];
+  product: ProductType;
+  favourites: ProductType[];
+  toggleFavorite: (product: ProductType) => void;
+  addToCartClick: (product: ProductType) => void;
 }
 
-export const RelatedProductCard = ({ product }: ProductCardProps) => {
+export const RelatedProductCard = ({
+  product,
+  favourites,
+  toggleFavorite,
+  addToCartClick
+}: ProductCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/products/${product.id}`);
@@ -37,8 +47,28 @@ export const RelatedProductCard = ({ product }: ProductCardProps) => {
         </figure>
         <div className="position h-full w-full absolute bottom-[-2rem] opacity-0 flex hover:opacity-100  hover:bottom-0 duration-200 items-center justify-center ">
           <div className="bg-black flex gap-2 backdrop-filter backdrop-blur-sm bg-opacity-20 p-2 ">
-            <FaRegHeart className="text-white cursor-pointer" />
+            <motion.div
+              animate={{
+                scale: favourites.find((item) => item.id === product.id)
+                  ? 1.1
+                  : 1
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 1000,
+                damping: 10
+              }}
+              className="text-white"
+              onClick={() => toggleFavorite(product)}
+            >
+              {favourites.some((item) => item.id === product.id) ? (
+                <Heart size="20" className="fill-white max-sm:w-[1rem]" />
+              ) : (
+                <Heart size="20" className=" max-sm:w-[1rem]" />
+              )}
+            </motion.div>
             <IoIosEye
+              size="20"
               className="text-white cursor-pointer"
               onClick={handleClick}
             />
@@ -68,15 +98,38 @@ export const RelatedProductCard = ({ product }: ProductCardProps) => {
           </div>
           <FaCirclePlus
             size={20}
+            onClick={() => addToCartClick(product)}
             className="text-orange-400 cursor-pointer max-sm:hidden"
           />
         </div>
 
         <div className="hidden max-sm:flex w-full justify-between  items-center">
-          <FaCirclePlus className=" cursor-pointer" />
+          <FaCirclePlus
+            className="text-orange-400 cursor-pointer"
+            onClick={() => addToCartClick(product)}
+          />
 
-          <div className="flex gap-2">
-            <FaRegHeart className=" cursor-pointer" />
+          <div className="flex items-center gap-2">
+            <motion.div
+              animate={{
+                scale: favourites.find((item) => item.id === product.id)
+                  ? 1.1
+                  : 1
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 1000,
+                damping: 10
+              }}
+              className="text-orange-400"
+              onClick={() => toggleFavorite(product)}
+            >
+              {favourites.some((item) => item.id === product.id) ? (
+                <Heart size="20" className="fill-orange-400 max-sm:w-[1rem]" />
+              ) : (
+                <Heart size="20" className=" max-sm:w-[1rem]" />
+              )}
+            </motion.div>
             <IoIosEye className=" cursor-pointer" onClick={handleClick} />
           </div>
         </div>

@@ -1,12 +1,30 @@
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useState } from "react";
 import { ProductSkeleton } from "./ProductSkeleton";
+import { ProductType } from "@/types";
+import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
+import { addToCart } from "@/redux/slice/cartSlice";
 
 export const AllProducts = () => {
   const { filterProducts, loading } = useAppSelector((state) => state.products);
+
+  const dispatch = useAppDispatch();
+  const favourites = useAppSelector((state) => state.favourite.items);
+  const toggleFavorite = (product: ProductType) => {
+    if (favourites.find((item: ProductType) => item.id === product.id)) {
+      dispatch(removeFavorite(product.id));
+    } else {
+      dispatch(addFavorite(product));
+    }
+  };
+
+  const addToCartClick = (product: ProductType) => {
+    dispatch(addToCart({ ...product, qty: 1 }));
+  };
+
   //paginantion
   const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,7 +73,13 @@ export const AllProducts = () => {
           <div className="">
             <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] max-sm:grid-cols-2  max-md:grid-cols-3 gap-4">
               {currentProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  addToCartClick={addToCartClick}
+                  favourites={favourites}
+                  toggleFavorite={toggleFavorite}
+                />
               ))}
             </div>
             {filterProducts.length !== 0 && (

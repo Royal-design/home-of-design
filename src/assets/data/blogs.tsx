@@ -407,7 +407,7 @@ export const blogs = [
     image:
       "https://plus.unsplash.com/premium_photo-1661715766918-45fbebdf0add?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q3JlYXRpbmclMjBhJTIwQ296eSUyMFJlYWRpbmclMjBOb29rJTIwYXQlMjBIb21lfGVufDB8fDB8fHww",
     backgroundImage:
-      "https://images.unsplash.com/photo-1467043153537-a4fba2cd39ef?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Q3JlYXRpbmclMjBhJTIwQ296eSUyMFJlYWRpbmclMjBOb29rJTIwYXQlMjBIb21lfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1501685532562-aa6846b14a0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y296eSUyMHJlYWRpbmclMjBmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D",
     shortDescription:
       "Turn any corner of your home into a cozy reading retreat.",
     longDescription:

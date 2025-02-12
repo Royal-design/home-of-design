@@ -4,13 +4,19 @@ import { authSlice } from "./slice/authSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { productSlice } from "./slice/productSlice";
 import { blogSlice } from "./slice/blogSlice";
+import { quantitySlice } from "./slice/quantitySlice";
+import { cartSlice } from "./slice/cartSlice";
+import { favouriteSlice } from "./slice/favouriteSlice";
 
 export const store = configureStore({
   reducer: {
     theme: themeSlice.reducer,
     auth: authSlice.reducer,
     products: productSlice.reducer,
-    blogs: blogSlice.reducer
+    blogs: blogSlice.reducer,
+    quantity: quantitySlice.reducer,
+    cart: cartSlice.reducer,
+    favourite: favouriteSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

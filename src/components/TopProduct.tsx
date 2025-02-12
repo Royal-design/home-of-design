@@ -1,10 +1,26 @@
-import { useAppSelector } from "@/redux/store";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ProductCard } from "./ProductCard";
 import { Separator } from "./ui/separator";
+import { ProductType } from "@/types";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
 
 export const TopProduct = () => {
   const { products } = useAppSelector((state) => state.products);
+  const dispatch = useAppDispatch();
 
+  const favourites = useAppSelector((state) => state.favourite.items);
+  const toggleFavorite = (product: ProductType) => {
+    if (favourites.find((item: ProductType) => item.id === product.id)) {
+      dispatch(removeFavorite(product.id));
+    } else {
+      dispatch(addFavorite(product));
+    }
+  };
+
+  const addToCartClick = (product: ProductType) => {
+    dispatch(addToCart({ ...product, qty: 1 }));
+  };
   return (
     <div className="px-[6rem] max-sm:px-[1rem] mt-[4rem]">
       <div className="flex flex-col items-center gap-1">
@@ -23,7 +39,13 @@ export const TopProduct = () => {
         {products
           .filter((product) => product.topProduct)
           .map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              toggleFavorite={toggleFavorite}
+              favourites={favourites}
+              addToCartClick={addToCartClick}
+            />
           ))}
       </div>
     </div>

@@ -76,7 +76,7 @@
 }
 @layer components {
   .circle {
-    @apply bg-red-600 text-white size-[10px] p-[10px] rounded-full flex items-center justify-center absolute top-[-12px] left-[0.8rem];
+    @apply bg-red-600 text-white w-5 h-5 p-1 rounded-full flex items-center justify-center absolute top-[-12px] left-[0.8rem];
   }
   .link {
     @apply relative hover:text-gray-500;

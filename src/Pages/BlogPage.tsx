@@ -7,38 +7,39 @@ export const BlogPage = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
   return (
     <div>
-      <main>
-        <section className="h-[29rem] relative font-Titillium-Web">
+      <main className="pb-12">
+        {/* Hero Section */}
+        <section className="h-[20rem] relative font-Titillium-Web">
           <img
             src="https://media.istockphoto.com/id/1483031614/photo/modern-interior-design-of-living-room-black-sofa-and-empty-mockup-wall-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=ohYw9BMs6WOt0ajHLwP2Zn401FR5vwi-96gDr4qiwjE="
             alt="hero"
             className="h-full w-full object-cover"
           />
-          <article className="absolute h-full w-full top-0 bg-banner-overlay ">
-            <div className="h-full w-full flex flex-col max-sm:px-2 items-center justify-center">
-              <h1 className="text-2xl font-bold max-sm:text-2xl max-md:text-2xl text-white dark:text-gray-100">
+          <article className="absolute inset-0 bg-banner-overlay flex items-center justify-center">
+            <div className="text-center px-6 max-w-3xl">
+              <h1 className="text-3xl font-bold text-white dark:text-gray-100 sm:text-4xl">
                 Transform Your Space with Inspiration & Ideas
               </h1>
 
-              <p className="text-lg max-sm:text-sm text-gray-300 dark:text-gray-300 mt-4 max-sm:w-full w-[60%] text-center">
+              <p className="text-gray-300 dark:text-gray-300 mt-4 text-sm sm:text-base leading-relaxed">
                 Dive into a world of furniture trends, interior design tips, and
                 expert advice to help you craft spaces that reflect your unique
                 style. Whether you're looking for modern minimalism, rustic
-                charm, or timeless elegance, we’ve got you covered. Explore our
-                guides, how-tos, and curated ideas to transform your home into a
-                place you’ll love to live in.
+                charm, or timeless elegance, we’ve got you covered.
               </p>
-              <div className="mt-8 ">
+              <div className="mt-8 flex w-full justify-center">
                 <BreadCrumbs />
               </div>
             </div>
           </article>
         </section>
-        <section className="mt-6 px-[6rem] max-sm:px-4">
+
+        {/* Blog Section */}
+        <section className="mt-6 px-6 sm:px-10 lg:px-24">
           <article>
-            <p className="text-lg my-2">Recent blog posts</p>
+            <p className="text-lg font-semibold my-4">Recent Blog Posts</p>
           </article>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] max-sm:grid-cols-2  max-md:grid-cols-3  gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {blogs.map((blog) => (
               <BlogCard blog={blog} key={blog.id} />
             ))}

@@ -8,6 +8,10 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { data } from "@/assets/data/data";
 import { RelatedProductCard } from "./RelatedProductCard";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { ProductType } from "@/types";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
 
 interface CategoryType {
   category: string;
@@ -16,6 +20,20 @@ export const RelatedProduct = ({ category }: CategoryType) => {
   const relatedProducts = data.products.filter(
     (product) => product.category === category
   );
+
+  const dispatch = useAppDispatch();
+
+  const favourites = useAppSelector((state) => state.favourite.items);
+  const toggleFavorite = (product: ProductType) => {
+    if (favourites.find((item: ProductType) => item.id === product.id)) {
+      dispatch(removeFavorite(product.id));
+    } else {
+      dispatch(addFavorite(product));
+    }
+  };
+  const addToCartClick = (product: ProductType) => {
+    dispatch(addToCart({ ...product, qty: 1 }));
+  };
 
   return (
     <div className="related-swiper  px-[6rem] max-sm:px-[1rem] max-md:px-[1rem] h-[20rem]  my-[1rem]">
@@ -33,7 +51,12 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         >
           {relatedProducts.map((product, i) => (
             <SwiperSlide key={i}>
-              <RelatedProductCard product={product} />
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -50,7 +73,12 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         >
           {relatedProducts.map((product, i) => (
             <SwiperSlide key={i}>
-              <RelatedProductCard product={product} />
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -66,7 +94,12 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         >
           {relatedProducts.map((product, i) => (
             <SwiperSlide key={i}>
-              <RelatedProductCard product={product} />
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

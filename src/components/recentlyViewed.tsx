@@ -3,25 +3,38 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
-import { data } from "@/assets/data/data";
 import { RelatedProductCard } from "./RelatedProductCard";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { ProductsType, ProductType } from "@/types";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
 
-type ProductsType = typeof data.products;
 export const RecentlyViewed: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [recentlyViewedProducts, setRecentlyViewedProducts] =
     useState<ProductsType>([]);
 
+  const favourites = useAppSelector((state) => state.favourite.items);
+  const toggleFavorite = (product: ProductType) => {
+    if (favourites.find((item: ProductType) => item.id === product.id)) {
+      dispatch(removeFavorite(product.id));
+    } else {
+      dispatch(addFavorite(product));
+    }
+  };
   useEffect(() => {
     const recent = JSON.parse(localStorage.getItem("recentProducts") || "[]");
     setRecentlyViewedProducts(recent);
   }, []);
 
   if (recentlyViewedProducts.length === 0) return null;
-
+  const addToCartClick = (product: ProductType) => {
+    dispatch(addToCart({ ...product, qty: 1 }));
+  };
   return (
     <div className="related-swiper px-[6rem] max-sm:px-[1rem] max-md:px-[1rem] ">
       <p className="text-2xl my-4">
-        Recently <span className="uppercase font-bold">Viewed Products</span>
+        Recent <span className="uppercase font-bold"> Products</span>
       </p>
       <div className="max-sm:hidden max-md:hidden">
         <Swiper
@@ -34,7 +47,12 @@ export const RecentlyViewed: React.FC = () => {
         >
           {recentlyViewedProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <RelatedProductCard product={product} />
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -50,7 +68,12 @@ export const RecentlyViewed: React.FC = () => {
         >
           {recentlyViewedProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <RelatedProductCard product={product} />
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -66,7 +89,12 @@ export const RecentlyViewed: React.FC = () => {
         >
           {recentlyViewedProducts.map((product) => (
             <SwiperSlide key={product.id}>
-              <RelatedProductCard product={product} />
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

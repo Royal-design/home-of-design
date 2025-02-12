@@ -38,7 +38,7 @@ export const RecentBlogs = ({ handleBlogClick }: PropsType) => {
   if (recentBlogs.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-2 w-full bg-background-card ">
+    <div className="flex cursor-pointer flex-col gap-2 w-full bg-background-card ">
       <div className="flex items-center h-[3rem]  bg-background">
         <Input
           placeholder="Search..."

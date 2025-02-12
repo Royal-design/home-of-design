@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Headroom from "react-headroom";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
-import { IoIosSearch } from "react-icons/io";
-import { IoCartSharp } from "react-icons/io5";
 import { FiHeart } from "react-icons/fi";
 import { Theme } from "./Theme";
 import { useAppSelector } from "@/redux/store";
@@ -11,11 +9,17 @@ import { Button } from "./ui/button";
 import { ProfileMenu } from "./ProfileMenu";
 import NavbarSheet from "./NavbarSheet";
 import { Search } from "./Search";
+import CartSheet from "./CartSheet";
+import WishlistSheet from "./WishlistSheet";
 
 export const NavBar = () => {
   const [isPinned, setIsPinned] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const { user } = useAppSelector((state) => state.auth);
+  const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
+  const totalFavourite = useAppSelector(
+    (state) => state.favourite.totalFavourite
+  );
 
   const handlePageScroll = () => {
     window.scrollTo({
@@ -36,6 +40,7 @@ export const NavBar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div>
       <Headroom
@@ -87,12 +92,12 @@ export const NavBar = () => {
               </div>
             )}
             <div className=" relative cursor-pointer">
-              <IoCartSharp size={20} />
-              <p className=" circle">2</p>
+              <CartSheet />
+              <p className="text-xs circle">{totalQuantity}</p>
             </div>
             <div className=" relative cursor-pointer">
-              <FiHeart size={20} />
-              <p className=" circle">5</p>
+              <WishlistSheet />
+              <p className="text-xs circle">{totalFavourite}</p>
             </div>
           </div>
         </nav>

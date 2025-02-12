@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 import {
   addDoc,
   collection,
-  getDocs,
   onSnapshot,
   query,
   where
@@ -439,7 +438,7 @@ export const BlogDetailPage = () => {
                   onClick={() => {
                     navigate(`/products/${product.id}`);
                   }}
-                  className=""
+                  className="cursor-pointer"
                 >
                   <div className="flex rounded-md p-2 items-center bg-background gap-2 h-auto">
                     <img

@@ -5,17 +5,32 @@ import { Separator } from "./ui/separator";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { setFilterProducts, setLoading } from "@/redux/slice/productSlice";
 import { ProductSkeleton } from "./ProductSkeleton";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { ProductType } from "@/types";
+import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
 
 export const Products = () => {
+  const dispatch = useAppDispatch();
   const [selectedTab, setSelectedTab] = useState<
     "recommended" | "bestSelling" | "all"
   >("all");
+  const favourites = useAppSelector((state) => state.favourite.items);
 
-  const dispatch = useAppDispatch();
   const { filterProducts, loading, products } = useAppSelector(
     (state) => state.products
   );
 
+  const toggleFavorite = (product: ProductType) => {
+    if (favourites.find((item: ProductType) => item.id === product.id)) {
+      dispatch(removeFavorite(product.id));
+    } else {
+      dispatch(addFavorite(product));
+    }
+  };
+
+  const addToCartClick = (product: ProductType) => {
+    dispatch(addToCart({ ...product, qty: 1 }));
+  };
   const tabActions: {
     id: number;
     text: string;
@@ -79,7 +94,13 @@ export const Products = () => {
         {loading
           ? [...Array(6).keys()].map((index) => <ProductSkeleton key={index} />)
           : filterProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                addToCartClick={addToCartClick}
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+              />
             ))}
         {filterProducts.length === 0 && (
           <p className="mt-4 text-slate-500 text-center">

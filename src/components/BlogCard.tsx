@@ -20,7 +20,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
     navigate(`/blogs/${blog.id}`);
   };
   return (
-    <Card className="w-[220px]  bg-background border h-[290px] shadow-none  overflow-hidden rounded-none">
+    <Card className="max-w-sm w-full bg-background border h-[300px] shadow-none  overflow-hidden rounded-none">
       <CardHeader className="p-0">
         <CardTitle />
       </CardHeader>
@@ -29,9 +29,9 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
           <img src={blog.image} alt={blog.title} className="h-full w-full " />
         </figure>
       </CardContent>
-      <CardFooter className="flex px-2 flex-col gap-2 justify-start items-start">
+      <CardFooter className="flex px-2 flex-col gap-2 items-start">
         <div className="flex gap-2 justify-between w-full items-center ">
-          <div className="flex gap-1 items-center">
+          <div className="flex gap-1 mt-2 items-center">
             <CiCalendar size={12} />
             <p className="text-xs text-slate-400">{blog.date}</p>
           </div>
@@ -41,7 +41,9 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             <p className="text-xs text-slate-400">{blog.category}</p>
           </div>
         </div>
-        <p className="text-sm font-bold">{blog.title}</p>
+        <div className="h-[3rem] max-sm:h-auto">
+          <p className="text-sm font-bold">{blog.title}</p>
+        </div>
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-1">
             <FaRegCommentDots size={12} className="text-slate-500" />
@@ -56,7 +58,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             <p className="text-xs text-slate-500">{blog.author}</p>
           </div>
         </div>
-        <Button className="h-[30px] mt-2" onClick={handleClick}>
+        <Button className="h-[30px] max-sm:mt-5" onClick={handleClick}>
           Read More
         </Button>
       </CardFooter>

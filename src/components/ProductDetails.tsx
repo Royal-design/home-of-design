@@ -2,24 +2,33 @@ import BreadCrumbs from "./BreadCrumbs";
 import { Share2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
-import { data } from "@/assets/data/data";
 import { formatter } from "@/features/formatter";
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { decrement, increment } from "@/redux/slice/quantitySlice";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { ProductType } from "@/types";
 
-type ProductType = (typeof data.products)[0];
 interface ProductDetailsProps {
   product: ProductType;
 }
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
+  const dispatch = useAppDispatch();
+  const quantity = useAppSelector(
+    (state) => state.quantity.quantity[product.id] || 0
+  );
   const handleIncrement = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    dispatch(increment({ productId: product.id }));
   };
   const handleDecrement = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    dispatch(decrement({ productId: product.id }));
   };
 
   const addToCartClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    dispatch(addToCart({ ...product, qty: quantity }));
   };
 
   useEffect(() => {
@@ -79,7 +88,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               >
                 -
               </Button>
-              <p>1</p>
+              <p>{quantity}</p>
               <Button
                 variant="ghost"
                 onClick={handleIncrement}
@@ -111,12 +120,16 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
             <p className="text-xs">SHARE</p>
           </div>
         </div>
-        <div className="flex flex-col gap-2 text-xs mt-[2rem] text-gray-400">
+        <div className="flex flex-col gap-3 text-xs mt-[2rem] text-gray-400">
           <p>
             SKU: <span className="">{product.id}</span>
           </p>
           <p>
             CATEGORY: <span className="">{product.category}</span>
+          </p>
+          <p>
+            IN STOCK:{" "}
+            <span className="">{product.inStock ? "True" : "False"}</span>
           </p>
           <div className="flex items-center gap-2">
             <p>TAGS:</p>

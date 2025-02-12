@@ -6,7 +6,7 @@ export const Blogs = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
   const displayBlogs = blogs.slice(0, 4);
   return (
-    <div className="px-[6rem] mt-[2rem]">
+    <div className="px-[6rem] mt-[2rem] pb-12">
       <div className=" max-sm:px-4 max-sm:mt-[2rem]  mt-[2rem]">
         <div className="">
           <div className="flex flex-col items-center gap-1">
