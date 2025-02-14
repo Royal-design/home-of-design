@@ -39,6 +39,7 @@ import { toast } from "sonner";
 import { blogs } from "@/assets/data/blogs";
 import { RecentBlogs } from "@/components/RecentBlogs";
 import { Footer } from "@/components/Footer";
+import { BlogFilter } from "@/components/ui/BlogFilter";
 
 type BlogType = (typeof blogs)[0];
 export const BlogDetailPage = () => {
@@ -169,7 +170,7 @@ export const BlogDetailPage = () => {
 
   return (
     <div>
-      <header className="h-[22rem] font-Titillium-Web relative w-full">
+      <header className="h-[20rem] max-sm:h-auto font-Titillium-Web relative w-full">
         <img
           src={blog?.backgroundImage}
           alt={blog?.author}
@@ -177,10 +178,10 @@ export const BlogDetailPage = () => {
         />
         <article className="absolute h-full w-full top-0 bg-banner-overlay ">
           <div className="h-full w-full flex flex-col max-sm:px-2 items-center justify-center">
-            <h1 className="text-4xl max-sm:text-2xl max-sm:text-center text-white dark:text-gray-100">
+            <h1 className="text-2xl text-center font-bold max-sm:text-lg max-md:text-xl max-sm:text-center text-white dark:text-gray-100">
               {blog?.title}
             </h1>
-            <p className="text-lg text-center max-sm:px-2 text-gray-300 dark:text-gray-300 mt-4">
+            <p className="text-lg max-sm:text-sm text-center max-sm:px-2 text-gray-300 dark:text-gray-300 mt-4">
               {blog?.shortDescription}
             </p>
             <div className="bg-background-banner max-sm:mt-4 rounded-full px-2">
@@ -189,7 +190,15 @@ export const BlogDetailPage = () => {
           </div>
         </article>
       </header>
+
       <main className="main my-[2rem] px-8 max-sm:px-4">
+        <div className="hidden max-sm:block">
+          <BlogFilter
+            blogCategory={blogCategory}
+            handleBlogClick={handleBlogClick}
+            topProducts={topProducts}
+          />
+        </div>
         <div className="flex max-md:flex-col max-sm:flex-col gap-8">
           <section className="w-[70%] max-md:w-full max-sm:w-full flex flex-col gap-4 h-auto">
             <div className="h-[15rem] w-full">
@@ -233,8 +242,8 @@ export const BlogDetailPage = () => {
                 </div>
               </div>
             </article>
-            <div className="my-[1rem] flex flex-col gap-2">
-              <h1 className="text-xl font-bold dark:text-slate-300 text-slate-700">
+            <div className="my-[1rem] flex flex-col gap-1">
+              <h1 className="text-xl max-sm:text-base font-bold dark:text-slate-300 text-slate-700">
                 {blog?.title}
               </h1>
               <Separator className="border-[1px] my-[1rem] dark:border-slate-800 border-black" />
@@ -309,7 +318,7 @@ export const BlogDetailPage = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="flex flex-col gap-1">
-                      <div className="flex w-full gap-5">
+                      <div className="flex w-full max-sm:flex-col gap-5">
                         <FormField
                           control={form.control}
                           name="firstname"
@@ -351,7 +360,7 @@ export const BlogDetailPage = () => {
                           )}
                         />
                       </div>
-                      <div className="flex w-full gap-5">
+                      <div className="flex w-full max-sm:flex-col gap-5">
                         <FormField
                           control={form.control}
                           name="address"
@@ -422,7 +431,7 @@ export const BlogDetailPage = () => {
               </Form>
             </div>
           </section>
-          <section className="max-sm:hidden max-md:hidden px-4">
+          <section className="max-sm:hidden max-md:hidden px-4 ">
             <RecentBlogs handleBlogClick={handleBlogClick} />
             <div className="my-[1rem]">
               <h2>Top Products</h2>
