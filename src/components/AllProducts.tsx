@@ -64,7 +64,7 @@ export const AllProducts = () => {
       )}
       <div className=" ">
         {loading ? (
-          <div className=" grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] max-sm:grid-cols-2  max-md:grid-cols-3 gap-4">
+          <div className=" grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] max-sm:grid-cols-2   max-md:grid-cols-3 gap-4">
             {[...Array(6).keys()].map((index) => (
               <ProductSkeleton key={index} />
             ))}

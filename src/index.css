@@ -241,31 +241,35 @@
 
 .banner-swiper {
   .swiper-button-prev {
-    height: 2rem;
-    background: white;
-
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    display: flex;
-    width: 1rem;
-    &::after {
-      /* content: "<"; */
-      color: gray;
-      font-size: 1rem;
-      position: absolute;
-    }
-  }
-  .swiper-button-next {
-    height: 2rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    position: absolute;
-    background: white;
-    display: flex;
-    width: 1rem;
     &::after {
       /* content: "<"; */
       color: grey;
       font-size: 1rem;
       position: absolute;
+      left: 1rem;
+      background: white;
+      height: 2rem;
+      width: 1rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .swiper-button-next {
+    &::after {
+      /* content: "<"; */
+      color: grey;
+      font-size: 1rem;
+      position: absolute;
+      right: 1rem;
+      background: white;
+      height: 2rem;
+      width: 1rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

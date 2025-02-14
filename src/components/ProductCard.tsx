@@ -30,7 +30,7 @@ export const ProductCard = ({
     navigate(`/products/${product.id}`);
   };
   return (
-    <Card className="w-[220px]  bg-background border h-[250px] max-sm:h-[260px] shadow-none  overflow-hidden rounded-none">
+    <Card className="w-[220px] max-sm:w-full  bg-background border h-[250px] max-sm:h-full shadow-none  overflow-hidden rounded-none">
       <CardHeader className="p-0">
         <CardTitle />
       </CardHeader>

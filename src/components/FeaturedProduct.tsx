@@ -22,14 +22,16 @@ export const FeaturedProduct = () => {
     dispatch(addToCart({ ...product, qty: 1 }));
   };
   return (
-    <div className="px-[6rem] max-sm:px-[1rem] mt-[8rem]">
+    <div className="px-[6rem] leading-[150%] max-sm:px-[1rem] mt-[8rem] max-sm:mt-[2rem]">
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
-          <Separator className="w-[400px]  border" />
-          <h1 className="text-2xl font-bold text-center">Featured Product</h1>
-          <Separator className="w-[400px] border" />
+          <Separator className="flex-1" />
+          <h1 className="text-2xl max-sm:text-lg font-bold text-center">
+            Featured Product
+          </h1>
+          <Separator className="flex-1" />
         </div>
-        <p className="text-sm">
+        <p className="text-sm max-sm:text-xs text-center ">
           Handpicked designs to elevate your living space with elegance and
           functionality
         </p>

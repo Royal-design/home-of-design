@@ -13,7 +13,6 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { Swiper as SwiperClass } from "swiper/types";
 import { Footer } from "@/components/Footer";
-import BreadCrumbs from "@/components/BreadCrumbs";
 import { ProductDetails } from "@/components/ProductDetails";
 import { ProductSwiperMobile } from "@/components/ProductSwiperMobile";
 import { ProductTab } from "@/components/ProductTab";
@@ -32,10 +31,6 @@ export const ProductPage = () => {
 
   return (
     <div className="">
-      <div className="hidden max-sm:block my-[2rem] max-md:block">
-        <BreadCrumbs />
-      </div>
-
       <div className="flex h-[30rem] px-[6rem]  max-sm:hidden max-md:hidden w-full mt-6 gap-6">
         <div className="product-swiper h-full w-[50%] max-sm:w-full">
           {/* Thumbnail Swiper */}

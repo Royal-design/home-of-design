@@ -14,6 +14,7 @@ import { ProductDetails } from "@/components/ProductDetails";
 
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "@/redux/store";
+import BreadCrumbs from "./BreadCrumbs";
 
 export const ProductSwiperMobile = () => {
   const { id } = useParams();
@@ -21,7 +22,10 @@ export const ProductSwiperMobile = () => {
   const product = products.find((product) => product.id.toString() === id);
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   return (
-    <div className="hidden px-[2rem] h-full max-md:flex max-md:flex-col max-sm:flex max-sm:flex-col w-full mt-6 gap-6">
+    <div className="hidden px-[1rem] h-full max-md:flex max-md:flex-col max-sm:flex max-sm:flex-col w-full mt-6 gap-6">
+      <div className=" my-[1rem] max-md:block">
+        <BreadCrumbs />
+      </div>
       <div className="product-swiper w-full h-full flex flex-col gap-[1rem] ">
         {/* Main Image Swiper */}
         <Swiper

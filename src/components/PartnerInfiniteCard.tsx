@@ -16,15 +16,17 @@ const partners = [
 export const PartnerInfiniteCard = () => {
   return (
     <div className="">
-      <div className="px-[6rem] max-sm:px-4 max-sm:mt-[2rem]  mt-[2rem]">
+      <div className="px-[6rem] max-sm:px-[1rem] my-[2rem] max-sm:mb-[1rem]">
         <div className="">
           <div className="flex flex-col items-center gap-1">
             <div className="flex items-center gap-2 w-full justify-between">
-              <Separator className="w-[400px]  border" />
-              <h1 className="text-2xl font-bold text-center">Our Partners</h1>
-              <Separator className="w-[400px] border" />
+              <Separator className="flex-1" />
+              <h1 className="text-2xl max-sm:text-lg font-bold text-center">
+                Our Partners
+              </h1>
+              <Separator className="flex-1" />
             </div>
-            <p className="text-center text-sm">
+            <p className="text-center max-sm:text-xs text-sm leading-[150%]">
               Collaborating with the best to bring you quality and style. Our
               trusted partners share our commitment to craftsmanship,
               sustainability, and exceptional design.

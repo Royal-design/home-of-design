@@ -11,7 +11,7 @@ import { TopProduct } from "@/components/TopProduct";
 
 export const HomePage = () => {
   return (
-    <div className="bg-background">
+    <div className="bg-background font-Titillium-Web">
       <Banner />
       <Category />
       <FeaturedProduct />

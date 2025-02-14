@@ -62,14 +62,16 @@ export const Products = () => {
   };
 
   return (
-    <div className="mt-[4rem] px-[6rem]">
+    <div className="mt-[4rem] leading-[150%] px-[6rem] max-sm:px-[1rem] max-sm:mt-[2rem]">
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
-          <Separator className="w-[400px]  border" />
-          <h1 className="text-2xl font-bold text-center">All Products</h1>
-          <Separator className="w-[400px]  border" />
+          <Separator className="flex-1" />
+          <h1 className="text-2xl max-sm:text-lg font-bold text-center">
+            All Products
+          </h1>
+          <Separator className="flex-1" />
         </div>
-        <p className="text-sm">
+        <p className="text-sm max-sm:text-xs text-center">
           Explore our full range of stylish, functional furniture for every room
           in your home.
         </p>

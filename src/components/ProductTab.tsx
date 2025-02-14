@@ -29,7 +29,7 @@ export const ProductTab = ({ product }: PropsType) => {
   return (
     <Tabs
       defaultValue="description"
-      className="w-full max-sm:p-0 px-[6rem] max-lg:p-0 max-md:p-0  my-[4rem] font-rajdhani"
+      className="w-full max-sm:p-[1rem] px-[6rem] max-lg:p-0 max-md:p-0  my-[4rem] font-rajdhani"
     >
       <TabsList className=" max-sm:flex max-sm:justify-between">
         <TabsTrigger value="description" className="max-sm:text-sm">

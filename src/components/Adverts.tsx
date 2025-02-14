@@ -25,20 +25,22 @@ const advertData = [
 ];
 export const Adverts = () => {
   return (
-    <div className="px-[6rem] h-auto max-sm:px-[1rem] w-full mt-[2rem]">
+    <div className="px-[6rem] h-auto max-sm:px-[1rem] w-full mt-[3rem]">
       <div className="grid grid-cols-2 gap-4 max-sm:gap-3 w-full h-full max-sm:grid-cols-1  ">
         {advertData.map((advert) => (
           <Card
             key={advert.id}
             style={{ backgroundColor: advert.backgroundColor }}
-            className={`p-0 border-none w-[520px] h-[250px] max-sm:w-full shadow-none  overflow-hidden rounded-none`}
+            className={`p-0 border-none w-[520px] max-sm:h-[200px]  h-[250px] max-sm:w-full shadow-none  overflow-hidden rounded-none`}
           >
             <div className="flex p-3 w-full h-full">
-              <div className="flex flex-col gap-2 w-full justify-center p-4">
-                <h1 className="text-lg font-bold">{advert.title}</h1>
-                <p className="text-sm mt-2">{advert.description}</p>
+              <div className="flex flex-col gap-2 w-full justify-center p-4 max-sm:p-2">
+                <h1 className="text-lg max-sm:text-base  font-bold">
+                  {advert.title}
+                </h1>
+                <p className="text-sm max-sm:text-xs">{advert.description}</p>
                 <div className="">
-                  <Button className="bg-black text-white mt-4 px-4 py-2">
+                  <Button className="bg-slate-600 hover:bg-slate-700 duration-200 text-white mt-4 px-4 py-2">
                     {advert.ctaText}
                   </Button>
                 </div>

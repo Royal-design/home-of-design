@@ -37,7 +37,7 @@ export const RelatedProduct = ({ category }: CategoryType) => {
 
   return (
     <div className="related-swiper  px-[6rem] max-sm:px-[1rem] max-md:px-[1rem] h-[20rem]  my-[1rem]">
-      <p className="text-2xl my-4">
+      <p className="text-2xl max-sm:text-lg my-4">
         Related <span className="uppercase font-bold">Products</span>{" "}
       </p>
       <div className="max-sm:hidden max-md:hidden">
