@@ -9,7 +9,7 @@ export const BlogPage = () => {
     <div>
       <main className="pb-12">
         {/* Hero Section */}
-        <section className="h-[20rem] relative font-Titillium-Web">
+        <section className="h-[20rem] max-sm:h-full relative font-Titillium-Web">
           <img
             src="https://media.istockphoto.com/id/1483031614/photo/modern-interior-design-of-living-room-black-sofa-and-empty-mockup-wall-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=ohYw9BMs6WOt0ajHLwP2Zn401FR5vwi-96gDr4qiwjE="
             alt="hero"
@@ -17,11 +17,11 @@ export const BlogPage = () => {
           />
           <article className="absolute inset-0 bg-banner-overlay flex items-center justify-center">
             <div className="text-center px-6 max-w-3xl">
-              <h1 className="text-3xl font-bold text-white dark:text-gray-100 sm:text-4xl">
+              <h1 className="text-2xl text-center max-sm:text-lg max-md:text-xl font-bold text-white dark:text-gray-100 sm:text-4xl">
                 Transform Your Space with Inspiration & Ideas
               </h1>
 
-              <p className="text-gray-300 dark:text-gray-300 mt-4 text-sm sm:text-base leading-relaxed">
+              <p className="text-gray-300 max-sm:text-xs dark:text-gray-300 mt-4 text-sm leading-[150%]">
                 Dive into a world of furniture trends, interior design tips, and
                 expert advice to help you craft spaces that reflect your unique
                 style. Whether you're looking for modern minimalism, rustic
@@ -39,7 +39,7 @@ export const BlogPage = () => {
           <article>
             <p className="text-lg font-semibold my-4">Recent Blog Posts</p>
           </article>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid  max-sm:grid-cols-2 max-md:grid-cols-3 grid-cols-4 max-sm:gap-3 gap-6">
             {blogs.map((blog) => (
               <BlogCard blog={blog} key={blog.id} />
             ))}
