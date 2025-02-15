@@ -31,7 +31,7 @@ export const ProductPage = () => {
 
   return (
     <div className="">
-      <div className="flex h-[30rem] px-[6rem]  max-sm:hidden max-md:hidden w-full mt-6 gap-6">
+      <div className="flex h-[30rem] px-[6rem] max-lg:px-8  max-sm:hidden max-md:hidden w-full mt-6 gap-6">
         <div className="product-swiper h-full w-[50%] max-sm:w-full">
           {/* Thumbnail Swiper */}
           <Swiper
@@ -45,7 +45,7 @@ export const ProductPage = () => {
             className=""
           >
             <SwiperSlide>
-              <figure className="flex w-full h-full overflow-hidden items-center justify-center bg-gray-300 dark:bg-slate-900">
+              <figure className="flex w-full h-full overflow-hidden items-center justify-center bg-banner">
                 <img
                   src={product?.mainImage}
                   className="w-[4rem] object-contain"
@@ -54,7 +54,7 @@ export const ProductPage = () => {
             </SwiperSlide>
             {product?.images.map((image, i) => (
               <SwiperSlide key={i}>
-                <figure className="flex w-full h-full overflow-hidden  items-center justify-center bg-gray-300 dark:bg-slate-900">
+                <figure className="flex w-full h-full overflow-hidden  items-center justify-center bg-banner">
                   <img src={image} className="w-[4rem] object-contain" />
                 </figure>
               </SwiperSlide>
@@ -77,7 +77,7 @@ export const ProductPage = () => {
             className="mySwiper2 w-full"
           >
             <SwiperSlide>
-              <figure className="flex h-[30rem] w-full  items-center justify-center bg-gray-300 dark:bg-slate-900">
+              <figure className="flex h-[30rem] w-full  items-center justify-center bg-banner">
                 <img
                   src={product?.mainImage}
                   className="w-[20rem]  object-contain"
@@ -86,7 +86,7 @@ export const ProductPage = () => {
             </SwiperSlide>
             {product?.images.map((image, i) => (
               <SwiperSlide key={i}>
-                <figure className="flex h-[35rem] w-full items-center justify-center bg-gray-300 dark:bg-slate-900">
+                <figure className="flex h-[35rem] w-full items-center justify-center bg-banner">
                   <img src={image} className="w-[20rem]  object-contain" />
                 </figure>
               </SwiperSlide>

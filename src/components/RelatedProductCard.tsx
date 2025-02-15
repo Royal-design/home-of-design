@@ -33,7 +33,7 @@ export const RelatedProductCard = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <Card className="w-[220px] max-sm:w-full  bg-background border h-[250px] max-sm:h-full shadow-none  overflow-hidden rounded-none">
+    <Card className="w-full bg-background border h-full shadow-none  overflow-hidden rounded-none">
       <CardHeader className="p-0">
         <CardTitle />
       </CardHeader>

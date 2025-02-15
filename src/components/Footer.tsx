@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa6";
 export const Footer = () => {
   return (
-    <footer className="bg-gray-100 max-md:px-4 max-lg:px-8 dark:bg-slate-700 text-black dark:text-white py-12 px-[6rem] max-sm:px-[1rem]">
+    <footer className="bg-banner max-md:px-4 max-lg:px-8  text-black dark:text-white py-12 px-[6rem] max-sm:px-[1rem]">
       <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-4">
         {/* Logo and Info Section */}
         <div className="flex flex-col items-center max-md:items-start max-sm:items-start">

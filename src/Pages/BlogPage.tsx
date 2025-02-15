@@ -36,7 +36,7 @@ export const BlogPage = () => {
           <article>
             <p className="text-lg font-semibold my-4">Recent Blog Posts</p>
           </article>
-          <div className="grid  max-sm:grid-cols-2 max-md:grid-cols-3 grid-cols-4 max-sm:gap-3 gap-6">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))]  [@media(min-width:400px)_and_(max-width:700px)]:grid-cols-2 max-md:grid-cols-3 max-sm:gap-3 gap-6">
             {blogs.map((blog) => (
               <BlogCard blog={blog} key={blog.id} />
             ))}

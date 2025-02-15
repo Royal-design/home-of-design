@@ -29,9 +29,9 @@ export const ProductTab = ({ product }: PropsType) => {
   return (
     <Tabs
       defaultValue="description"
-      className="w-full max-sm:p-[1rem] px-[6rem] max-lg:p-0 max-md:p-0  my-[4rem] font-rajdhani"
+      className="w-full max-sm:p-[1rem] px-[6rem] max-lg:p-8 max-md:p-4  my-[4rem] "
     >
-      <TabsList className=" max-sm:flex max-sm:justify-between">
+      <TabsList className=" bg-banner max-sm:flex max-sm:justify-between">
         <TabsTrigger value="description" className="max-sm:text-sm">
           Description
         </TabsTrigger>
@@ -44,7 +44,7 @@ export const ProductTab = ({ product }: PropsType) => {
         >{`Reviews [${product.reviews.length}]`}</TabsTrigger>
       </TabsList>
       <TabsContent value="description">
-        <Card>
+        <Card className="bg-banner">
           <CardHeader className="py-2">
             <CardTitle className="text-lg max-sm:text-base">
               {product.name}
@@ -59,7 +59,7 @@ export const ProductTab = ({ product }: PropsType) => {
         </Card>
       </TabsContent>
       <TabsContent value="additionalinfo">
-        <Card>
+        <Card className="bg-banner">
           <CardHeader className="py-2">
             <CardTitle className="text-lg max-sm:text-base">
               Additional Information
@@ -107,7 +107,7 @@ export const ProductTab = ({ product }: PropsType) => {
       <TabsContent value="review">
         <p className="text-lg mb-2 max-sm:text-base">Reviews</p>
         {product.reviews.map((review, index) => (
-          <Card key={index} className="border p-2  mb-2  shadow-sm">
+          <Card key={index} className="border p-2 bg-banner  mb-2  shadow-sm">
             <CardHeader className="py-0">
               <CardTitle />
             </CardHeader>
@@ -131,7 +131,7 @@ export const ProductTab = ({ product }: PropsType) => {
           </Card>
         ))}
 
-        <Card>
+        <Card className="bg-banner">
           <CardHeader className="py-0">
             <CardTitle />
             <CardDescription></CardDescription>

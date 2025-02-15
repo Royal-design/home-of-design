@@ -36,7 +36,7 @@ export const RelatedProduct = ({ category }: CategoryType) => {
   };
 
   return (
-    <div className="related-swiper  px-[6rem] max-sm:px-[1rem] max-md:px-[1rem] h-[20rem]  my-[1rem]">
+    <div className="related-swiper  px-[6rem] max-sm:px-[1rem] max-lg:px-8 max-md:px-[1rem] h-[20rem]  my-[1rem]">
       <p className="text-2xl max-sm:text-lg my-4">
         Related <span className="uppercase font-bold">Products</span>{" "}
       </p>
@@ -62,9 +62,30 @@ export const RelatedProduct = ({ category }: CategoryType) => {
         </Swiper>
       </div>
 
-      <div className="hidden max-sm:block">
+      <div className="hidden [@media(min-width:400px)_and_(max-width:700px)]:block">
         <Swiper
           slidesPerView={2}
+          spaceBetween={10}
+          loop={true}
+          navigation={true}
+          modules={[Navigation]}
+          className="mySwiper h-full w-full"
+        >
+          {relatedProducts.map((product, i) => (
+            <SwiperSlide key={i}>
+              <RelatedProductCard
+                favourites={favourites}
+                toggleFavorite={toggleFavorite}
+                product={product}
+                addToCartClick={addToCartClick}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="hidden [@media(max-width:399px)]:block">
+        <Swiper
+          slidesPerView={1}
           spaceBetween={10}
           loop={true}
           navigation={true}

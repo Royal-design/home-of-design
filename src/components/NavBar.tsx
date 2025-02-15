@@ -47,7 +47,7 @@ export const NavBar = () => {
         onUnpin={() => setIsPinned(false)}
       >
         <nav
-          className={`duration-200 text-primary bg-background dark:bg-slate-400 font-Titillium-Web max-lg:px-8 max-md:px-4  h-[4rem]  max-sm:px-[1rem] w-full max-sm:justify-between flex items-center justify-between px-[6rem]  ${
+          className={`duration-200 text-primary bg-background  font-Titillium-Web max-lg:px-8 max-md:px-4  h-[4rem]  max-sm:px-[1rem] w-full max-sm:justify-between flex items-center justify-between px-[6rem]  ${
             isPinned && scrolled ? " shadow-md" : ""
           }`}
         >

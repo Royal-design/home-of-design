@@ -43,7 +43,7 @@ export const ProductSwiperMobile = () => {
           className="mySwiper2 w-full  h-[25rem]"
         >
           <SwiperSlide>
-            <figure className="flex h-full w-full  items-center justify-center bg-gray-300 dark:bg-slate-900">
+            <figure className="flex h-full w-full  items-center justify-center bg-banner">
               <img
                 src={product?.mainImage}
                 className="w-[20rem]  object-contain"
@@ -52,7 +52,7 @@ export const ProductSwiperMobile = () => {
           </SwiperSlide>
           {product?.images.map((image, i) => (
             <SwiperSlide key={i}>
-              <figure className="flex h-full w-full items-center justify-center bg-gray-300 dark:bg-slate-900">
+              <figure className="flex h-full w-full items-center justify-center bg-banner">
                 <img src={image} className="w-[20rem]  object-contain" />
               </figure>
             </SwiperSlide>
@@ -71,7 +71,7 @@ export const ProductSwiperMobile = () => {
           className=""
         >
           <SwiperSlide>
-            <figure className="flex w-full rounded-full h-full overflow-hidden items-center justify-center bg-gray-300 dark:bg-slate-900">
+            <figure className="flex w-full rounded-full h-full overflow-hidden items-center justify-center bg-banner">
               <img
                 src={product?.mainImage}
                 className="w-[4rem] object-contain"
@@ -80,7 +80,7 @@ export const ProductSwiperMobile = () => {
           </SwiperSlide>
           {product?.images.map((image, i) => (
             <SwiperSlide key={i}>
-              <figure className="flex rounded-full w-full h-full overflow-hidden  items-center justify-center bg-gray-300 dark:bg-slate-900">
+              <figure className="flex rounded-full w-full h-full overflow-hidden  items-center justify-center bg-banner">
                 <img src={image} className="w-[4rem] object-contain" />
               </figure>
             </SwiperSlide>

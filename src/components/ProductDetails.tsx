@@ -136,7 +136,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
             <div className="text-black flex gap-2 flex-wrap ">
               {product.tags.map((tag, i) => (
                 <Button
-                  className="dark:bg-slate-700 h-[1.5rem] px-2 py-1 text-xs dark:text-white dark:hover:bg-slate-600 rounded-md"
+                  className=" h-[1.5rem] px-2 py-1 text-xs text-primary bg-button hover:bg-button-hover duration-200 rounded-md"
                   key={i}
                 >
                   {tag}

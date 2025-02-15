@@ -6,6 +6,8 @@
 
 @layer base {
   :root {
+    --button-hover: #d9d9d9;
+    --button: #ededed;
     --category: #f7f5f5;
     --banner: #e9e9e9;
     --banner-overlay: #00000092;
@@ -36,10 +38,12 @@
     --radius: 0.5rem;
   }
   .dark {
+    --button-hover: #141a25;
+    --button: #232d3f;
     --category: #f7f5f5;
-    --banner: #043224;
+    --banner: #0f0f0f;
     --banner-overlay: #00000092;
-    --background: #474848;
+    --background: #000000;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -247,7 +251,7 @@
       font-size: 1rem;
       position: absolute;
       left: 1rem;
-      background: white;
+      background: var(--background);
       height: 2rem;
       width: 1rem;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -263,7 +267,7 @@
       font-size: 1rem;
       position: absolute;
       right: 1rem;
-      background: white;
+      background: var(--background);
       height: 2rem;
       width: 1rem;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

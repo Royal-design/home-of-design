@@ -39,7 +39,7 @@ export const RecentBlogs = ({ handleBlogClick }: PropsType) => {
 
   return (
     <div className="flex cursor-pointer flex-col gap-2 w-full bg-background-card ">
-      <div className="flex items-center h-[3rem]  bg-background">
+      <div className="flex items-center  bg-background">
         <Input
           placeholder="Search..."
           className="h-[2rem] w-full rounded-none "
@@ -51,11 +51,8 @@ export const RecentBlogs = ({ handleBlogClick }: PropsType) => {
       {loading ? (
         [...Array(3).keys()].map((id) => <BlogSkeleton key={id} />)
       ) : (
-        <div className="">
-          <p
-            className="dark:text-slate-300  my-
-           text-lg"
-          >
+        <div className="mt-4">
+          <p className="dark:text-slate-300  text-lg">
             {filterBlogs.length > 0 ? "Recent Blogs" : "No recent blogs"}
           </p>
           {filterBlogs.map((blog) => (

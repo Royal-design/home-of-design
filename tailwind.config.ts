@@ -61,9 +61,11 @@ export default {
         "2xl": "1536px"
       },
       colors: {
+        button: "var(--button)",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",
         "banner-overlay": "var(--banner-overlay)",
+        "button-hover": "var(--button-hover)",
         category: "var(--category)",
         banner: "var(--banner)",
         card: {

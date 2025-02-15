@@ -5,6 +5,7 @@ import partner3 from "../assets/partners/partner3.png";
 import partner4 from "../assets/partners/partner4.png";
 import partner5 from "../assets/partners/partner5.png";
 import { Separator } from "./ui/separator";
+import { motion } from "framer-motion";
 
 const partners = [
   { image: <img src={partner1} className="w-[5rem] max-sm:w-[3rem]" /> },
@@ -15,7 +16,14 @@ const partners = [
 ];
 export const PartnerInfiniteCard = () => {
   return (
-    <div className="">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{
+        duration: 1
+      }}
+    >
       <div className="px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] my-[2rem] max-sm:mb-[1rem]">
         <div className="">
           <div className="flex flex-col items-center gap-1">
@@ -37,6 +45,6 @@ export const PartnerInfiniteCard = () => {
       <div className=" rounded-md flex flex-col antialiased bg-background  dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards items={partners} direction="right" speed="slow" />
       </div>
-    </div>
+    </motion.div>
   );
 };

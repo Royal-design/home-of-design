@@ -91,7 +91,7 @@ export const Banner = () => {
                     <p className="text-sm leading-[150%]">{data.text}</p>
                     <div className="">
                       <Button
-                        className="border border-black mt-4"
+                        className="border dark:hover:bg-transparent hover:bg-button-hover transition-all duration-200 dark:hover:border-yellow-400 border-black mt-4"
                         variant="ghost"
                       >
                         Shop Now

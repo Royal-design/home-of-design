@@ -189,8 +189,8 @@ export const BlogDetailPage = () => {
         </article>
       </header>
 
-      <main className="main my-[2rem] px-[6rem] max-sm:px-4">
-        <div className="hidden max-sm:block">
+      <main className="main flex flex-col gap-4 my-[2rem] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-4">
+        <div className="hidden max-sm:block max-md:block">
           <BlogFilter
             blogCategory={blogCategory}
             handleBlogClick={handleBlogClick}
@@ -259,10 +259,10 @@ export const BlogDetailPage = () => {
             </div>
             <div className="flex items-center gap-2">
               <p>TAGS:</p>
-              <div className="text-black flex gap-2 flex-wrap ">
+              <div className="text-black flex gap-2 flex-wrap">
                 {blog?.tags.map((tag, i) => (
                   <Button
-                    className="dark:bg-slate-700 h-[1.5rem] px-2 py-1 text-xs dark:text-white dark:hover:bg-slate-600 rounded-md"
+                    className=" h-[1.5rem] px-2 py-1 text-primary duration-200 hover:bg-button-hover bg-button text-xs rounded-md"
                     key={i}
                   >
                     {tag}
@@ -320,7 +320,7 @@ export const BlogDetailPage = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="flex flex-col gap-2">
-                      <div className="flex w-full max-sm:flex-col gap-5 max-sm:gap-2">
+                      <div className="flex w-full max-md:flex-col max-sm:flex-col gap-5 max-sm:gap-2">
                         <FormField
                           control={form.control}
                           name="firstname"
@@ -362,7 +362,7 @@ export const BlogDetailPage = () => {
                           )}
                         />
                       </div>
-                      <div className="flex w-full max-sm:flex-col gap-5 max-sm:gap-2">
+                      <div className="flex w-full max-sm:flex-col max-md:flex-col gap-5 max-sm:gap-2">
                         <FormField
                           control={form.control}
                           name="address"
@@ -423,7 +423,7 @@ export const BlogDetailPage = () => {
                       <Button
                         disabled={form.formState.isSubmitting}
                         type="submit"
-                        className="w-full text-white dark:text-primary transition  bg-slate-600 hover:bg-slate-700 duration-200"
+                        className="w-full text-primary duration-200 hover:bg-button-hover bg-button "
                       >
                         {form.formState.isSubmitting ? (
                           <>
@@ -504,7 +504,7 @@ export const BlogDetailPage = () => {
                 {blogCategory.map((category, i) => (
                   <li
                     key={i}
-                    className="flex p-1 rounded-md bg-slate-500 text-xs text-slate-200 hover:bg-slate-600 justify-between items-center w-full"
+                    className="flex p-1 rounded-md text-primary duration-200 hover:bg-button-hover bg-button text-xs justify-between items-center w-full"
                   >
                     <p>{category}</p>
                   </li>

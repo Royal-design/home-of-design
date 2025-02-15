@@ -8,6 +8,7 @@ import { ProductSkeleton } from "./ProductSkeleton";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { ProductType } from "@/types";
 import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
+import { motion } from "framer-motion";
 
 export const Products = () => {
   const dispatch = useAppDispatch();
@@ -62,7 +63,15 @@ export const Products = () => {
   };
 
   return (
-    <div className="mt-[4rem] leading-[150%] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] max-sm:mt-[2rem]">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        duration: 1
+      }}
+      className="mt-[4rem] leading-[150%] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] max-sm:mt-[2rem]"
+    >
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
           <Separator className="flex-1" />
@@ -92,7 +101,7 @@ export const Products = () => {
           </Button>
         ))}
       </div>
-      <div className="grid  grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3  max-sm:grid-cols-2 mt-[1rem] max-sm:mt-[2rem]  gap-4">
+      <div className="grid  grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3  [@media(min-width:400px)_and_(max-width:700px)]:grid-cols-2 mt-[1rem] max-sm:mt-[2rem]  gap-4">
         {loading
           ? [...Array(6).keys()].map((index) => <ProductSkeleton key={index} />)
           : filterProducts.map((product) => (
@@ -115,6 +124,6 @@ export const Products = () => {
           Show More
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 };

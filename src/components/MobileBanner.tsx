@@ -44,7 +44,7 @@ export const MobileBanner = () => {
       loop
       navigation
       modules={[Navigation, Autoplay]}
-      className="mySwiper h-[30rem] banner-swiper"
+      className="mySwiper h-full banner-swiper"
     >
       {bannerData.map((data, i) => (
         <SwiperSlide key={i}>
@@ -55,8 +55,9 @@ export const MobileBanner = () => {
               initial="initial"
               exit="exit"
               variants={banner}
-              className="relative bg-banner  font-Titillium-Web  w-full h-full px-[1rem] gap-2 flex flex-col items-center"
+              className="relative bg-banner  font-Titillium-Web  w-full h-full p-[1rem] gap-2 flex flex-col items-center"
             >
+              <h2 className="text-xl font-bold ">{data.heading}</h2>
               <figure className="h-[10rem]">
                 <img
                   src={data.img}
@@ -66,7 +67,6 @@ export const MobileBanner = () => {
               </figure>
 
               <div className=" flex text-center  w-full  flex-col items-center h-full justify-center gap-4  p-2">
-                <h2 className="text-xl font-bold ">{data.heading}</h2>
                 <p className="text-base ">{data.subHead}</p>
                 <p className="text-sm leading-[150%]">{data.text}</p>
                 <div className="">
