@@ -3,7 +3,7 @@ export const Category = () => {
   const categories = data.categories;
 
   return (
-    <div className="h-auto px-[6rem] absolute max-sm:static max-sm:px-[1rem] mt-[-4rem] max-sm:mt-0  w-full flex justify-center">
+    <div className="h-auto px-[6rem] max-md:px-4 max-md:-mt-8 max-lg:px-8 absolute max-sm:static max-sm:px-[1rem] mt-[-4rem] max-sm:mt-0  w-full flex justify-center">
       <div className=" bg-background w-full">
         <div className="flex gap-4 p-6 max-sm:p-2 w-full justify-between items-center">
           {categories.map((category) => (

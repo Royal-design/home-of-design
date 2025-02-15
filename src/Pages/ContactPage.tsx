@@ -70,78 +70,73 @@ export const ContactPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       {/* Hero Section */}
-      <section className="h-[20rem] relative font-Titillium-Web">
+      <section className="h-[20rem] max-sm:h-full relative font-Titillium-Web">
         <img
           src="https://images.unsplash.com/photo-1499159058454-75067059248a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29udGFjdHxlbnwwfHwwfHx8MA%3D%3D"
           alt="hero"
           className="h-full w-full object-cover"
         />
-        <article className="absolute inset-0 bg-banner-overlay flex items-center justify-center">
-          <div className="text-center px-6 max-w-3xl">
-            <h1 className="text-3xl font-bold text-gray-300 md:text-5xl">
-              Contact Us
-            </h1>
+        <article className="absolute max-sm:px-4 gap-4 inset-0 bg-banner-overlay flex-col flex items-center justify-center">
+          <h1 className="text-3xl font-bold text-gray-300 ">Contact Us</h1>
 
-            <p className="text-lg text-white mt-4 md:mt-6 max-w-3xl mx-auto">
-              We’d love to hear from you! Whether you have questions, feedback,
-              or just want to say hello, feel free to reach out.
-            </p>
-            <div className="mt-8 flex w-full justify-center">
-              <BreadCrumbs />
-            </div>
-          </div>
+          <p className="text-lg max-sm:text-base text-white max-w-3xl text-center">
+            We’d love to hear from you! Whether you have questions, feedback, or
+            just want to say hello, feel free to reach out.
+          </p>
+
+          <BreadCrumbs />
         </article>
       </section>
 
       {/* Contact Form Section */}
-      <section className="px-8 md:px-20 lg:px-40 py-16 bg-white">
+      <section className="px-[6rem] py-6 max-sm:px-4  bg-background">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div>
-            <h2 className="text-3xl font-semibold mb-6">Get in Touch</h2>
+            <h2 className="text-3xl mb-6 max-sm:text-2xl font-semibold space-y-4 text-center">
+              Get in Touch
+            </h2>
             <Form {...form}>
               <form
                 className="space-y-6"
                 onSubmit={form.handleSubmit(handleSubmit)}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="require">Name</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="text"
-                            className="focus:border-green-400 border-primary focus:border-1 duration-150"
-                            placeholder="Enter your name"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="require">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="email"
-                            className="focus:border-green-400 border-primary focus:border-1 duration-150"
-                            placeholder="Enter your email"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="require">Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          className="focus:border-green-400 border-primary focus:border-1 duration-150"
+                          placeholder="Enter your name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="require">Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          className="focus:border-green-400 border-primary focus:border-1 duration-150"
+                          placeholder="Enter your email"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <FormField
                   control={form.control}
@@ -194,8 +189,10 @@ export const ContactPage = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-8">
-            <h2 className="text-3xl font-semibold">Contact Details</h2>
+          <div className="space-y-4  pb-6">
+            <h2 className="text-3xl mb-6 max-sm:text-2xl text-center font-semibold">
+              Contact Details
+            </h2>
 
             <div className="flex items-start gap-4">
               <FaPhoneAlt className="text-[#f5b955] mt-1" size={18} />

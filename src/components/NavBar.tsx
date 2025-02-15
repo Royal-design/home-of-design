@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Headroom from "react-headroom";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
-import { FiHeart } from "react-icons/fi";
 import { Theme } from "./Theme";
 import { useAppSelector } from "@/redux/store";
 import { Button } from "./ui/button";
@@ -48,7 +47,7 @@ export const NavBar = () => {
         onUnpin={() => setIsPinned(false)}
       >
         <nav
-          className={`duration-200 text-primary bg-background dark:bg-slate-400 font-Titillium-Web   h-[4rem]  max-sm:px-[1rem] w-full max-sm:justify-between flex items-center justify-between px-[6rem]  ${
+          className={`duration-200 text-primary bg-background dark:bg-slate-400 font-Titillium-Web max-lg:px-8 max-md:px-4  h-[4rem]  max-sm:px-[1rem] w-full max-sm:justify-between flex items-center justify-between px-[6rem]  ${
             isPinned && scrolled ? " shadow-md" : ""
           }`}
         >
@@ -59,7 +58,7 @@ export const NavBar = () => {
             <img src={logo} alt="logo" className="w-[3rem] max-sm:w-[2rem]" />
           </div>
 
-          <div className="flex gap-4 max-sm:hidden">
+          <div className="flex gap-6 max-sm:hidden">
             <NavLink to="/" className="link">
               Home
             </NavLink>
@@ -78,8 +77,10 @@ export const NavBar = () => {
           </div>
 
           <div className="actions items-center flex gap-6">
-            <Search />
-            <Theme />
+            <div className="max-sm:hidden max-md:hidden flex items-center gap-6">
+              <Search />
+              <Theme />
+            </div>
             {user ? (
               <ProfileMenu />
             ) : (

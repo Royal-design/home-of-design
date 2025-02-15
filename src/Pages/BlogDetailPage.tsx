@@ -176,22 +176,20 @@ export const BlogDetailPage = () => {
           alt={blog?.author}
           className="h-full w-full object-cover"
         />
-        <article className="absolute h-full w-full top-0 bg-banner-overlay ">
-          <div className="h-full w-full flex flex-col max-sm:px-2 items-center justify-center">
-            <h1 className="text-2xl text-center font-bold max-sm:text-lg max-md:text-xl max-sm:text-center text-white dark:text-gray-100">
-              {blog?.title}
-            </h1>
-            <p className="text-lg max-sm:text-sm text-center max-sm:px-2 text-gray-300 dark:text-gray-300 mt-4">
-              {blog?.shortDescription}
-            </p>
-            <div className="bg-background-banner max-sm:mt-4 rounded-full px-2">
-              <BreadCrumbs />
-            </div>
+        <article className="absolute inset-0  bg-banner-overlay gap-4 flex flex-col max-sm:px-4 items-center justify-center">
+          <h1 className="text-3xl text-center font-bold max-sm:text-xl max-md:text-xl max-sm:text-center text-white dark:text-gray-100">
+            {blog?.title}
+          </h1>
+          <p className="text-lg max-sm:text-base max-w-3xl text-center max-sm:px-2 max-sm:w-full text-gray-300 dark:text-gray-300 ">
+            {blog?.shortDescription}
+          </p>
+          <div className="">
+            <BreadCrumbs />
           </div>
         </article>
       </header>
 
-      <main className="main my-[2rem] px-8 max-sm:px-4">
+      <main className="main my-[2rem] px-[6rem] max-sm:px-4">
         <div className="hidden max-sm:block">
           <BlogFilter
             blogCategory={blogCategory}
@@ -215,12 +213,14 @@ export const BlogDetailPage = () => {
                   alt={blog?.author}
                   className="h-8 w-8 rounded-full object-cover"
                 />
-                <p className="text-xs w-full">{blog?.author}</p>
+                <p className="text-xs max-sm:text-[10px] w-full">
+                  {blog?.author}
+                </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 ">
                   <CalendarDays size={20} />
-                  <p className="text-xs">{blog?.date}</p>
+                  <p className="text-xs max-sm:text-[10px]">{blog?.date}</p>
                 </div>
                 <Separator
                   orientation="vertical"
@@ -229,7 +229,7 @@ export const BlogDetailPage = () => {
 
                 <div className="flex items-center gap-2">
                   <Tag size={20} />
-                  <p className="text-xs">{blog?.category}</p>
+                  <p className="text-xs max-sm:text-[10px]">{blog?.category}</p>
                 </div>
                 <Separator
                   orientation="vertical"
@@ -238,15 +238,17 @@ export const BlogDetailPage = () => {
 
                 <div className="flex items-center gap-2">
                   <MessageCircle size={20} />
-                  <p className="text-xs">{updateComments.length}</p>
+                  <p className="text-xs max-sm:text-[10px]">
+                    {updateComments.length}
+                  </p>
                 </div>
               </div>
             </article>
-            <div className="my-[1rem] flex flex-col gap-1">
+            <div className="flex flex-col gap-1">
               <h1 className="text-xl max-sm:text-base font-bold dark:text-slate-300 text-slate-700">
                 {blog?.title}
               </h1>
-              <Separator className="border-[1px] my-[1rem] dark:border-slate-800 border-black" />
+              <Separator className="border-[1px] my-2 dark:border-slate-800 border-black" />
               <p className="text-sm text-slate-700  dark:text-slate-300">
                 {blog?.shortDescription}
               </p>
@@ -268,7 +270,7 @@ export const BlogDetailPage = () => {
                 ))}
               </div>
             </div>
-            <div className=" flex my-[1rem] gap-2 w-full h-full items-center">
+            <div className=" flex my-2 gap-2 w-full items-center">
               <p className="text-slate-700 dark:text-slate-300">Comments </p>
               <p className="h-5 w-5 bg-background-card text-slate-700 dark:text-slate-300 rounded-full p-2 flex items-center justify-center">
                 {updateComments.length}
@@ -317,8 +319,8 @@ export const BlogDetailPage = () => {
                         Leave a comment
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="flex flex-col gap-1">
-                      <div className="flex w-full max-sm:flex-col gap-5">
+                    <CardContent className="flex flex-col gap-2">
+                      <div className="flex w-full max-sm:flex-col gap-5 max-sm:gap-2">
                         <FormField
                           control={form.control}
                           name="firstname"
@@ -360,7 +362,7 @@ export const BlogDetailPage = () => {
                           )}
                         />
                       </div>
-                      <div className="flex w-full max-sm:flex-col gap-5">
+                      <div className="flex w-full max-sm:flex-col gap-5 max-sm:gap-2">
                         <FormField
                           control={form.control}
                           name="address"
@@ -419,11 +421,37 @@ export const BlogDetailPage = () => {
                     </CardContent>
                     <CardFooter className="flex flex-col bg-background justify-center items-center">
                       <Button
-                        disabled={form.formState.isLoading}
+                        disabled={form.formState.isSubmitting}
                         type="submit"
                         className="w-full text-white dark:text-primary transition  bg-slate-600 hover:bg-slate-700 duration-200"
                       >
-                        Post
+                        {form.formState.isSubmitting ? (
+                          <>
+                            <svg
+                              className="animate-spin h-5 w-5 mr-2 text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v8H4z"
+                              ></path>
+                            </svg>
+                            Posting
+                          </>
+                        ) : (
+                          "Post"
+                        )}
                       </Button>
                     </CardFooter>
                   </Card>

@@ -62,16 +62,16 @@ export const Products = () => {
   };
 
   return (
-    <div className="mt-[4rem] leading-[150%] px-[6rem] max-sm:px-[1rem] max-sm:mt-[2rem]">
+    <div className="mt-[4rem] leading-[150%] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] max-sm:mt-[2rem]">
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
           <Separator className="flex-1" />
-          <h1 className="text-2xl max-sm:text-lg font-bold text-center">
+          <h1 className="text-3xl max-sm:text-2xl font-bold text-center">
             All Products
           </h1>
           <Separator className="flex-1" />
         </div>
-        <p className="text-sm max-sm:text-xs text-center">
+        <p className="text-base max-sm:text-sm text-center">
           Explore our full range of stylish, functional furniture for every room
           in your home.
         </p>
@@ -92,7 +92,7 @@ export const Products = () => {
           </Button>
         ))}
       </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3  max-sm:grid-cols-2 mt-[1rem] max-sm:mt-[2rem]  gap-4">
+      <div className="grid  grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3  max-sm:grid-cols-2 mt-[1rem] max-sm:mt-[2rem]  gap-4">
         {loading
           ? [...Array(6).keys()].map((index) => <ProductSkeleton key={index} />)
           : filterProducts.map((product) => (

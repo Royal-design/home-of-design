@@ -64,7 +64,7 @@ export const Banner = () => {
 
   return (
     <div className="">
-      <div className="swiper-cont max-sm:hidden ">
+      <div className="swiper-cont max-sm:hidden max-md:hidden ">
         <Swiper
           autoplay={{ delay: 4000 }}
           onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
@@ -83,7 +83,7 @@ export const Banner = () => {
                   initial="initial"
                   exit="exit"
                   variants={banner}
-                  className="relative bg-banner font-Titillium-Web  w-full h-full px-[6rem] gap-2 flex max-sm:hidden items-center"
+                  className="relative bg-banner font-Titillium-Web  w-full h-full px-[6rem] max-lg:px-8 gap-2 flex max-sm:hidden items-center"
                 >
                   <div className=" flex   flex-col h-full justify-center gap-4  p-2">
                     <h2 className="text-2xl font-bold ">{data.heading}</h2>
@@ -117,10 +117,8 @@ export const Banner = () => {
           <div className="swiper-pagination"></div>
         </Swiper>
       </div>
-      <div className="hidden max-sm:block swiper-cont ">
-        <div className="hidden max-sm:block">
-          <MobileBanner />
-        </div>
+      <div className="hidden max-sm:block swiper-cont max-md:block ">
+        <MobileBanner />
       </div>
     </div>
   );

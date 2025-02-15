@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { data } from "@/assets/data/data";
 interface PropsType {
-  topProducts: (typeof data.products)[0];
+  topProducts: typeof data.products;
   handleBlogClick: (id: string) => void;
   blogCategory: string[];
 }
@@ -47,7 +47,7 @@ export const BlogFilter = ({
       <SheetContent side="left" className="">
         <SheetTitle />
         <SheetDescription />
-        <section className="px-4">
+        <section className="mt-4">
           <RecentBlogs handleBlogClick={handleBlogClick} />
           <div className="my-[1rem]">
             <h2>Top Products</h2>

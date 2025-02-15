@@ -32,10 +32,16 @@ export const Search = () => {
   return (
     <div className="flex items-center">
       <Input
-        className={`transition-all ${
+        className={`transition-all max-sm:hidden ${
           inputVisible ? "w-[20rem] opacity-100" : "w-0 opacity-0"
         } duration-150 overflow-hidden`}
         style={{ visibility: inputVisible ? "visible" : "hidden" }}
+        placeholder="Search..."
+        value={searchTerm}
+        onChange={handleChange}
+      />
+      <Input
+        className="transition-all hidden max-sm:block  w-full duration-150 overflow-hidden"
         placeholder="Search..."
         value={searchTerm}
         onChange={handleChange}

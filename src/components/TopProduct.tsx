@@ -22,16 +22,16 @@ export const TopProduct = () => {
     dispatch(addToCart({ ...product, qty: 1 }));
   };
   return (
-    <div className="px-[6rem] max-sm:px-[1rem] mt-[4rem]  max-sm:mt-[2rem]">
+    <div className="px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] mt-[4rem]  max-sm:mt-[2rem]">
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
           <Separator className="flex-1" />
-          <h1 className="text-2xl max-sm:text-lg font-bold text-center">
+          <h1 className="text-3xl max-sm:text-2xl font-bold text-center">
             Top Product
           </h1>
           <Separator className="flex-1" />
         </div>
-        <p className="text-sm max-sm:text-xs text-center leading-[150%]">
+        <p className="text-base max-sm:text-sm text-center leading-[150%]">
           Discover our most loved furniture pieces, carefully crafted for
           comfort and style.
         </p>

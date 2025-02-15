@@ -3,6 +3,8 @@ import { TiLeaf } from "react-icons/ti";
 import { FaHandHoldingHeart } from "react-icons/fa6";
 import { FaCouch } from "react-icons/fa";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const AboutPage = () => {
   return (
@@ -13,28 +15,24 @@ export const AboutPage = () => {
           alt="hero"
           className="h-full w-full object-cover"
         />
-        <article className="absolute inset-0 bg-banner-overlay flex items-center justify-center">
-          <div className="text-center px-6 max-w-3xl">
-            <h1 className="text-3xl font-bold text-gray-300 md:text-5xl">
-              About{" "}
-              <span
-                style={{
-                  color: "#f5b955"
-                }}
-              >
-                Us
-              </span>
-            </h1>
+        <article className="absolute flex-col inset-0 gap-4 px-4 bg-banner-overlay flex items-center justify-center">
+          <h1 className="text-3xl font-bold text-gray-300">
+            About{" "}
+            <span
+              style={{
+                color: "#f5b955"
+              }}
+            >
+              Us
+            </span>
+          </h1>
 
-            <p className="text-lg text-white mt-4 md:mt-6 max-w-3xl mx-auto">
-              At Furniture Haven, we bring you the perfect blend of
-              craftsmanship and modern design to transform your spaces into a
-              sanctuary.
-            </p>
-            <div className="mt-8 flex w-full justify-center">
-              <BreadCrumbs />
-            </div>
-          </div>
+          <p className="text-lg text-white text-center max-sm:text-base max-w-3xl max-sm:w-full">
+            At Furniture Haven, we bring you the perfect blend of craftsmanship
+            and modern design to transform your spaces into a sanctuary.
+          </p>
+
+          <BreadCrumbs />
         </article>
       </section>
 
@@ -49,7 +47,9 @@ export const AboutPage = () => {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold text-gray-800">Our Mission</h2>
+            <h2 className="text-3xl max-sm:text-2xl font-bold text-gray-800">
+              Our Mission
+            </h2>
             <p className="mt-4 text-gray-600">
               Our mission is to craft premium furniture that inspires a
               lifestyle of comfort and elegance. We are committed to sustainable
@@ -61,10 +61,12 @@ export const AboutPage = () => {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-800">Our Story</h2>
+            <h2 className="text-3xl font-bold text-gray-800 max-sm:text-2xl">
+              Our Story
+            </h2>
             <p className="mt-4 text-gray-600">
               Founded in 2010, Furniture Haven started as a small family
               business. Today, we have grown into a trusted brand, providing
@@ -85,10 +87,10 @@ export const AboutPage = () => {
       {/* Values Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6 lg:px-20">
-          <h2 className="text-3xl font-bold text-gray-800 text-center">
+          <h2 className="text-3xl max-sm:text-2xl font-bold text-gray-800 text-center">
             Our Core Values
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
             <div className="text-center">
               <div className="bg-[#f5b955] p-4 rounded-full flex justify-center items-center w-16 h-16 mx-auto text-white">
                 <TiLeaf size={30} />
@@ -124,9 +126,11 @@ export const AboutPage = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-6 lg:px-20 text-center">
-          <h2 className="text-3xl font-bold text-gray-800">Meet Our Team</h2>
+          <h2 className="text-3xl max-sm:text-2xl font-bold text-gray-800">
+            Meet Our Team
+          </h2>
           <p className="text-lg text-gray-600 mt-4">
             Behind every masterpiece is a team of passionate artisans and
             designers.
@@ -173,19 +177,18 @@ export const AboutPage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-[#f5b955]">
-        <div className="container mx-auto px-6 lg:px-20 text-center text-white">
-          <h2 className="text-3xl font-bold">Ready to Transform Your Space?</h2>
-          <p className="mt-4 text-lg">
+      <section className="py-10 bg-slate-600">
+        <div className="container flex flex-col gap-4 mx-auto px-6 lg:px-20 text-center text-white">
+          <h2 className="text-2xl font-bold max-sm:text-xl">
+            Ready to Transform Your Space?
+          </h2>
+          <p className=" text-lg max-sm:text-base">
             Explore our collection and find furniture that fits your style and
             needs.
           </p>
-          <a
-            href="/products"
-            className="mt-6 inline-block px-6 py-3 bg-white text-[#f5b955] font-semibold rounded-lg hover:bg-gray-100"
-          >
-            Shop Now
-          </a>
+          <Link to="/products">
+            <Button className="">Shop Now</Button>
+          </Link>
         </div>
       </section>
       <Footer />

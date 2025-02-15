@@ -15,27 +15,24 @@ export const BlogPage = () => {
             alt="hero"
             className="h-full w-full object-cover"
           />
-          <article className="absolute inset-0 bg-banner-overlay flex items-center justify-center">
-            <div className="text-center px-6 max-w-3xl">
-              <h1 className="text-2xl text-center max-sm:text-lg max-md:text-xl font-bold text-white dark:text-gray-100 sm:text-4xl">
-                Transform Your Space with Inspiration & Ideas
-              </h1>
+          <article className="absolute  max-sm:px-4 inset-0 bg-banner-overlay flex flex-col gap-4 items-center justify-center">
+            <h1 className="text-3xl  text-center max-sm:text-lg max-md:text-2xl font-bold text-white">
+              Transform Your Space with Inspiration & Ideas
+            </h1>
 
-              <p className="text-gray-300 max-sm:text-xs dark:text-gray-300 mt-4 text-sm leading-[150%]">
-                Dive into a world of furniture trends, interior design tips, and
-                expert advice to help you craft spaces that reflect your unique
-                style. Whether you're looking for modern minimalism, rustic
-                charm, or timeless elegance, we’ve got you covered.
-              </p>
-              <div className="mt-8 flex w-full justify-center">
-                <BreadCrumbs />
-              </div>
-            </div>
+            <p className="text-gray-300 max-w-3xl  max-sm:w-full text-center max-sm:text-base dark:text-gray-300 text-lg leading-[150%]">
+              Dive into a world of furniture trends, interior design tips, and
+              expert advice to help you craft spaces that reflect your unique
+              style. Whether you're looking for modern minimalism, rustic charm,
+              or timeless elegance, we’ve got you covered.
+            </p>
+
+            <BreadCrumbs />
           </article>
         </section>
 
         {/* Blog Section */}
-        <section className="mt-6 px-6 sm:px-10 lg:px-24">
+        <section className="mt-6 px-[6rem] max-md:px-4 max-sm:px-4 max-lg:px-8">
           <article>
             <p className="text-lg font-semibold my-4">Recent Blog Posts</p>
           </article>
