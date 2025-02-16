@@ -1,5 +1,5 @@
 import { auth, db, storage } from "@/firebase/firebaseConfig";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
@@ -32,7 +32,7 @@ import {
   uploadBytes
 } from "firebase/storage";
 import { useAppSelector } from "@/redux/store";
-import { getUserData, UserType } from "@/redux/slice/authSlice";
+import { UserType } from "@/redux/slice/authSlice";
 
 const EditProfileSchema = z.object({
   firstname: z.string().min(1, { message: "First name is required" }),

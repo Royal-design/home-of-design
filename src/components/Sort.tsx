@@ -9,9 +9,7 @@ export const Sort = () => {
   >(null);
 
   const dispatch = useAppDispatch();
-  const { filterProducts, loading, products } = useAppSelector(
-    (state) => state.products
-  );
+  const { products } = useAppSelector((state) => state.products);
 
   const tabActions: {
     id: number;
