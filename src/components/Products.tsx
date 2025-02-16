@@ -70,7 +70,7 @@ export const Products = () => {
       transition={{
         duration: 1
       }}
-      className="mt-[4rem] leading-[150%] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] max-sm:mt-[2rem]"
+      className="mt-[4rem]  leading-[150%] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] max-sm:mt-[2rem]"
     >
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
@@ -119,11 +119,20 @@ export const Products = () => {
           </p>
         )}
       </div>
-      <div className="w-full flex justify-center mt-4">
+      <motion.div
+        initial={{ opacity: 0, y: 4 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.03 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{
+          duration: 1
+        }}
+        className="w-full flex justify-center mt-4"
+      >
         <Button className="border-2" variant="ghost">
           Show More
         </Button>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

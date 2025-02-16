@@ -31,7 +31,7 @@ export const ProductCard = ({
   };
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03, border: "1px solid yellow" }}
       viewport={{ once: true, amount: 0.5 }}
