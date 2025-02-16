@@ -78,7 +78,7 @@ export const RecentlyViewed: React.FC = () => {
           ))}
         </Swiper>
       </div>
-      <div className="hidden px-0 [@media(min-width:400px)_and_(max-width:700px)]:block">
+      <div className="hidden px-0 [@media(min-width:380px)_and_(max-width:700px)]:block">
         <Swiper
           slidesPerView={2}
           loop={true}
@@ -99,7 +99,7 @@ export const RecentlyViewed: React.FC = () => {
           ))}
         </Swiper>
       </div>
-      <div className="hidden px-0 [@media(max-width:399px)]:block">
+      <div className="hidden px-0 [@media(max-width:379px)]:block">
         <Swiper
           slidesPerView={1}
           loop={true}

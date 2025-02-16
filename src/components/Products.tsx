@@ -101,7 +101,7 @@ export const Products = () => {
           </Button>
         ))}
       </div>
-      <div className="grid  grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3  [@media(min-width:400px)_and_(max-width:700px)]:grid-cols-2 mt-[1rem] max-sm:mt-[2rem]  gap-4">
+      <div className="grid  grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3  [@media(min-width:380px)_and_(max-width:700px)]:grid-cols-2 mt-[1rem] max-sm:mt-[2rem]  gap-4">
         {loading
           ? [...Array(6).keys()].map((index) => <ProductSkeleton key={index} />)
           : filterProducts.map((product) => (

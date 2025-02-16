@@ -178,7 +178,7 @@ export const ContactPage = () => {
                 <Button
                   disabled={form.formState.isSubmitting}
                   type="submit"
-                  className="w-full text-white dark:text-primary transition  bg-slate-600 hover:bg-slate-700 duration-200"
+                  className="w-full text-primary transition  bg-button hover:bg-button-hover duration-200"
                 >
                   {form.formState.isSubmitting
                     ? "Sending Message"

@@ -30,7 +30,7 @@ export const Blogs = () => {
             creating spaces you’ll love.
           </p>
         </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3 h-full  [@media(min-width:400px)_and_(max-width:700px)]:grid-cols-2 mt-[2rem] max-sm:mt-[2rem]  gap-4">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3 h-full  [@media(min-width:380px)_and_(max-width:700px)]:grid-cols-2 mt-[2rem] max-sm:mt-[2rem]  gap-4">
           {displayBlogs.map((blog) => (
             <BlogCard key={blog.id} blog={blog} />
           ))}

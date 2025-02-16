@@ -1,46 +1,29 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SwiperSlide, Swiper } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-
 import { FaArrowRight } from "react-icons/fa6";
 import { bannerData } from "./Banner";
 
 export const MobileBanner = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const navigate = useNavigate();
-  const banner = {
-    initial: { x: -10 },
-    animate: { x: 0, transition: { duration: 0.5 } }
-  };
-  const title = {
-    initial: { x: 10, opacity: 0 },
-    animate: {
-      x: 0,
+
+  const textVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
       opacity: 1,
-      transition: {
-        duration: 1
-      }
-    }
-  };
-  const heading1 = {
-    initial: { y: 10, opacity: 0 },
-    animate: {
       y: 0,
-      opacity: 1,
-      transition: { duration: 1 }
-    }
+      transition: { delay: i * 0.3, duration: 0.7, ease: "easeOut" }
+    })
   };
+
   return (
     <Swiper
       autoplay={{ delay: 4000 }}
       onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-      initialSlide={1}
       loop
       navigation
       modules={[Navigation, Autoplay]}
@@ -48,38 +31,53 @@ export const MobileBanner = () => {
     >
       {bannerData.map((data, i) => (
         <SwiperSlide key={i}>
-          <AnimatePresence>
-            <motion.div
-              key={activeIndex === i ? "active" : "inactive"}
-              animate="animate"
-              initial="initial"
-              exit="exit"
-              variants={banner}
-              className="relative bg-banner  font-Titillium-Web  w-full h-full p-[1rem] gap-2 flex flex-col items-center"
+          <motion.div
+            key={activeIndex} // Restart animation on slide change
+            initial="hidden"
+            animate="visible"
+            className="relative bg-banner font-Titillium-Web w-full h-full p-4 flex flex-col items-center text-center"
+          >
+            {/* Heading */}
+            <motion.h2
+              className="text-xl font-bold"
+              variants={textVariant}
+              custom={0}
             >
-              <h2 className="text-xl font-bold ">{data.heading}</h2>
-              <figure className="h-[10rem]">
-                <img
-                  src={data.img}
-                  alt={data.heading}
-                  className="w-full h-full object-cover"
-                />
-              </figure>
+              {data.heading}
+            </motion.h2>
 
-              <div className=" flex text-center  w-full  flex-col items-center h-full justify-center gap-4  p-2">
-                <p className="text-base ">{data.subHead}</p>
-                <p className="text-sm leading-[150%]">{data.text}</p>
-                <div className="">
-                  <Button className="border border-black mt-4" variant="ghost">
-                    Shop Now
-                    <span>
-                      <FaArrowRight />
-                    </span>
-                  </Button>
-                </div>
-              </div>
+            {/* Image */}
+            <motion.figure
+              className="h-[12rem] w-full flex justify-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
+            >
+              <img
+                src={data.img}
+                alt={data.heading}
+                className="w-auto h-full object-contain"
+              />
+            </motion.figure>
+
+            {/* Text Content */}
+            <motion.p className="text-base" variants={textVariant} custom={1}>
+              {data.subHead}
+            </motion.p>
+            <motion.p
+              className="text-sm leading-[150%]"
+              variants={textVariant}
+              custom={2}
+            >
+              {data.text}
+            </motion.p>
+
+            {/* Button */}
+            <motion.div variants={textVariant} custom={3}>
+              <Button className="border border-black mt-4" variant="ghost">
+                Shop Now <FaArrowRight />
+              </Button>
             </motion.div>
-          </AnimatePresence>
+          </motion.div>
         </SwiperSlide>
       ))}
       <div className="swiper-pagination"></div>

@@ -46,7 +46,7 @@ export const TopProduct = () => {
           </p>
         </div>
 
-        <div className="grid  max-md:grid-cols-3 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]  [@media(min-width:400px)_and_(max-width:700px)]:grid-cols-2 mt-[2rem] max-sm:mt-[2rem]  gap-4">
+        <div className="grid  max-md:grid-cols-3 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]  [@media(min-width:380px)_and_(max-width:700px)]:grid-cols-2 mt-[2rem] max-sm:mt-[2rem]  gap-4">
           {products
             .filter((product) => product.topProduct)
             .map((product) => (
