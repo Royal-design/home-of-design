@@ -11,9 +11,6 @@ Welcome to **Sky Furniture E-Commerce**, your ultimate online destination for hi
 1. [Introduction](#introduction)
 2. [Features](#features)
 3. [Tech Stack](#tech-stack)
-4. [Usage](#usage)
-5. [Contributing](#contributing)
-6. [License](#license)
 
 ## Introduction
 
