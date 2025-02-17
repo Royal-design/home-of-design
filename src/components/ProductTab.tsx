@@ -31,16 +31,16 @@ export const ProductTab = ({ product }: PropsType) => {
       defaultValue="description"
       className="w-full max-sm:p-[1rem] px-[6rem] max-lg:p-8 max-md:p-4  my-[4rem] "
     >
-      <TabsList className=" bg-banner max-sm:flex max-sm:justify-between">
-        <TabsTrigger value="description" className="max-sm:text-sm">
+      <TabsList className="w-full bg-banner max-sm:flex max-sm:justify-between">
+        <TabsTrigger value="description" className="w-full max-sm:text-sm">
           Description
         </TabsTrigger>
-        <TabsTrigger value="additionalinfo" className="max-sm:text-sm">
+        <TabsTrigger value="additionalinfo" className="w-full max-sm:text-sm">
           Additional Information
         </TabsTrigger>
         <TabsTrigger
           value="review"
-          className="max-sm:text-sm"
+          className="w-full max-sm:text-sm"
         >{`Reviews [${product.reviews.length}]`}</TabsTrigger>
       </TabsList>
       <TabsContent value="description">

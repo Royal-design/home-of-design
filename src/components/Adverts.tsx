@@ -3,6 +3,7 @@ import advert1 from "../assets/adverts/advert1.png";
 import advert2 from "../assets/adverts/advert2.webp";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const advertData = [
   {
@@ -48,11 +49,12 @@ export const Adverts = () => {
                     {advert.title}
                   </h1>
                   <p className="text-sm">{advert.description}</p>
-                  <div className="">
+
+                  <Link to="/products">
                     <Button className="bg-button hover:bg-button-hover duration-200 text-primary mt-4 px-4 ">
                       {advert.ctaText}
                     </Button>
-                  </div>
+                  </Link>
                 </div>
 
                 <figure className="h-full w-full">

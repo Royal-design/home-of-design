@@ -32,7 +32,7 @@ export const RecentlyViewed: React.FC = () => {
     dispatch(addToCart({ ...product, qty: 1 }));
   };
   return (
-    <div className="related-swiper px-[6rem] max-lg:px-8 max-sm:px-[1rem] max-md:px-[1rem] ">
+    <div className="related-swiper py-8 max-sm:py-4 px-[6rem] max-lg:px-8 max-sm:px-[1rem] max-md:px-[1rem] ">
       <p className="text-2xl max-sm:text-lg my-4">
         Recent <span className="uppercase font-bold"> Products</span>
       </p>

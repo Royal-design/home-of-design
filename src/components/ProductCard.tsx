@@ -43,7 +43,10 @@ export const ProductCard = ({
         <CardHeader className="p-0">
           <CardTitle />
         </CardHeader>
-        <CardContent onClick={handleClick} className="bg-banner p-0 relative">
+        <CardContent
+          onClick={handleClick}
+          className="bg-banner cursor-pointer p-0 relative"
+        >
           <figure className="h-[150px] w-full">
             <img
               src={product.mainImage}
