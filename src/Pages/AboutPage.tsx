@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const AboutPage = () => {
   return (
@@ -222,6 +223,7 @@ export const AboutPage = () => {
           </Link>
         </div>
       </motion.section>
+      <ScrollToTop />
       <Footer />
     </div>
   );

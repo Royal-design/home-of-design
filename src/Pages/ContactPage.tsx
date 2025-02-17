@@ -22,6 +22,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firebase/firebaseConfig";
 import { toast } from "sonner";
 import BreadCrumbs from "@/components/BreadCrumbs";
+import { ScrollToTop } from "@/components/ScrollToTop";
 export const ContactPage = () => {
   const { user } = useAppSelector((state) => state.auth);
 
@@ -222,6 +223,7 @@ export const ContactPage = () => {
           </div>
         </div>
       </section>
+      <ScrollToTop />
       <Footer />
     </div>
   );

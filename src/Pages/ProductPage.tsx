@@ -18,6 +18,7 @@ import { ProductSwiperMobile } from "@/components/ProductSwiperMobile";
 import { ProductTab } from "@/components/ProductTab";
 import { RelatedProduct } from "@/components/RelatedProduct";
 import { RecentlyViewed } from "@/components/recentlyViewed";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const ProductPage = () => {
   const { id } = useParams();
@@ -103,7 +104,7 @@ export const ProductPage = () => {
       {product && <ProductTab product={product} />}
       {product && <RelatedProduct category={product.category} />}
       <RecentlyViewed />
-
+      <ScrollToTop />
       <Footer />
     </div>
   );

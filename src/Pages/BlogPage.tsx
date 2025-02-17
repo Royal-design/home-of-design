@@ -1,6 +1,7 @@
 import { BlogCard } from "@/components/BlogCard";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { useAppSelector } from "@/redux/store";
 
 export const BlogPage = () => {
@@ -43,7 +44,7 @@ export const BlogPage = () => {
           </div>
         </section>
       </main>
-
+      <ScrollToTop />
       <Footer />
     </div>
   );

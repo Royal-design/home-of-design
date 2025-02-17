@@ -8,6 +8,7 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { ProductFilterSheet } from "@/components/ProductFilterSheet";
 import { useEffect } from "react";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const ShopPage = () => {
   const deliveryInfo = [
@@ -90,6 +91,7 @@ export const ShopPage = () => {
           </Card>
         ))}
       </div>
+      <ScrollToTop />
       <Footer />
     </div>
   );

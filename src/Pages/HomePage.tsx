@@ -7,6 +7,7 @@ import { FeaturedProduct } from "@/components/FeaturedProduct";
 import { Footer } from "@/components/Footer";
 import { PartnerInfiniteCard } from "@/components/PartnerInfiniteCard";
 import { Products } from "@/components/Products";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { TopProduct } from "@/components/TopProduct";
 
 export const HomePage = () => {
@@ -21,6 +22,7 @@ export const HomePage = () => {
       <Advert />
       <PartnerInfiniteCard />
       <Blogs />
+      <ScrollToTop />
       <Footer />
     </div>
   );

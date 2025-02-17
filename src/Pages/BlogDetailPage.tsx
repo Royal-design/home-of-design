@@ -40,6 +40,7 @@ import { blogs } from "@/assets/data/blogs";
 import { RecentBlogs } from "@/components/RecentBlogs";
 import { Footer } from "@/components/Footer";
 import { BlogFilter } from "@/components/ui/BlogFilter";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 type BlogType = (typeof blogs)[0];
 export const BlogDetailPage = () => {
@@ -514,6 +515,7 @@ export const BlogDetailPage = () => {
           </section>
         </div>
       </main>
+      <ScrollToTop />
       <Footer />
     </div>
   );
