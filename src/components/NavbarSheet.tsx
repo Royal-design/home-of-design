@@ -28,7 +28,7 @@ const NavbarSheet = () => {
           </div>
         )}
       </SheetTrigger>
-      <SheetContent side="left">
+      <SheetContent side="left" className="overflow-auto scrollbar-hidden">
         <SheetTitle />
         <SheetDescription />
         <div className=" flex w-full mt-4 flex-col justify-between gap-4 h-full">

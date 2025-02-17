@@ -54,24 +54,24 @@ export const RegisterPage = () => {
   });
 
   const handleSubmit = async (userData: z.infer<typeof userSchema>) => {
-    try {
-      await dispatch(
-        registerUser(
-          userData.email,
-          userData.password,
-          userData.firstname,
-          userData.lastname
-        )
-      );
+    const response = await dispatch(
+      registerUser(
+        userData.email,
+        userData.password,
+        userData.firstname,
+        userData.lastname
+      )
+    );
+
+    if (response.success) {
       form.reset();
       navigate("/");
       toast.success("User registered successfully");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+    } else {
+      toast.error(response.message || "Registration failed");
     }
   };
+
   return (
     <div className="bg-background max-sm:px-4 flex justify-center w-full items-center h-screen">
       <Form {...form}>

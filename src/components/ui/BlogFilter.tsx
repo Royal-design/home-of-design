@@ -44,7 +44,7 @@ export const BlogFilter = ({
           </div>
         )}
       </SheetTrigger>
-      <SheetContent side="left" className="">
+      <SheetContent side="left" className="overflow-auto scrollbar-hidden">
         <SheetTitle />
         <SheetDescription />
         <section className="mt-4">

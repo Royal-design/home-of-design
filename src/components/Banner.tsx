@@ -61,9 +61,8 @@ export const Banner = () => {
         >
           {bannerData.map((data, i) => (
             <SwiperSlide key={i}>
-              {/* Ensure each slide re-triggers animation */}
               <motion.div
-                key={activeIndex} // <- This makes sure animation restarts on each slide change
+                key={activeIndex}
                 initial="hidden"
                 animate="visible"
                 exit="hidden"

@@ -42,7 +42,7 @@
     --button: #232d3f;
     --category: #f7f5f5;
     --banner: #0f0f0f;
-    --banner-overlay: #00000092;
+    --banner-overlay: #000000d9;
     --background: #000000;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -98,6 +98,7 @@
     color: rgb(228, 7, 7);
   }
 }
+
 /* spinner loader */
 .spinner {
   font-size: 28px;
@@ -123,7 +124,7 @@
   width: 0.074em;
   height: 0.2777em;
   border-radius: 0.0555em;
-  background-color: transparent;
+  background-color: white;
   -webkit-transform-origin: center -0.2222em;
   -ms-transform-origin: center -0.2222em;
   transform-origin: center -0.2222em;
@@ -519,4 +520,13 @@
       color: black;
     }
   }
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

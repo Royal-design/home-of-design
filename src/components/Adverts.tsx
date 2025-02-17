@@ -34,7 +34,7 @@ export const Adverts = () => {
         duration: 1
       }}
     >
-      <div className="px-[6rem] h-auto max-sm:px-[1rem] max-md:px-[1rem] max-lg:px-8  w-full mt-[3rem]">
+      <div className="px-[6rem] h-full max-sm:px-[1rem] max-md:px-[1rem] max-lg:px-8  w-full mt-[3rem]">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 max-sm:gap-3 w-full h-full max-sm:grid-cols-1   ">
           {advertData.map((advert) => (
             <Card
@@ -49,7 +49,7 @@ export const Adverts = () => {
                   </h1>
                   <p className="text-sm">{advert.description}</p>
                   <div className="">
-                    <Button className="bg-button hover:bg-button-hover duration-200 text-primary mt-4 px-4 py-2">
+                    <Button className="bg-button hover:bg-button-hover duration-200 text-primary mt-4 px-4 ">
                       {advert.ctaText}
                     </Button>
                   </div>

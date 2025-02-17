@@ -48,28 +48,27 @@ export const LoginPage = () => {
   });
 
   const handleSubmit = async (userData: z.infer<typeof userSchema>) => {
-    try {
-      await dispatch(loginUser(userData.email, userData.password));
+    const response = await dispatch(
+      loginUser(userData.email, userData.password)
+    );
+    if (response.success) {
+      toast.success("User logged in successfully");
       navigate("/");
       form.reset();
-      toast.success("User logged in successfully");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+    } else {
+      toast.error(response.message || "Login failed");
     }
   };
 
   const handleGoogleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    try {
-      await dispatch(loginWithGoogle());
-      navigate("/");
+    const response = await dispatch(loginWithGoogle());
+
+    if (response.success) {
       toast.success("User logged in successfully");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+      navigate("/");
+    } else {
+      toast.error(response.message || "Google login failed");
     }
   };
 

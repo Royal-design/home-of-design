@@ -78,67 +78,32 @@ const router = createBrowserRouter([
       </Suspense>
     ),
     children: [
-      {
-        path: "/",
-        element: <HomePage />
-      },
-      {
-        path: "/products",
-        element: <ShopPage />
-      },
-      {
-        path: "/products/:id",
-        element: <ProductPage />
-      },
-      {
-        path: "/blogs",
-        element: <BlogPage />
-      },
-      {
-        path: "/blogs/:id",
-        element: <BlogDetailPage />
-      },
-      {
-        path: "/about",
-        element: <AboutPage />
-      },
-      {
-        path: "/contact",
-        element: <ContactPage />
-      },
+      { path: "/", element: <HomePage /> },
+      { path: "/products", element: <ShopPage /> },
+      { path: "/products/:id", element: <ProductPage /> },
+      { path: "/blogs", element: <BlogPage /> },
+      { path: "/blogs/:id", element: <BlogDetailPage /> },
+      { path: "/about", element: <AboutPage /> },
+      { path: "/contact", element: <ContactPage /> },
       {
         element: <PublicLayout />,
         children: [
-          {
-            path: "/register",
-            element: <RegisterPage />
-          },
-          {
-            path: "/login",
-            element: <LoginPage />
-          }
+          { path: "/register", element: <RegisterPage /> },
+          { path: "/login", element: <LoginPage /> }
         ]
       },
       {
         element: <PrivateLayout />,
         children: [
-          {
-            path: "/profile",
-            element: <ProfilePage />
-          },
-          {
-            path: "/shopping-cart",
-            element: <CartPage />
-          },
-          {
-            path: "/profile/edit",
-            element: <EditProfilepage />
-          }
+          { path: "/profile", element: <ProfilePage /> },
+          { path: "/shopping-cart", element: <CartPage /> },
+          { path: "/profile/edit", element: <EditProfilepage /> }
         ]
       }
     ]
   }
 ]);
+
 function App() {
   const dispatch = useAppDispatch();
 
@@ -149,7 +114,11 @@ function App() {
     dispatch(setBlogs(blogs));
   }, [dispatch]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<SpinnerLoader />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;

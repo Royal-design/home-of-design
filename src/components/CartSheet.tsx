@@ -41,7 +41,10 @@ const CartSheet = () => {
         </div>
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-full">
+      <SheetContent
+        side="right"
+        className="w-full overflow-auto scrollbar-hidden"
+      >
         <Tabs defaultValue="cart" className="w-full">
           <TabsList>
             <TabsTrigger value="cart">

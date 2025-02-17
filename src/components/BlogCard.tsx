@@ -26,7 +26,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03, border: "1px solid yellow" }}
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
         duration: 1
       }}
@@ -40,7 +40,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             <img src={blog.image} alt={blog.title} className="h-full w-full " />
           </figure>
         </CardContent>
-        <CardFooter className="flex px-2 max-sm:px-1 flex-col gap-2 items-start">
+        <CardFooter className="flex px-2 max-sm:px-1 flex-col pb-2 gap-2 items-start">
           <div className="flex gap-2 h-[2rem] justify-between w-full items-center ">
             <div className="flex gap-1 mt-1 items-center">
               <CiCalendar size={12} />
@@ -74,7 +74,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             </div>
           </div>
           <Button
-            className="h-[30px] max-sm:h-[25px] bg-button text-primary hover:bg-button-hover duration-200 max-sm:mt-5"
+            className="h-[30px] max-sm:w-full bg-button text-primary hover:bg-button-hover duration-200 max-sm:mt-5"
             onClick={handleClick}
           >
             Read More

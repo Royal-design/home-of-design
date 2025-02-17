@@ -33,6 +33,7 @@ const BreadCrumbs = () => {
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
             <Link
+              className="text-white"
               to="/"
               onClick={() => {
                 window.scrollTo(0, 0);
@@ -44,7 +45,7 @@ const BreadCrumbs = () => {
         </BreadcrumbItem>
         {breadcrumbs.map((breadcrumb, index) => (
           <React.Fragment key={index}>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className="text-white" />
             {index !== breadcrumbs.length - 1 ? (
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>

@@ -15,7 +15,7 @@ export const Theme = () => {
     dispatch(toggleTheme());
   };
   return (
-    <div className="max-sm:flex max-sm:items-center max-sm:shadow-md  max-sm:px-2 max-sm:gap-3 max-sm:border w-1/3">
+    <div className="max-sm:flex max-sm:items-center max-sm:shadow-md max-sm:px-2 max-sm:gap-3 max-sm:border w-[40%]">
       <p className="hidden max-sm:block">Theme</p>
       <label className="toggle" htmlFor="switch">
         <input

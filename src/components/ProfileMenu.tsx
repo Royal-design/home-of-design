@@ -20,13 +20,11 @@ export const ProfileMenu = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { user } = useAppSelector((state) => state.auth);
   const signOut = async () => {
-    try {
-      await dispatch(logoutUser());
+    const response = await dispatch(logoutUser());
+    if (response.success) {
       toast.success("User logged out successfully");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+    } else {
+      toast.error(response.message || "Logout failed");
     }
   };
   return (

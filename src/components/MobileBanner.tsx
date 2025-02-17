@@ -22,6 +22,7 @@ export const MobileBanner = () => {
 
   return (
     <Swiper
+      slidesPerView={1}
       autoplay={{ delay: 4000 }}
       onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
       loop
@@ -32,14 +33,14 @@ export const MobileBanner = () => {
       {bannerData.map((data, i) => (
         <SwiperSlide key={i}>
           <motion.div
-            key={activeIndex} // Restart animation on slide change
+            key={activeIndex}
             initial="hidden"
             animate="visible"
-            className="relative bg-banner font-Titillium-Web w-full h-full p-4 flex flex-col items-center text-center"
+            className="relative bg-banner font-Titillium-Web w-full h-full px-4 py-8 flex flex-col items-center text-center"
           >
             {/* Heading */}
             <motion.h2
-              className="text-xl font-bold"
+              className="text-xl mb-4 font-bold"
               variants={textVariant}
               custom={0}
             >
@@ -59,12 +60,8 @@ export const MobileBanner = () => {
               />
             </motion.figure>
 
-            {/* Text Content */}
-            <motion.p className="text-base" variants={textVariant} custom={1}>
-              {data.subHead}
-            </motion.p>
             <motion.p
-              className="text-sm leading-[150%]"
+              className="text-sm mt-4 leading-[150%]"
               variants={textVariant}
               custom={2}
             >
@@ -73,7 +70,10 @@ export const MobileBanner = () => {
 
             {/* Button */}
             <motion.div variants={textVariant} custom={3}>
-              <Button className="border border-black mt-4" variant="ghost">
+              <Button
+                className="border border-black max-md:my-4 max-sm:mt-4"
+                variant="ghost"
+              >
                 Shop Now <FaArrowRight />
               </Button>
             </motion.div>

@@ -34,7 +34,7 @@ export const ProductCard = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03, border: "1px solid yellow" }}
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
         duration: 1
       }}
@@ -43,7 +43,7 @@ export const ProductCard = ({
         <CardHeader className="p-0">
           <CardTitle />
         </CardHeader>
-        <CardContent className="bg-banner p-0 relative">
+        <CardContent onClick={handleClick} className="bg-banner p-0 relative">
           <figure className="h-[150px] w-full">
             <img
               src={product.mainImage}
@@ -51,37 +51,8 @@ export const ProductCard = ({
               className="h-full w-full "
             />
           </figure>
-          <div className="position h-full w-full absolute bottom-[-2rem] opacity-0 flex hover:opacity-100  hover:bottom-0 duration-200 items-center justify-center ">
-            <div className="bg-black flex items-center gap-2 backdrop-filter backdrop-blur-sm bg-opacity-20 p-2 ">
-              <motion.div
-                animate={{
-                  scale: favourites.find((item) => item.id === product.id)
-                    ? 1.1
-                    : 1
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 1000,
-                  damping: 10
-                }}
-                className="text-white"
-                onClick={() => toggleFavorite(product)}
-              >
-                {favourites.some((item) => item.id === product.id) ? (
-                  <Heart size="20" className="fill-white max-sm:w-[1rem]" />
-                ) : (
-                  <Heart size="20" className=" max-sm:w-[1rem]" />
-                )}
-              </motion.div>
-              <IoIosEye
-                size="20"
-                className="text-white cursor-pointer"
-                onClick={handleClick}
-              />
-            </div>
-          </div>
         </CardContent>
-        <CardFooter className="flex px-2 max-sm:h-full flex-col gap-1 justify-start items-start">
+        <CardFooter className="flex px-2 max-sm:h-full pb-2 flex-col gap-2 justify-start items-start">
           <div className="flex gap-1 items-center">
             <p className="text-yellow-500">
               {"★".repeat(product.rating)} {"☆".repeat(5 - product.rating)}
@@ -94,7 +65,7 @@ export const ProductCard = ({
           </div>
           <p className="text-sm font-bold">{product.name}</p>
           <div className="flex items-center justify-between w-full">
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2  items-center">
               <p className="text-xs line-through text-gray-400">
                 {formatter.format(product.price.oldPrice)}
               </p>
@@ -102,15 +73,11 @@ export const ProductCard = ({
                 {formatter.format(product.price.newPrice)}
               </p>
             </div>
-            <FaCirclePlus
-              size={20}
-              className="text-orange-400 cursor-pointer max-sm:hidden"
-              onClick={() => addToCartClick(product)}
-            />
           </div>
 
-          <div className="hidden max-sm:flex  w-full justify-between  items-center">
+          <div className="flex  w-full justify-between  items-center">
             <FaCirclePlus
+              size="25"
               className="text-orange-400 cursor-pointer"
               onClick={() => addToCartClick(product)}
             />
@@ -140,8 +107,8 @@ export const ProductCard = ({
                 )}
               </motion.div>
               <IoIosEye
-                size="20"
-                className=" cursor-pointer"
+                size="25"
+                className="text-orange-400 cursor-pointer"
                 onClick={handleClick}
               />
             </div>

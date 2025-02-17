@@ -47,7 +47,10 @@ const WishlistSheet = () => {
         )}
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-full">
+      <SheetContent
+        side="right"
+        className="w-full overflow-auto scrollbar-hidden"
+      >
         <Tabs defaultValue="wishlist" className="w-full">
           <TabsList>
             <TabsTrigger value="cart">

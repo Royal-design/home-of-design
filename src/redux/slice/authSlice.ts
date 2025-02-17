@@ -73,7 +73,7 @@ export const registerUser =
     password: string,
     firstname: string,
     lastname: string
-  ): AppThunk =>
+  ): AppThunk<Promise<{ success: boolean; message?: string }>> =>
   async (dispatch) => {
     dispatch(setLoading(true));
     try {
@@ -97,15 +97,32 @@ export const registerUser =
 
       await setDoc(doc(db, "users", user.uid), userData);
       dispatch(setUser(userData));
+
+      return { success: true };
     } catch (error: any) {
+      // Check if the error is a network issue
+      if (error.code === "auth/network-request-failed") {
+        dispatch(
+          setError("Network error. Please check your internet connection.")
+        );
+        return {
+          success: false,
+          message: "Network error. Please check your internet connection."
+        };
+      }
+      // Handle other errors
       dispatch(setError(error.message));
+      return { success: false, message: error.message };
     } finally {
       dispatch(setLoading(false));
     }
   };
 
 export const loginUser =
-  (email: string, password: string): AppThunk =>
+  (
+    email: string,
+    password: string
+  ): AppThunk<Promise<{ success: boolean; message?: string }>> =>
   async (dispatch) => {
     dispatch(setLoading(true));
     try {
@@ -118,52 +135,102 @@ export const loginUser =
 
       if (userDoc.exists()) {
         dispatch(setUser(userDoc.data() as UserType));
+        return { success: true };
+      } else {
+        const errorMessage = "User not found";
+        dispatch(setError(errorMessage));
+        return { success: false, message: errorMessage };
       }
     } catch (error: any) {
+      // Check if the error is a network issue
+      if (error.code === "auth/network-request-failed") {
+        dispatch(
+          setError("Network error. Please check your internet connection.")
+        );
+        return {
+          success: false,
+          message: "Network error. Please check your internet connection."
+        };
+      }
+
+      // Handle other errors
       dispatch(setError(error.message));
+      return { success: false, message: error.message };
     } finally {
       dispatch(setLoading(false));
     }
   };
 
-export const loginWithGoogle = (): AppThunk => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
+export const loginWithGoogle =
+  (): AppThunk<Promise<{ success: boolean; message?: string }>> =>
+  async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
 
-    const userData: UserType = {
-      id: user.uid,
-      firstname: user.displayName?.split(" ")[0] || "",
-      lastname: user.displayName?.split(" ")[1] || "",
-      email: user.email || "",
-      isAdmin: false,
-      photo: user.photoURL || "",
-      photoPath: null,
-      description: ""
-    };
+      const userData: UserType = {
+        id: user.uid,
+        firstname: user.displayName?.split(" ")[0] || "",
+        lastname: user.displayName?.split(" ")[1] || "",
+        email: user.email || "",
+        isAdmin: false,
+        photo: user.photoURL || "",
+        photoPath: null,
+        description: ""
+      };
 
-    await setDoc(doc(db, "users", user.uid), userData, { merge: true });
-    dispatch(setUser(userData));
-  } catch (error: any) {
-    dispatch(setError(error.message));
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
+      await setDoc(doc(db, "users", user.uid), userData, { merge: true });
+      dispatch(setUser(userData));
 
-export const logoutUser = (): AppThunk => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    await signOut(auth);
-    dispatch(clearUser());
-  } catch (error: any) {
-    dispatch(setError(error.message));
-  } finally {
-    dispatch(setLoading(false));
-  }
-};
+      return { success: true };
+    } catch (error: any) {
+      // Check if the error is a network issue
+      if (error.code === "auth/network-request-failed") {
+        dispatch(
+          setError("Network error. Please check your internet connection.")
+        );
+        return {
+          success: false,
+          message: "Network error. Please check your internet connection."
+        };
+      }
+
+      // Handle other errors
+      dispatch(setError(error.message));
+      return { success: false, message: error.message };
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
+export const logoutUser =
+  (): AppThunk<Promise<{ success: boolean; message?: string }>> =>
+  async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      await signOut(auth);
+      dispatch(clearUser());
+
+      return { success: true };
+    } catch (error: any) {
+      if (error.code === "auth/network-request-failed") {
+        dispatch(
+          setError("Network error. Please check your internet connection.")
+        );
+        return {
+          success: false,
+          message: "Network error. Please check your internet connection."
+        };
+      }
+
+      dispatch(setError(error.message));
+      return { success: false, message: error.message };
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
 export const checkAuthState = (): AppThunk => (dispatch) => {
   dispatch(setLoading(true));

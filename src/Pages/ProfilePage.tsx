@@ -12,14 +12,12 @@ export const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const signOut = async () => {
-    try {
-      await dispatch(logoutUser());
+    const response = await dispatch(logoutUser());
+    if (response.success) {
       toast.success("User logged out successfully");
       navigate("/login");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
+    } else {
+      toast.error(response.message || "Logout failed");
     }
   };
   useEffect(() => {
