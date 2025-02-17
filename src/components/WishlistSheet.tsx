@@ -47,19 +47,16 @@ const WishlistSheet = () => {
         )}
       </SheetTrigger>
 
-      <SheetContent
-        side="right"
-        className="w-full overflow-auto scrollbar-hidden"
-      >
-        <Tabs defaultValue="wishlist" className="w-full">
-          <TabsList>
-            <TabsTrigger value="cart">
+      <SheetContent side="right" className=" overflow-auto scrollbar-hidden">
+        <Tabs defaultValue="wishlist" className=" mt-8 w-full">
+          <TabsList className="w-full">
+            <TabsTrigger value="cart" className="w-full">
               Shopping Cart
               <div className="rounded-full ml-2 text-white bg-slate-500 flex items-center justify-center p-[10px] h-[1rem] w-[1rem]">
                 {totalQuantity}
               </div>
             </TabsTrigger>
-            <TabsTrigger value="wishlist">
+            <TabsTrigger value="wishlist" className="w-full">
               Wishlist
               <div className="rounded-full ml-2 text-white bg-slate-500 flex items-center justify-center p-[10px] h-[1rem] w-[1rem]">
                 {totalFavourite}
@@ -109,7 +106,7 @@ const WishlistSheet = () => {
                   to={user ? "/shopping-cart" : "/login"}
                   onClick={() => setOpen(false)}
                 >
-                  <Button className="w-full mb-[6rem] bg-slate-500 hover:bg-slate-600 duration-200 mt-2">
+                  <Button className="w-full  bg-slate-500 hover:bg-slate-600 duration-200 mt-2">
                     View Cart
                   </Button>
                 </Link>
@@ -149,7 +146,7 @@ const WishlistSheet = () => {
               </div>
               <Button
                 onClick={handleClear}
-                className="bg-slate-500 hover:bg-slate-600 duration-200 w-full mb-[6rem]"
+                className="bg-slate-500 hover:bg-slate-600 duration-200 w-full "
               >
                 Clear Wishlist
               </Button>
