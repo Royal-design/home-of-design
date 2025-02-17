@@ -13,7 +13,7 @@ const Checkout: React.FC<CheckoutProps> = ({ totalPrice, handleToken }) => {
       <div className="hidden">
         <StripeCheckout
           token={handleToken}
-          stripeKey="pk_test_51QgKXb2Ni3xn0HPxJ2dEgafRHrnNhMnILs84LWG9OZFBoJxVNdxtrllYJEu2bKXbH49EaY0dzTWtc5N3wgs5ggLi00Aqqdv0as"
+          stripeKey={import.meta.env.VITE_PUBLISHABLE_KEY}
           amount={totalPrice * 100}
           name="Home of Designs"
           email="hd@gmail.com"
