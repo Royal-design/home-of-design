@@ -73,18 +73,18 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className=" bg-background max-sm:p-4 max-sm:w-full text-primary justify-center flex  items-center h-screen">
+    <div className=" bg-background max-sm:p-4  max-sm:w-full text-primary justify-center flex  items-center h-screen">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="max-sm:w-full "
+          className="max-sm:w-full"
         >
-          <Card className="p-0 bg-background max-sm:shadow-none max-sm:border-none text-primary w-[25rem]  max-sm:w-full ">
-            <CardHeader className=" p-0 flex items-center justify-center">
-              <img src={logo} className="w-[2rem]" />
-              <CardTitle className="text-base text-center">Login </CardTitle>
+          <Card className="p-0 py-2 bg-background max-sm:shadow-none max-sm:border-none text-primary w-[25rem]  max-sm:w-full ">
+            <CardHeader className=" p-0 flex items-center my-8 justify-center">
+              <img src={logo} className="w-[3rem] " />
+              <CardTitle className="text-xl text-center">Login </CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-2">
+            <CardContent className="flex flex-col gap-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -129,7 +129,33 @@ export const LoginPage = () => {
                 type="submit"
                 className="w-full text-white dark:text-primary bg-slate-600 hover:bg-slate-700 duration-200 hover:outline-green-500 hover:outline-1 outline outline-1"
               >
-                Sign In
+                {form.formState.isSubmitting ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      ></path>
+                    </svg>
+                    Signing in...
+                  </>
+                ) : (
+                  `Sign in`
+                )}
               </Button>
 
               <div className="flex items-center justify-center gap-6 w-full">

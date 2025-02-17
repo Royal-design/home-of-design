@@ -73,20 +73,20 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="bg-background max-sm:px-4 flex justify-center w-full items-center h-screen">
+    <div className="bg-background max-sm:px-4 max-sm:h-full flex justify-center w-full items-center h-screen">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
           className="max-sm:w-full"
         >
-          <Card className="bg-background max-sm:shadow-none max-sm:border-none overflow-hidden max-sm:w-full text-primary w-[25rem]">
+          <Card className="bg-background  max-sm:shadow-none max-sm:border-none overflow-hidden max-sm:w-full text-primary w-[25rem]">
             <CardHeader className="flex items-center justify-center">
-              <img src={logo} className="w-[2rem]" />
-              <CardTitle className="text-center text-base">
+              <img src={logo} className="w-[3rem]" />
+              <CardTitle className="text-center text-xl">
                 Create your account
               </CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col gap-1">
+            <CardContent className="flex flex-col gap-3">
               <FormField
                 control={form.control}
                 name="firstname"
@@ -166,7 +166,33 @@ export const RegisterPage = () => {
                 type="submit"
                 className="w-full text-white dark:text-primary transition  bg-slate-600 hover:bg-slate-700 duration-200"
               >
-                Register
+                {form.formState.isSubmitting ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      ></path>
+                    </svg>
+                    Registering...
+                  </>
+                ) : (
+                  `Register`
+                )}
               </Button>
               <p className="text-primary text-sm mt-2">
                 {" "}

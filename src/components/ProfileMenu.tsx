@@ -41,10 +41,10 @@ export const ProfileMenu = () => {
           )}
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 bg-background ">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem className="hover:bg-button-hover">
           <User />
           <NavLink
             onClick={() => setOpen(!open)}
@@ -53,7 +53,7 @@ export const ProfileMenu = () => {
             Profile
           </NavLink>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem className="hover:bg-button-hover">
           <UserPen />
           <NavLink
             onClick={() => setOpen(!open)}
@@ -63,7 +63,7 @@ export const ProfileMenu = () => {
           </NavLink>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem className="hover:bg-button-hover">
           <LogOut />
           <span
             onClick={() => {
