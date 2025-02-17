@@ -9,6 +9,7 @@ import { addToCart } from "@/redux/slice/cartSlice";
 import { ProductType } from "@/types";
 import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const Products = () => {
   const dispatch = useAppDispatch();
@@ -129,9 +130,11 @@ export const Products = () => {
         }}
         className="w-full flex justify-center mt-4"
       >
-        <Button className="border-2" variant="ghost">
-          Show More
-        </Button>
+        <Link to="/products">
+          <Button className="border-2" variant="ghost">
+            Show More
+          </Button>
+        </Link>
       </motion.div>
     </motion.div>
   );

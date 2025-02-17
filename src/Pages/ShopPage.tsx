@@ -7,6 +7,7 @@ import { PiPhoneCallLight } from "react-icons/pi";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { ProductFilterSheet } from "@/components/ProductFilterSheet";
+import { useEffect } from "react";
 
 export const ShopPage = () => {
   const deliveryInfo = [
@@ -29,6 +30,11 @@ export const ShopPage = () => {
       text: "Safe and encrypted transactions guaranteed"
     }
   ];
+  useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+  }, []);
   return (
     <div>
       <main className="w-full">

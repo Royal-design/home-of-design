@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { FaArrowRight } from "react-icons/fa6";
 import { bannerData } from "./Banner";
+import { Link } from "react-router-dom";
 
 export const MobileBanner = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -70,12 +71,14 @@ export const MobileBanner = () => {
 
             {/* Button */}
             <motion.div variants={textVariant} custom={3}>
-              <Button
-                className="border border-black max-md:my-4 max-sm:mt-4"
-                variant="ghost"
-              >
-                Shop Now <FaArrowRight />
-              </Button>
+              <Link to="/products">
+                <Button
+                  className="border border-black max-md:my-4 max-sm:mt-4"
+                  variant="ghost"
+                >
+                  Shop Now <FaArrowRight />
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </SwiperSlide>

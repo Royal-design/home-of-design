@@ -10,6 +10,7 @@ import banner2 from "../assets/banner/hero2.png";
 import banner3 from "../assets/banner/hero3.png";
 import { FaArrowRight } from "react-icons/fa6";
 import { MobileBanner } from "./MobileBanner";
+import { Link } from "react-router-dom";
 
 export const bannerData = [
   {
@@ -98,13 +99,15 @@ export const Banner = () => {
 
                   {/* Button */}
                   <motion.div variants={textVariant} custom={3}>
-                    <Button
-                      className="border dark:hover:bg-transparent hover:bg-button-hover transition-all duration-200 dark:hover:border-yellow-400 border-black mt-4"
-                      variant="ghost"
-                    >
-                      Shop Now
-                      <FaArrowRight />
-                    </Button>
+                    <Link to="/products">
+                      <Button
+                        className="border dark:hover:bg-transparent hover:bg-button-hover transition-all duration-200 dark:hover:border-yellow-400 border-black mt-4"
+                        variant="ghost"
+                      >
+                        Shop Now
+                        <FaArrowRight />
+                      </Button>
+                    </Link>
                   </motion.div>
                 </div>
 
