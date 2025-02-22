@@ -39,7 +39,7 @@ export const CartListMobile = ({ item }: ItemType) => {
     }
   };
   return (
-    <Card className="w-full p-0 b">
+    <Card className="w-full p-0 bg-banner">
       <CardHeader className="p-0" />
       <CardContent className=" h-full flex w-full  gap-2 p-2">
         <figure className="h-[4rem] w-[4rem]  rounded-sm bg-gray-500">
