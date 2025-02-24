@@ -20,7 +20,9 @@ const NavbarSheet = () => {
       <SheetTrigger asChild>
         {!open ? (
           <div>
-            <HiMiniBars3BottomLeft onClick={() => setOpen(!open)} size={20} />
+            <div onClick={() => setOpen(!open)}>
+              <HiMiniBars3BottomLeft size={20} />
+            </div>
           </div>
         ) : (
           <div>
