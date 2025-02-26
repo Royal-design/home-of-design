@@ -95,7 +95,6 @@ export const EditProfilepage = () => {
           photo = await getDownloadURL(photoRef);
         }
 
-        // Update user profile in Firestore
         await updateDoc(docRef, {
           firstname: data.firstname,
           lastname: data.lastname,
@@ -115,7 +114,6 @@ export const EditProfilepage = () => {
     }
   };
 
-  // Handle file selection and preview
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
