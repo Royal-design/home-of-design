@@ -2,7 +2,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { MoveLeft, MoveRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductSkeleton } from "./ProductSkeleton";
 import { ProductType } from "@/types";
 import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
@@ -36,6 +36,9 @@ export const AllProducts = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   // Handle page change
   const handlePageChange = (page: number) => {

@@ -47,8 +47,11 @@ export const Search = () => {
         onChange={handleChange}
       />
 
-      <div onClick={() => setInputVisible(!inputVisible)} className="relative cursor-pointer ml-2">
-        <IoIosSearch size={20}  />
+      <div
+        onClick={() => setInputVisible(!inputVisible)}
+        className="relative cursor-pointer ml-2"
+      >
+        <IoIosSearch size={20} />
       </div>
     </div>
   );
