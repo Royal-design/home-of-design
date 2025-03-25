@@ -75,7 +75,6 @@ export const EditProfilepage = () => {
       try {
         const docRef = doc(db, "users", user.uid);
         const userDoc = (await getDoc(docRef)).data() as UserType;
-        console.log(userDoc);
 
         // delete old photo if it exists
         if (userDoc.photoPath) {

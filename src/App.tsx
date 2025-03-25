@@ -11,6 +11,7 @@ import { data } from "./assets/data/data";
 import { BlogDetailPage } from "./Pages/BlogDetailPage";
 import { setBlogs } from "./redux/slice/blogSlice";
 import { blogs } from "./assets/data/blogs";
+import { ErrorPage } from "./Pages/ErrorPage";
 
 const HomePage = lazy(() =>
   import("./Pages/HomePage").then(({ HomePage }) => ({ default: HomePage }))
@@ -57,11 +58,6 @@ const ProductPage = lazy(() =>
 const CartPage = lazy(() =>
   import("./Pages/CartPage").then(({ CartPage }) => ({
     default: CartPage
-  }))
-);
-const ErrorPage = lazy(() =>
-  import("./Pages/ErrorPage").then(({ ErrorPage }) => ({
-    default: ErrorPage
   }))
 );
 

@@ -24,7 +24,6 @@ export const ProductTab = ({ product }: PropsType) => {
 
   const handleClick = (index: number) => {
     setRating(index + 1);
-    console.log(rating);
   };
   return (
     <Tabs

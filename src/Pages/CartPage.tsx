@@ -56,9 +56,6 @@ export const CartPage = () => {
     }
     dispatch(order());
     navigate("/");
-    console.log("=================");
-    console.log("Payment success");
-    console.log("=================");
   };
 
   return (
