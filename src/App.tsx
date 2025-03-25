@@ -110,11 +110,7 @@ function App() {
     dispatch(setBlogs(blogs));
   }, [dispatch]);
 
-  return (
-    <Suspense fallback={<SpinnerLoader />}>
-      <RouterProvider router={router} />
-    </Suspense>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
