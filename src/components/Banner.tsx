@@ -72,7 +72,7 @@ export const Banner = () => {
                 <div className="flex flex-col h-full justify-center gap-4 p-2">
                   {/* Heading */}
                   <motion.h2
-                    className="text-2xl font-bold"
+                    className="text-5xl font-bold"
                     variants={textVariant}
                     custom={0} // First element
                   >
@@ -81,7 +81,7 @@ export const Banner = () => {
 
                   {/* Subheading */}
                   <motion.p
-                    className="text-lg"
+                    className="text-xl"
                     variants={textVariant}
                     custom={1} // Second element
                   >

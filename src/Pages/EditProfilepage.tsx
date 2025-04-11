@@ -107,7 +107,7 @@ export const EditProfilepage = () => {
         navigate("/profile");
       } catch (error) {
         if (error instanceof Error) {
-          console.log(error.message);
+          console.error(error.message);
         }
       }
     }

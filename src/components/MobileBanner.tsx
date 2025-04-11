@@ -41,7 +41,7 @@ export const MobileBanner = () => {
           >
             {/* Heading */}
             <motion.h2
-              className="text-xl mb-4 font-bold"
+              className="text-2xl mb-4 font-bold"
               variants={textVariant}
               custom={0}
             >
