@@ -6,13 +6,13 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import { useState } from "react";
-import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 import { Search } from "./Search";
 import { Theme } from "./Theme";
 import { IoCloseOutline } from "react-icons/io5";
 import { useAppSelector } from "@/redux/store";
 import { ProfileMenu } from "./ProfileMenu";
+import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
 
 const NavbarSheet = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -24,7 +24,7 @@ const NavbarSheet = () => {
         {!open ? (
           <div>
             <div onClick={() => setOpen(!open)}>
-              <HiMiniBars3BottomLeft size={20} />
+              <HiOutlineBars3BottomLeft size={40} />
             </div>
           </div>
         ) : (

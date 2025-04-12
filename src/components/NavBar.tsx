@@ -46,7 +46,7 @@ export const NavBar = () => {
             isPinned && scrolled ? " shadow-md" : ""
           }`}
         >
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-4 items-center">
             <div className="hidden  max-sm:block ">
               <NavbarSheet />
             </div>
