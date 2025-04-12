@@ -24,6 +24,7 @@ import { toast } from "sonner";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 export const ContactPage = () => {
   const { user } = useAppSelector((state) => state.auth);
 
@@ -69,6 +70,11 @@ export const ContactPage = () => {
       }
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background font-sans">
       {/* Hero Section */}

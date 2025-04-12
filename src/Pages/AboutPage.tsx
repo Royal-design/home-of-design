@@ -7,8 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { useEffect } from "react";
 
 export const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
   return (
     <div className="overflow-hidden">
       <section className="h-[20rem] relative font-Titillium-Web">
