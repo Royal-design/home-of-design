@@ -27,7 +27,7 @@ const Checkout: React.FC<CheckoutProps> = ({ totalPrice, handleToken }) => {
         onClick={() =>
           (document.querySelector(".StripeCheckout") as HTMLElement)?.click()
         }
-        className="dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+        className="bg-button text-primary hover:bg-button-hover"
       >
         Checkout
       </Button>

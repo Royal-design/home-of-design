@@ -41,7 +41,7 @@ export const Search = () => {
         onChange={handleChange}
       />
       <Input
-        className="transition-all hidden max-sm:block  w-full duration-150 overflow-hidden"
+        className="transition-all hidden max-sm:block border border-border-line w-full duration-150 overflow-hidden"
         placeholder="Search..."
         value={searchTerm}
         onChange={handleChange}

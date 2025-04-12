@@ -64,8 +64,10 @@ export default {
         button: "var(--button)",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",
+        "border-line": "var(--border-line)",
         "banner-overlay": "var(--banner-overlay)",
         "button-hover": "var(--button-hover)",
+
         category: "var(--category)",
         banner: "var(--banner)",
         card: {

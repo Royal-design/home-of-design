@@ -75,17 +75,19 @@ export const CartPage = () => {
                 {cartItems.map((item) => (
                   <CartListMobile item={item} key={item.id} />
                 ))}
-                <Button
-                  className="mt-4 dark:bg-slate-700 w-[6rem] dark:text-white dark:hover:bg-slate-600"
-                  onClick={handleClearCart}
-                >
-                  Clear Cart
-                </Button>
+                <div>
+                  <Button
+                    className="mt-4 text-primary bg-button hover:bg-button-hover"
+                    onClick={handleClearCart}
+                  >
+                    Clear Cart
+                  </Button>
+                </div>
               </div>
               <div className="w-full max-sm:hidden px-8">
                 <Table className="w-full">
                   <TableHeader>
-                    <TableRow>
+                    <TableRow className="border-b border-border-line hover:bg-button-hover">
                       <TableHead>Products</TableHead>
                       <TableHead>Price</TableHead>
                       <TableHead>Quantity</TableHead>
@@ -100,7 +102,7 @@ export const CartPage = () => {
                   </TableBody>
                 </Table>
                 <Button
-                  className="mt-4 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                  className="mt-4 text-primary  bg-button hover:bg-button-hover "
                   onClick={handleClearCart}
                 >
                   Clear Cart

@@ -38,7 +38,7 @@ export const TableItem = ({ item }: ItemType) => {
     }
   };
   return (
-    <TableRow className="h-[1rem]">
+    <TableRow className="h-[1rem] border-t border-border-line hover:bg-button">
       <TableCell className="font-medium  w-[20rem]">
         <figure className="flex items-center  gap-3">
           <img
@@ -51,7 +51,7 @@ export const TableItem = ({ item }: ItemType) => {
       </TableCell>
       <TableCell className="max-sm:text-xs">{item.price.newPrice}</TableCell>
       <TableCell>
-        <div className="w-[5rem]  max-sm:h-[2rem] dark:bg-transparent flex h-[3rem] justify-around items-center bg-white border">
+        <div className="w-[5rem]  max-sm:h-[2rem] dark:bg-transparent flex h-[3rem] justify-around items-center bg-white border-border-line border">
           <Button
             onClick={(e) => handleDecrement(e, item.id)}
             variant="ghost"
@@ -74,7 +74,7 @@ export const TableItem = ({ item }: ItemType) => {
       <TableCell className="flex justify-end items-center h-[4rem] ">
         <X
           onClick={() => handleRemoveFromCart(item.id)}
-          className="w-[1.3rem] cursor-pointer h-[1.3rem] dark:bg-slate-700 bg-gray-300 rounded-full p-1"
+          className="w-[1.3rem] cursor-pointer h-[1.3rem] bg-button hover:bg-button-hover text-primary rounded-full p-1"
         />
       </TableCell>
     </TableRow>

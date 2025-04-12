@@ -23,6 +23,7 @@ import { db } from "@/firebase/firebaseConfig";
 import { toast } from "sonner";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { motion } from "framer-motion";
 export const ContactPage = () => {
   const { user } = useAppSelector((state) => state.auth);
 
@@ -78,14 +79,31 @@ export const ContactPage = () => {
           className="h-full w-full object-cover"
         />
         <article className="absolute max-sm:px-4 gap-4 inset-0 bg-banner-overlay flex-col flex items-center justify-center">
-          <h1 className="text-3xl font-bold text-gray-300 ">Contact Us</h1>
+          <motion.h1
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold text-gray-300 "
+          >
+            Contact Us
+          </motion.h1>
 
-          <p className="text-lg max-sm:text-base text-white max-w-3xl text-center">
+          <motion.p
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-lg max-sm:text-base text-white max-w-3xl text-center"
+          >
             We’d love to hear from you! Whether you have questions, feedback, or
             just want to say hello, feel free to reach out.
-          </p>
-
-          <BreadCrumbs />
+          </motion.p>
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <BreadCrumbs />
+          </motion.div>
         </article>
       </section>
 
@@ -93,7 +111,11 @@ export const ContactPage = () => {
       <section className="px-[6rem] py-6 max-sm:px-4  bg-background">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div>
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0, y: -10 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h2 className="text-3xl mb-6 max-sm:text-2xl font-semibold space-y-4 text-center">
               Get in Touch
             </h2>
@@ -111,7 +133,7 @@ export const ContactPage = () => {
                       <FormControl>
                         <Input
                           type="text"
-                          className="focus:border-green-400 border-primary focus:border-1 duration-150"
+                          className="focus:border-green-400 border-border-line focus:border-1 duration-150"
                           placeholder="Enter your name"
                           {...field}
                         />
@@ -129,7 +151,7 @@ export const ContactPage = () => {
                       <FormControl>
                         <Input
                           type="email"
-                          className="focus:border-green-400 border-primary focus:border-1 duration-150"
+                          className="focus:border-green-400 border-border-line  focus:border-1 duration-150"
                           placeholder="Enter your email"
                           {...field}
                         />
@@ -148,7 +170,7 @@ export const ContactPage = () => {
                       <FormControl>
                         <Input
                           type="text"
-                          className="focus:border-green-400 border-primary focus:border-1 duration-150"
+                          className="focus:border-green-400 border-border-line focus:border-1 duration-150"
                           placeholder="Write your query"
                           {...field}
                         />
@@ -166,7 +188,7 @@ export const ContactPage = () => {
                       <FormLabel className="require">Message</FormLabel>
                       <FormControl>
                         <Textarea
-                          className=" focus:border-green-400 h-[5rem] border-primary focus:border-1 duration-150"
+                          className=" focus:border-green-400 h-[5rem] border-border-line focus:border-1 duration-150"
                           placeholder="Leave your message..."
                           {...field}
                         />
@@ -187,40 +209,55 @@ export const ContactPage = () => {
                 </Button>
               </form>
             </Form>
-          </div>
+          </motion.div>
 
           {/* Contact Information */}
-          <div className="space-y-4  pb-6">
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-4  pb-6"
+          >
             <h2 className="text-3xl mb-6 max-sm:text-2xl text-center font-semibold">
               Contact Details
             </h2>
 
             <div className="flex items-start gap-4">
-              <FaPhoneAlt className="text-[#f5b955] mt-1" size={18} />
+              <FaPhoneAlt color="#f5b955" size={18} />
               <div>
-                <p className="text-sm font-medium text-gray-700">Phone</p>
-                <p className="text-gray-600">+234 123 456 7890</p>
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Phone
+                </p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  +234 123 456 7890
+                </p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <FaEnvelope className="text-[#f5b955] mt-1" size={18} />
+              <FaEnvelope color="#f5b955" size={18} />
               <div>
-                <p className="text-sm font-medium text-gray-700">Email</p>
-                <p className="text-gray-600">support@furniturestore.com</p>
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Email
+                </p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  support@furniturestore.com
+                </p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <FaMapMarkerAlt className="text-[#f5b955] mt-1" size={18} />
+              <FaMapMarkerAlt color="#f5b955" size={18} />
               <div>
-                <p className="text-sm font-medium text-gray-700">Address</p>
-                <p className="text-gray-600">
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Address
+                </p>
+                <p className="text-gray-600 dark:text-gray-400">
                   12, Victoria Island, Lagos, Nigeria
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
       <ScrollToTop />

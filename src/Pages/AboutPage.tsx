@@ -18,7 +18,12 @@ export const AboutPage = () => {
           className="h-full w-full object-cover"
         />
         <article className="absolute flex-col inset-0 gap-4 px-4 bg-banner-overlay flex items-center justify-center">
-          <h1 className="text-3xl font-bold text-gray-300">
+          <motion.h1
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold text-gray-300"
+          >
             About{" "}
             <span
               style={{
@@ -27,14 +32,24 @@ export const AboutPage = () => {
             >
               Us
             </span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-lg text-white text-center max-sm:text-base max-w-3xl max-sm:w-full">
+          <motion.p
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-lg text-white text-center max-sm:text-base max-w-3xl max-sm:w-full"
+          >
             At Furniture Haven, we bring you the perfect blend of craftsmanship
             and modern design to transform your spaces into a sanctuary.
-          </p>
-
-          <BreadCrumbs />
+          </motion.p>
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <BreadCrumbs />
+          </motion.div>
         </article>
       </section>
 

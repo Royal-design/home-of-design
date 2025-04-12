@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { CartItem, removeFromCart, updateCart } from "@/redux/slice/cartSlice";
 import { useState } from "react";
@@ -39,8 +39,10 @@ export const CartListMobile = ({ item }: ItemType) => {
     }
   };
   return (
-    <Card className="w-full p-0 bg-banner">
-      <CardHeader className="p-0" />
+    <Card className="w-full border-border-line p-0 bg-banner">
+      <CardHeader className="p-0">
+        <CardTitle />
+      </CardHeader>
       <CardContent className=" h-full flex w-full  gap-2 p-2">
         <figure className="h-[4rem] w-[4rem]  rounded-sm bg-gray-500">
           <img
@@ -54,7 +56,7 @@ export const CartListMobile = ({ item }: ItemType) => {
             <p className="font-bold">{item.name}</p>
             <X
               onClick={() => handleRemoveFromCart(item.id)}
-              className="w-[1.3rem] dark:bg-slate-800 cursor-pointer h-[1.3rem]  bg-gray-300 rounded-full p-1"
+              className="w-[1.3rem] bg-button hover:bg-button-hover cursor-pointer h-[1.3rem] text-primary border-border-line border rounded-full p-1"
             />
           </div>
 
@@ -64,14 +66,14 @@ export const CartListMobile = ({ item }: ItemType) => {
             <div className="flex items-center gap-2">
               <Button
                 onClick={(e) => handleDecrement(e, item.id)}
-                className="h-6 cursor-pointer dark:text-white w-6 dark:bg-slate-800 bg-slate-500 rounded-full p-2 flex items-center justify-center"
+                className="h-6 cursor-pointer bg-button hover:bg-button-hover text-primary border border-border-line rounded-full p-2 flex items-center justify-center"
               >
                 -
               </Button>
               <p>{updateQuantity}</p>
               <Button
                 onClick={(e) => handleIncrement(e, item.id)}
-                className="h-6 cursor-pointer dark:text-white dark:bg-slate-800 w-6 bg-slate-500 rounded-full p-2 flex items-center justify-center"
+                className="h-6 cursor-pointer bg-button hover:bg-button-hover text-primary border border-border-line rounded-full p-2 flex items-center justify-center"
               >
                 +
               </Button>

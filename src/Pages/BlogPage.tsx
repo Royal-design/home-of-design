@@ -3,6 +3,7 @@ import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { useAppSelector } from "@/redux/store";
+import { motion } from "framer-motion";
 
 export const BlogPage = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
@@ -17,18 +18,33 @@ export const BlogPage = () => {
             className="h-full w-full object-cover"
           />
           <article className="absolute  max-sm:px-4 inset-0 bg-banner-overlay flex flex-col gap-4 items-center justify-center">
-            <h1 className="text-3xl  text-center max-sm:text-lg max-md:text-2xl font-bold text-white">
+            <motion.h1
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl  text-center max-sm:text-lg max-md:text-2xl font-bold text-white"
+            >
               Transform Your Space with Inspiration & Ideas
-            </h1>
+            </motion.h1>
 
-            <p className="text-gray-300 max-w-3xl  max-sm:w-full text-center max-sm:text-base dark:text-gray-300 text-lg leading-[150%]">
+            <motion.p
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-gray-300 max-w-3xl  max-sm:w-full text-center max-sm:text-base dark:text-gray-300 text-lg leading-[150%]"
+            >
               Dive into a world of furniture trends, interior design tips, and
               expert advice to help you craft spaces that reflect your unique
               style. Whether you're looking for modern minimalism, rustic charm,
               or timeless elegance, we’ve got you covered.
-            </p>
-
-            <BreadCrumbs />
+            </motion.p>
+            <motion.div
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <BreadCrumbs />
+            </motion.div>
           </article>
         </section>
 

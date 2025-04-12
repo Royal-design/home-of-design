@@ -20,11 +20,6 @@ export const NavBar = () => {
     (state) => state.favourite.totalFavourite
   );
 
-  const handlePageScroll = () => {
-    window.scrollTo({
-      top: 0
-    });
-  };
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -62,16 +57,16 @@ export const NavBar = () => {
             <NavLink to="/" className="link">
               Home
             </NavLink>
-            <NavLink to="/products" className="link" onClick={handlePageScroll}>
+            <NavLink to="/products" className="link">
               Shop
             </NavLink>
-            <NavLink to="/blogs" className="link" onClick={handlePageScroll}>
+            <NavLink to="/blogs" className="link">
               Blog
             </NavLink>
-            <NavLink to="/about" className="link" onClick={handlePageScroll}>
+            <NavLink to="/about" className="link">
               About
             </NavLink>
-            <NavLink to="/contact" className="link" onClick={handlePageScroll}>
+            <NavLink to="/contact" className="link">
               Contact
             </NavLink>
           </div>
@@ -86,7 +81,10 @@ export const NavBar = () => {
             ) : (
               <div className="flex gap-2 items-center">
                 <NavLink to="/login" className="">
-                  <Button variant="ghost" className="border">
+                  <Button
+                    variant="ghost"
+                    className="bg-button hover:bg-button-hover"
+                  >
                     Sign in
                   </Button>
                 </NavLink>

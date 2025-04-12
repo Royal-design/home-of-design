@@ -9,6 +9,7 @@ import { RiSecurePaymentLine } from "react-icons/ri";
 import { ProductFilterSheet } from "@/components/ProductFilterSheet";
 import { useEffect } from "react";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { motion } from "framer-motion";
 
 export const ShopPage = () => {
   const deliveryInfo = [
@@ -46,19 +47,33 @@ export const ShopPage = () => {
             className="h-full w-full object-cover"
           />
           <article className="absolute h-full gap-4 w-full flex flex-col max-sm:px-4 items-center justify-center top-0 bg-banner-overlay ">
-            <h1 className="text-3xl text-center font-bold max-sm:text-lg max-md:text-xl text-white dark:text-gray-100">
+            <motion.h1
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl text-center font-bold max-sm:text-lg max-md:text-xl text-white dark:text-gray-100"
+            >
               Redefine Comfort, Redefine Style
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg max-sm:text-base leading-[150%] text-gray-300 dark:text-gray-300  max-sm:w-full w-[60%] text-center">
+            <motion.p
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-lg max-sm:text-base leading-[150%] text-gray-300 dark:text-gray-300  max-sm:w-full w-[60%] text-center"
+            >
               Discover expertly crafted furniture that blends luxury,
               functionality, and timeless design. Whether you're furnishing your
               living room, dining area, or workspace, we have everything you
               need to create a space you'll love for years to come.
-            </p>
-            <div className="">
+            </motion.p>
+            <motion.div
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <BreadCrumbs />
-            </div>
+            </motion.div>
           </article>
         </section>
 

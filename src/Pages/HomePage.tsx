@@ -9,8 +9,14 @@ import { PartnerInfiniteCard } from "@/components/PartnerInfiniteCard";
 import { Products } from "@/components/Products";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { TopProduct } from "@/components/TopProduct";
+import { useEffect } from "react";
 
 export const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+  }, []);
   return (
     <div className="bg-background font-Titillium-Web">
       <Banner />
