@@ -75,11 +75,11 @@ export const Products = () => {
     >
       <div className="flex flex-col items-center gap-1">
         <div className="flex items-center gap-2 w-full justify-between">
-          <Separator className="flex-1" />
+          <Separator className="flex-1 border border-border-line" />
           <h1 className="text-3xl max-sm:text-2xl font-bold text-center">
             All Products
           </h1>
-          <Separator className="flex-1" />
+          <Separator className="flex-1 border border-border-line" />
         </div>
         <p className="text-base max-sm:text-sm text-center">
           Explore our full range of stylish, functional furniture for every room
@@ -94,8 +94,8 @@ export const Products = () => {
             onClick={() => handleTabChange(tab.selectedTab)}
             className={`px-4 py-2 text-xs p-1 h-6 ${
               selectedTab === tab.selectedTab
-                ? "bg-slate-400 text-white"
-                : "border-2"
+                ? "bg-button hover:bg-button-hover text-primary"
+                : "border-2 border-border-line"
             }  mr-2`}
           >
             {tab.text}

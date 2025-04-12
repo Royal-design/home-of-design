@@ -70,7 +70,7 @@ export const ContactPage = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-background font-sans">
       {/* Hero Section */}
       <section className="h-[20rem] max-sm:h-full relative font-Titillium-Web">
         <img
@@ -133,7 +133,7 @@ export const ContactPage = () => {
                       <FormControl>
                         <Input
                           type="text"
-                          className="focus:border-green-400 border-border-line focus:border-1 duration-150"
+                          className="focus:text-lighter-color  placeholder:text-light-color border-border-line focus:border-1 duration-150"
                           placeholder="Enter your name"
                           {...field}
                         />
@@ -151,7 +151,7 @@ export const ContactPage = () => {
                       <FormControl>
                         <Input
                           type="email"
-                          className="focus:border-green-400 border-border-line  focus:border-1 duration-150"
+                          className="focus:text-lighter-color  placeholder:text-light-color border-border-line  focus:border-1 duration-150"
                           placeholder="Enter your email"
                           {...field}
                         />
@@ -170,7 +170,7 @@ export const ContactPage = () => {
                       <FormControl>
                         <Input
                           type="text"
-                          className="focus:border-green-400 border-border-line focus:border-1 duration-150"
+                          className="focus:text-lighter-color  placeholder:text-light-color border-border-line focus:border-1 duration-150"
                           placeholder="Write your query"
                           {...field}
                         />
@@ -188,7 +188,7 @@ export const ContactPage = () => {
                       <FormLabel className="require">Message</FormLabel>
                       <FormControl>
                         <Textarea
-                          className=" focus:border-green-400 h-[5rem] border-border-line focus:border-1 duration-150"
+                          className=" focus:text-lighter-color h-[5rem]  placeholder:text-light-color border-border-line focus:border-1 duration-150"
                           placeholder="Leave your message..."
                           {...field}
                         />

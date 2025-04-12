@@ -64,6 +64,8 @@ export default {
         button: "var(--button)",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",
+        "light-color": "var(--light-color)",
+        "lighter-color": "var(--lighter-color)",
         "border-line": "var(--border-line)",
         "banner-overlay": "var(--banner-overlay)",
         "button-hover": "var(--button-hover)",
@@ -98,8 +100,8 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))"
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
+        border: "var(--border)",
+        input: "var(--input)",
         ring: "hsl(var(--ring))",
         chart: {
           "1": "hsl(var(--chart-1))",

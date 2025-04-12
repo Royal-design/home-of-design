@@ -25,7 +25,7 @@ export const ScrollToTop = () => {
     isVisible && (
       <button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-banner text-primary rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110"
+        className="fixed bottom-12 border border-border-line right-8 w-12 z-20 h-12 bg-banner text-primary rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110"
       >
         <FiChevronUp size={24} />
       </button>

@@ -61,7 +61,7 @@ export const AllProducts = () => {
   return (
     <section className="w-full">
       {filterProducts.length === 0 && (
-        <p className="mt-4 text-slate-500 text-center">
+        <p className="mt-4 text-primary text-center">
           No products found. Check back later :)
         </p>
       )}

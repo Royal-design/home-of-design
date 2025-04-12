@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger
+} from "@/components/ui/sheet";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { Separator } from "@radix-ui/react-separator";
 import { Heart, X } from "lucide-react";
@@ -47,18 +53,23 @@ const WishlistSheet = () => {
         )}
       </SheetTrigger>
 
-      <SheetContent side="right" className=" overflow-auto scrollbar-hidden">
+      <SheetContent
+        side="right"
+        className="border-l border-border-line overflow-auto scrollbar-hidden"
+      >
+        <SheetTitle />
+        <SheetDescription />
         <Tabs defaultValue="wishlist" className=" mt-8 w-full">
-          <TabsList className="w-full">
+          <TabsList className="w-full bg-button">
             <TabsTrigger value="cart" className="w-full">
               Shopping Cart
-              <div className="rounded-full ml-2 text-white bg-slate-500 flex items-center justify-center p-[10px] h-[1rem] w-[1rem]">
+              <div className="rounded-full ml-2 text-primary bg-button flex items-center justify-center p-[10px] h-[1rem] w-[1rem]">
                 {totalQuantity}
               </div>
             </TabsTrigger>
             <TabsTrigger value="wishlist" className="w-full">
               Wishlist
-              <div className="rounded-full ml-2 text-white bg-slate-500 flex items-center justify-center p-[10px] h-[1rem] w-[1rem]">
+              <div className="rounded-full ml-2 text-primary bg-button flex items-center justify-center p-[10px] h-[1rem] w-[1rem]">
                 {totalFavourite}
               </div>
             </TabsTrigger>
@@ -89,7 +100,7 @@ const WishlistSheet = () => {
                       <X
                         size={22}
                         onClick={() => handleRemoveFromCart(item.id)}
-                        className="bg-slate-500 text-white cursor-pointer hover:bg-slate-600 duration-200 rounded-full p-1"
+                        className="bg-button text-primary cursor-pointer hover:bg-button-hover duration-200 rounded-full p-1"
                       />
                     </div>
                     <Separator className="border-[1px]" />
@@ -106,7 +117,7 @@ const WishlistSheet = () => {
                   to={user ? "/shopping-cart" : "/login"}
                   onClick={() => setOpen(false)}
                 >
-                  <Button className="w-full  bg-slate-500 hover:bg-slate-600 duration-200 mt-2">
+                  <Button className="w-full text-primary bg-button hover:bg-button-hover duration-200 mt-2">
                     View Cart
                   </Button>
                 </Link>
@@ -137,7 +148,7 @@ const WishlistSheet = () => {
                       <X
                         size={22}
                         onClick={() => handleRemove(item.id)}
-                        className="bg-slate-500 text-white cursor-pointer hover:bg-slate-600 duration-200 rounded-full p-1 "
+                        className="bg-button text-primary cursor-pointer hover:bg-button-hover duration-200 rounded-full p-1 "
                       />
                     </div>
                     <Separator className="border-[1px]" />
@@ -146,7 +157,7 @@ const WishlistSheet = () => {
               </div>
               <Button
                 onClick={handleClear}
-                className="bg-slate-500 hover:bg-slate-600 duration-200 w-full "
+                className="bg-button text-primary hover:bg-button-hover duration-200 w-full "
               >
                 Clear Wishlist
               </Button>

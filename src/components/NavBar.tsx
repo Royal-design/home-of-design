@@ -77,7 +77,9 @@ export const NavBar = () => {
               <Theme />
             </div>
             {user ? (
-              <ProfileMenu />
+              <div className="max-sm:hidden">
+                <ProfileMenu />
+              </div>
             ) : (
               <div className="flex gap-2 items-center">
                 <NavLink to="/login" className="">

@@ -39,7 +39,7 @@ export const ProductCard = ({
         duration: 1
       }}
     >
-      <Card className="w-full bg-background border h-full shadow-none  overflow-hidden rounded-none">
+      <Card className="w-full bg-background border h-full shadow-none border-border-line overflow-hidden rounded-none">
         <CardHeader className="p-0">
           <CardTitle />
         </CardHeader>
@@ -78,12 +78,13 @@ export const ProductCard = ({
             </div>
           </div>
 
-          <div className="flex  w-full justify-between  items-center">
-            <FaCirclePlus
-              size="25"
-              className="text-orange-400 cursor-pointer"
+          <div className="flex cursor-pointer w-full justify-between  items-center">
+            <div
+              className="cursor-pointer text-orange-400"
               onClick={() => addToCartClick(product)}
-            />
+            >
+              <FaCirclePlus size="25" />
+            </div>
 
             <div className="flex items-center gap-2">
               <motion.div
@@ -109,11 +110,12 @@ export const ProductCard = ({
                   <Heart size="20" className=" max-sm:w-[1rem]" />
                 )}
               </motion.div>
-              <IoIosEye
-                size="25"
-                className="text-orange-400 cursor-pointer"
+              <div
                 onClick={handleClick}
-              />
+                className="cursor-pointer text-orange-400"
+              >
+                <IoIosEye size="25" />
+              </div>
             </div>
           </div>
         </CardFooter>

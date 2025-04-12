@@ -34,16 +34,16 @@ export const ProfileMenu = () => {
           {user?.photo ? (
             <img
               src={user.photo}
-              className="w-6 h-6 rounded-full bg-background-banner shadow-sm"
+              className="w-6 h-6 rounded-full border border-lighter-color p-[2px] bg-background-banner shadow-sm"
             />
           ) : (
             <UserRound strokeWidth={1.5} />
           )}
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-background ">
+      <DropdownMenuContent className="w-56 bg-background border-border-line">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="border-border-line border" />
         <DropdownMenuItem className="hover:bg-button-hover">
           <User />
           <NavLink
@@ -62,7 +62,7 @@ export const ProfileMenu = () => {
             Edit Profile
           </NavLink>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="border-border-line border" />
         <DropdownMenuItem className="hover:bg-button-hover">
           <LogOut />
           <span

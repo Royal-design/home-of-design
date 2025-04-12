@@ -11,9 +11,12 @@ import { NavLink } from "react-router-dom";
 import { Search } from "./Search";
 import { Theme } from "./Theme";
 import { IoCloseOutline } from "react-icons/io5";
+import { useAppSelector } from "@/redux/store";
+import { ProfileMenu } from "./ProfileMenu";
 
 const NavbarSheet = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const { user } = useAppSelector((state) => state.auth);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -94,8 +97,14 @@ const NavbarSheet = () => {
               </NavLink>
             </div>
           </div>
-          <div className="">
-            <Theme />
+          <div className="w-full">
+            <div className="flex shadow-sm border border-border-line items-center px-2 justify-between w-full">
+              <Theme />
+              {user && <ProfileMenu />}
+            </div>
+            <p className="text-xs text-center mt-1 text-slate-700 dark:text-slate-200">
+              © {new Date().getFullYear()} Emmanuel All rights reserved.
+            </p>
           </div>
         </div>
       </SheetContent>

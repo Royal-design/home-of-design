@@ -28,11 +28,11 @@ export const PartnerInfiniteCard = () => {
         <div className="">
           <div className="flex flex-col items-center gap-1">
             <div className="flex items-center gap-2 w-full justify-between">
-              <Separator className="flex-1" />
+              <Separator className="flex-1 border border-border-line" />
               <h1 className="text-3xl max-sm:text-2xl font-bold text-center">
                 Our Partners
               </h1>
-              <Separator className="flex-1" />
+              <Separator className="flex-1 border border-border-line" />
             </div>
             <p className="text-center text-base max-sm:text-sm leading-[150%]">
               Collaborating with the best to bring you quality and style. Our

@@ -34,11 +34,11 @@ export const FeaturedProduct = () => {
       <div className="px-[6rem] leading-[150%] max-sm:px-[1rem] max-md:px-4 max-lg:px-8 mt-[8rem] max-sm:mt-[2rem]">
         <div className="flex flex-col items-center gap-1">
           <div className="flex items-center gap-2 w-full justify-between">
-            <Separator className="flex-1" />
+            <Separator className="flex-1 border border-border-line" />
             <h1 className="text-3xl max-sm:text-2xl font-bold text-center">
               Featured Product
             </h1>
-            <Separator className="flex-1" />
+            <Separator className="flex-1 border-border-line border" />
           </div>
           <p className="text-base max-sm:text-sm text-center ">
             Handpicked designs to elevate your living space with elegance and

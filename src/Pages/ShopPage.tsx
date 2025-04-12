@@ -107,6 +107,7 @@ export const ShopPage = () => {
         ))}
       </div>
       <ScrollToTop />
+      <div className=""></div>
       <Footer />
     </div>
   );
