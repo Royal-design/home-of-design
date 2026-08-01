@@ -148,7 +148,7 @@ export const Search = () => {
                         onClick={() => goTo(p.id)}
                         className="group flex w-full cursor-pointer items-center gap-5 px-6 py-4 text-left transition-colors hover:bg-paper-2"
                       >
-                        <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden bg-paper-2">
+                        <span className="card-media flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden">
                           <img
                             src={p.mainImage}
                             alt={p.name}

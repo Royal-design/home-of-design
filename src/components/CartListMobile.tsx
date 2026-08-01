@@ -43,7 +43,7 @@ export const CartListMobile = ({ item }: ItemType) => {
     <div className="flex gap-4 border-b border-line pb-5">
       <Link
         to={`/products/${item.id}`}
-        className="flex h-24 w-24 shrink-0 items-center justify-center bg-paper-2"
+        className="card-media flex h-24 w-24 shrink-0 items-center justify-center"
       >
         <img
           src={item.mainImage}

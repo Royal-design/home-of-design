@@ -28,7 +28,7 @@ export const ProfilePage = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-paper px-5 py-24">
-      <div className="w-full max-w-lg border border-line bg-paper-2/40 p-8 sm:p-12">
+      <div className="card-surface w-full max-w-lg p-8 sm:p-12">
         <p className="eyebrow text-ink-3">My account</p>
         <h1 className="mt-4 font-display text-4xl tracking-tight text-ink">
           Welcome back{user?.firstname ? `, ${user.firstname}` : ""}.

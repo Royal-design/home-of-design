@@ -38,47 +38,45 @@ export const RecentBlogs = ({ handleBlogClick }: PropsType) => {
   if (recentBlogs.length === 0) return null;
 
   return (
-    <div className="flex cursor-pointer flex-col gap-2 w-full bg-background-card ">
-      <div className="flex items-center  bg-background">
+    <div className="card-surface flex w-full cursor-pointer flex-col gap-3 p-4">
+      <div className="flex items-center border border-line bg-paper">
         <Input
           placeholder="Search..."
-          className="h-[2rem] w-full rounded-none "
+          className="h-9 w-full rounded-none border-0 bg-transparent px-3 font-mono text-xs text-ink placeholder:text-ink-3 focus-visible:ring-0 focus-visible:outline-none"
           value={searchValue}
           onChange={handleChange}
         />
-        <Search className="bg-slate-400 text-white h-[2.1rem] w-[2rem] px-1 " />
+        <Search size={15} className="mr-3 shrink-0 text-bronze" />
       </div>
       {loading ? (
         [...Array(3).keys()].map((id) => <BlogSkeleton key={id} />)
       ) : (
-        <div className="mt-4">
-          <p className="dark:text-slate-300  text-lg">
+        <div className="mt-2">
+          <p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink-2">
             {filterBlogs.length > 0 ? "Recent Blogs" : "No recent blogs"}
           </p>
           {filterBlogs.map((blog) => (
             <motion.div
               initial={{ scale: 1 }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
-              }}
+              whileHover={{ scale: 1.02, y: -1 }}
               key={blog.id}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => handleBlogClick(blog.id.toString())}
-              className=""
             >
-              <div className="flex rounded-md p-2 items-center bg-background gap-2 h-auto">
+              <div className="card-surface card-surface-hover mt-2 flex items-center gap-3 p-2">
                 <img
                   src={blog.image}
                   alt={blog.author}
-                  className="h-[3rem] rounded-full w-[3rem] object-cover"
+                  className="h-12 w-12 rounded-full border border-line object-cover"
                 />
-                <article className="flex flex-col gap-1">
-                  <div className="flex gap-2 items-center">
-                    <CalendarDays size={15} />
-                    <p className="text-xs dark:text-slate-100">{blog.date}</p>
+                <article className="flex min-w-0 flex-col gap-1">
+                  <div className="flex items-center gap-2 text-ink-3">
+                    <CalendarDays size={13} strokeWidth={1.5} />
+                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.14em]">
+                      {blog.date}
+                    </p>
                   </div>
-                  <p className="text-xs dark:text-slate-400">{blog.title}</p>
+                  <p className="truncate text-xs text-ink">{blog.title}</p>
                 </article>
               </div>
             </motion.div>

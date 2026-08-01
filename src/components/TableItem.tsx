@@ -44,7 +44,7 @@ export const TableItem = ({ item }: ItemType) => {
     <TableRow className="group border-b border-line">
       <TableCell className="w-[22rem] py-6">
         <Link to={`/products/${item.id}`} className="flex items-center gap-4">
-          <span className="flex h-20 w-20 shrink-0 items-center justify-center bg-paper-2">
+          <span className="card-media flex h-20 w-20 shrink-0 items-center justify-center">
             <img
               src={item.mainImage}
               alt={item.name}

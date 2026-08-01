@@ -32,7 +32,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
 
   return (
     <div>
-      <div className="relative aspect-[4/5] overflow-hidden bg-paper-2 sm:aspect-[3/4] lg:aspect-auto lg:h-[72vh]">
+      <div className="card-media relative aspect-[4/5] overflow-hidden sm:aspect-[3/4] lg:aspect-auto lg:h-[72vh]">
         <img
           key={active}
           ref={imgRef}
@@ -58,7 +58,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
             aria-label={`Show image ${i + 1} of ${images.length}`}
             aria-current={i === active}
             className={cn(
-              "h-20 w-20 shrink-0 cursor-pointer overflow-hidden border bg-paper-2 transition-all duration-300 sm:h-24 sm:w-24",
+              "card-media h-20 w-20 shrink-0 cursor-pointer overflow-hidden border transition-all duration-300 sm:h-24 sm:w-24",
               i === active
                 ? "border-bronze"
                 : "border-line opacity-60 hover:opacity-100"

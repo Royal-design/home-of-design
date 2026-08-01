@@ -49,7 +49,7 @@ export const AboutPage = () => {
           decoding="async"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
           <Reveal>
             <p className="eyebrow text-paper/70">The House</p>
@@ -79,7 +79,7 @@ export const AboutPage = () => {
       <section className="border-t border-line bg-paper">
         <div className="mx-auto grid max-w-shell gap-10 px-5 py-24 sm:px-6 sm:py-32 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden bg-paper-2">
+            <div className="card-media relative aspect-[4/5] overflow-hidden">
               <img
                 src={aboutCraft}
                 alt="A craftsman working wood in the Home of Design workshop"
@@ -111,13 +111,13 @@ export const AboutPage = () => {
         </div>
       </section>
 
-      <section className="border-t border-line bg-paper-2/60">
+      <section className="border-t border-line bg-paper">
         <div className="mx-auto max-w-shell px-5 py-24 sm:px-6 sm:py-28">
           <Reveal>
             <p className="eyebrow text-ink-3">What we stand for</p>
-            <div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-3">
+            <div className="mt-12 grid gap-4 md:grid-cols-3">
               {values.map((v) => (
-                <div key={v.title} className="bg-paper p-8 sm:p-10">
+                <div key={v.title} className="card-surface p-8 sm:p-10">
                   <span className="flex h-12 w-12 items-center justify-center border border-bronze text-bronze">
                     {v.icon}
                   </span>
@@ -151,7 +151,7 @@ export const AboutPage = () => {
             </Reveal>
           </div>
           <Reveal className="order-1 lg:order-2 lg:col-span-5">
-            <div className="relative aspect-[4/3] overflow-hidden bg-paper-2">
+            <div className="card-media relative aspect-[4/3] overflow-hidden">
               <img
                 src={aboutStory}
                 alt="The Home of Design showroom in natural light"
@@ -174,10 +174,10 @@ export const AboutPage = () => {
               </h2>
             </div>
           </Reveal>
-          <div className="mt-14 grid grid-cols-2 gap-x-5 gap-y-12 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
             {team.map((member, i) => (
               <Reveal key={member.name} delay={i * 0.08}>
-                <div className="aspect-[4/5] overflow-hidden bg-paper-2">
+                <div className="card-media aspect-[4/5] overflow-hidden">
                   <img
                     src={member.image}
                     alt={`${member.name}, ${member.role}`}

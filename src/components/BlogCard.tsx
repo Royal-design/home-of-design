@@ -8,13 +8,13 @@ interface BlogCardProps {
 
 export const BlogCard = ({ blog }: BlogCardProps) => {
   return (
-    <article className="group">
+    <article className="group card-surface card-surface-hover flex h-full flex-col p-3 sm:p-4">
       <Link
         to={`/blogs/${blog.id}`}
         data-cursor="view"
         data-cursor-label="Read"
         aria-label={`Read: ${blog.title}`}
-        className="block overflow-hidden bg-paper-2"
+        className="card-media card-media-hover block overflow-hidden"
       >
         <div className="aspect-[16/10] overflow-hidden">
           <img
@@ -22,12 +22,12 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             alt={blog.title}
             loading="lazy"
             decoding="async"
-            className="fade-img h-full w-full object-cover transition-transform duration-[1.3s] ease-expo-out group-hover:scale-[1.06]"
+            className="fade-img h-full w-full object-cover transition-transform duration-[1.3s] ease-expo-out group-hover:-translate-y-1 group-hover:scale-[1.06]"
           />
         </div>
       </Link>
 
-      <div className="mt-5">
+      <div className="mt-5 flex flex-1 flex-col px-1 pb-1 sm:px-0.5">
         <div className="flex items-center gap-3 font-mono text-[0.58rem] uppercase tracking-[0.2em] text-ink-3">
           <span>{blog.category}</span>
           <span className="text-bronze">·</span>
@@ -44,7 +44,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
         </p>
         <Link
           to={`/blogs/${blog.id}`}
-          className="link-underline mt-4 inline-flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-2 transition-colors hover:text-bronze"
+          className="link-underline mt-auto inline-flex items-center gap-2 pt-5 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-2 transition-colors hover:text-bronze"
         >
           Read the story <ArrowRight size={12} />
         </Link>

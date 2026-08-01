@@ -139,7 +139,7 @@ export function Hero() {
               decoding="async"
               fetchPriority="high"
             />
-            <div className="absolute bottom-4 left-4 border border-line bg-paper/85 px-3 py-2 backdrop-blur-sm">
+            <div className="absolute bottom-4 left-4 border border-line bg-paper/85 px-3 py-2 shadow-[0_14px_30px_-14px_rgba(20,16,11,0.45)] backdrop-blur-sm">
               <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-ink-2">
                 Signature Sofa No. 01
               </p>

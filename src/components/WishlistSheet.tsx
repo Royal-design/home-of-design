@@ -96,7 +96,7 @@ const WishlistSheet = () => {
                     <Link
                       to={`/products/${item.id}`}
                       onClick={() => setOpen(false)}
-                      className="flex h-20 w-20 shrink-0 items-center justify-center bg-paper-2"
+                      className="card-media flex h-20 w-20 shrink-0 items-center justify-center"
                     >
                       <img
                         src={item.mainImage}

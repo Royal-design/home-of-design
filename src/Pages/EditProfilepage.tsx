@@ -128,7 +128,7 @@ export const EditProfilepage = () => {
     <div className=" bg-background text-primary flex justify-center items-center h-screen">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <Card className=" bg-background text-primary w-[25rem] ">
+          <Card className="card-surface w-[25rem] text-ink">
             <CardHeader className="flex items-center justify-center">
               <CardTitle className="text-2xl text-center">
                 Edit Profile{" "}
@@ -250,7 +250,7 @@ export const EditProfilepage = () => {
               <Button
                 disabled={form.formState.isSubmitting}
                 type="submit"
-                className="w-full text-white dark:text-primary bg-slate-600 hover:bg-slate-700 duration-200 hover:outline-green-500 hover:outline-1 outline outline-1"
+                className="w-full bg-ink text-paper duration-200 hover:bg-bronze"
               >
                 Update Profile
               </Button>

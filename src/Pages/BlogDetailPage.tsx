@@ -168,7 +168,7 @@ export const BlogDetailPage = () => {
   }
 
   const fieldClass =
-    "h-11 rounded-none border-line bg-paper-2/50 px-4 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0";
+    "h-11 rounded-none border-line bg-paper px-4 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0";
 
   return (
     <div className="bg-paper">
@@ -181,7 +181,7 @@ export const BlogDetailPage = () => {
           loading="eager"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-12 sm:px-6">
           <Reveal>
             <p className="eyebrow text-paper/70">{blog.category}</p>
@@ -238,7 +238,7 @@ export const BlogDetailPage = () => {
               </div>
             </div>
 
-            <div className="mt-8 aspect-[16/9] overflow-hidden bg-paper-2">
+            <div className="card-media mt-8 aspect-[16/9] overflow-hidden">
               <img
                 src={blog.image}
                 alt={blog.title}
@@ -277,7 +277,7 @@ export const BlogDetailPage = () => {
 
               <div className="mt-8 space-y-5">
                 {updateComments.map((comment, i) => (
-                  <div key={i} className="border border-line bg-paper-2/40 p-5">
+                  <div key={i} className="card-surface p-5">
                     <div className="flex items-center gap-3">
                       <img
                         src={comment.avatar}
@@ -300,7 +300,7 @@ export const BlogDetailPage = () => {
                 ))}
               </div>
 
-              <div className="mt-12 border border-line bg-paper-2/40 p-7 sm:p-9">
+              <div className="card-surface mt-12 p-7 sm:p-9">
                 <h3 className="font-display text-2xl text-ink">
                   Leave a comment
                 </h3>
@@ -411,7 +411,7 @@ export const BlogDetailPage = () => {
                               </FormLabel>
                               <FormControl>
                                 <Textarea
-                                  className="min-h-[8rem] rounded-none border-line bg-paper-2/50 px-4 py-3 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0"
+                                  className="min-h-[8rem] rounded-none border-line bg-paper px-4 py-3 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0"
                                   placeholder="Your thoughts…"
                                   {...field}
                                 />
@@ -448,9 +448,9 @@ export const BlogDetailPage = () => {
                       key={product.id}
                       type="button"
                       onClick={() => navigate(`/products/${product.id}`)}
-                      className="group flex w-full cursor-pointer items-center gap-3 border border-line p-3 text-left transition-colors hover:border-bronze"
+                      className="card-surface group flex w-full cursor-pointer items-center gap-3 p-3 text-left transition-colors hover:border-bronze"
                     >
-                      <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-paper-2">
+                      <span className="card-media flex h-14 w-14 shrink-0 items-center justify-center">
                         <img
                           src={product.mainImage}
                           alt={product.name}

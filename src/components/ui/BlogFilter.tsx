@@ -54,31 +54,28 @@ export const BlogFilter = ({
             {topProducts.map((product) => (
               <motion.div
                 initial={{ scale: 1 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
-                }}
+                whileHover={{ scale: 1.02, y: -1 }}
                 key={product.id}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => {
                   navigate(`/products/${product.id}`);
                 }}
                 className="cursor-pointer"
               >
-                <div className="flex rounded-md p-2 items-center bg-background gap-2 h-auto">
+                <div className="card-surface card-surface-hover flex items-center gap-3 rounded-none p-2">
                   <img
                     src={product.mainImage}
                     alt={product.name}
-                    className="h-[3rem] rounded-full bg-banner w-[3rem] object-cover"
+                    className="card-media h-12 w-12 rounded-full border border-line object-cover"
                   />
-                  <article className="flex flex-col gap-1">
-                    <div className="flex gap-2 items-center">
-                      <p className="text-yellow-500">
+                  <article className="flex min-w-0 flex-col gap-1">
+                    <div className="flex items-center gap-1">
+                      <p className="text-sm text-bronze">
                         {"★".repeat(product.rating)}{" "}
                         {"☆".repeat(5 - product.rating)}
                       </p>
                     </div>
-                    <p className="text-xs dark:text-slate-400">
+                    <p className="truncate text-xs text-ink-2">
                       {product.name}
                     </p>
                   </article>
@@ -86,13 +83,15 @@ export const BlogFilter = ({
               </motion.div>
             ))}
           </div>
-          <div className="flex flex-col gap-1 mt-6 bg-background-card p-1">
-            <p className="dark:text-slate-300 text-lg">Blog Category</p>
-            <ul className="grid grid-cols-2  gap-2 ">
+          <div className="card-surface mt-6 flex flex-col gap-3 p-3">
+            <p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink-2">
+              Blog Category
+            </p>
+            <ul className="grid grid-cols-2 gap-2">
               {blogCategory.map((category, i) => (
                 <li
                   key={i}
-                  className="flex p-1 rounded-md bg-slate-500 text-xs text-slate-200 hover:bg-slate-600 justify-between items-center w-full"
+                  className="flex w-full items-center justify-between border border-line bg-paper px-2 py-1.5 text-xs text-ink-2 transition-colors hover:border-bronze hover:text-bronze"
                 >
                   <p>{category}</p>
                 </li>

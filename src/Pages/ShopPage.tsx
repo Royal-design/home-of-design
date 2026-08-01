@@ -26,7 +26,7 @@ export const ShopPage = () => {
           loading="eager"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
           <Reveal>
             <p className="eyebrow text-paper/70">The shop</p>
@@ -61,10 +61,10 @@ export const ShopPage = () => {
       </section>
 
       <section className="mx-auto max-w-shell px-5 pb-24 sm:px-6">
-        <div className="grid gap-px border border-line bg-line sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-3">
           {services.map((s) => (
-            <div key={s.heading} className="flex items-center gap-4 bg-paper px-6 py-8">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-line text-bronze">
+            <div key={s.heading} className="card-surface flex items-center gap-4 px-6 py-8">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-bronze text-bronze">
                 {s.icon}
               </span>
               <div>

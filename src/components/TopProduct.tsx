@@ -1,19 +1,19 @@
-import { useRef } from "react";
 import { formatter } from "@/features/formatter";
+import { gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
 import { useAppSelector } from "@/redux/store";
 import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/motion";
 import bedroomImg from "../assets/category/bedroom (1).webp";
+import diningImg from "../assets/category/dinning room.webp";
 import officeImg from "../assets/category/ofiice.webp";
 import outdoorImg from "../assets/category/outdoor (3).webp";
-import diningImg from "../assets/category/dinning room.webp";
 
 const GALLERY_IMAGES: Record<number, string> = {
   105: bedroomImg,
   106: officeImg,
   107: outdoorImg,
-  110: diningImg
+  110: diningImg,
 };
 
 export const TopProduct = () => {
@@ -30,8 +30,7 @@ export const TopProduct = () => {
       const track = trackRef.current;
       if (!track) return;
 
-      const distance = () =>
-        Math.max(track.scrollWidth - window.innerWidth, 0);
+      const distance = () => Math.max(track.scrollWidth - window.innerWidth, 0);
 
       const tween = gsap.to(track, {
         x: () => -distance(),
@@ -43,8 +42,8 @@ export const TopProduct = () => {
           pin: true,
           scrub: 1,
           anticipatePin: 1,
-          invalidateOnRefresh: true
-        }
+          invalidateOnRefresh: true,
+        },
       });
 
       return () => {
@@ -52,7 +51,7 @@ export const TopProduct = () => {
         tween.kill();
       };
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
@@ -81,8 +80,8 @@ export const TopProduct = () => {
             Pieces people <em className="italic text-bronze">return to.</em>
           </h2>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-on-dark/70">
-            The furniture our customers come back for — resized, re-finished,
-            or re-gifted. Scroll to browse the hall of favourites.
+            The furniture our customers come back for — resized, re-finished, or
+            re-gifted. Scroll to browse the hall of favourites.
           </p>
           <Link
             to="/products"
@@ -108,7 +107,7 @@ export const TopProduct = () => {
                 data-cursor-label="View"
                 aria-label={`View ${product.name}`}
               >
-                <div className="aspect-[4/5] overflow-hidden bg-paper-2">
+                <div className="card-media card-media-hover aspect-[4/5] overflow-hidden">
                   <img
                     src={img}
                     alt={product.name}
@@ -117,7 +116,7 @@ export const TopProduct = () => {
                     className="fade-img h-full w-full object-cover transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.06]"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/5 to-transparent" />
+                <div className="card-scrim" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                   <div className="min-w-0">
                     <p className="eyebrow text-paper/70">{product.category}</p>

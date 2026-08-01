@@ -87,10 +87,7 @@ export const ProductTab = ({ product }: PropsType) => {
             </h3>
             <ul className="mt-6 space-y-5">
               {product.reviews.map((review, index) => (
-                <li
-                  key={index}
-                  className="border border-line bg-paper-2/50 p-5"
-                >
+                <li key={index} className="card-surface p-5">
                   <div className="flex items-center gap-3">
                     <img
                       src={review.image}
@@ -117,7 +114,7 @@ export const ProductTab = ({ product }: PropsType) => {
             </ul>
           </div>
 
-          <div className="border border-line bg-paper-2/50 p-7">
+          <div className="card-surface p-7">
             <p className="font-display text-2xl text-ink">
               Leave a review
             </p>

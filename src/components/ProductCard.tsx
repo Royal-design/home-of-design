@@ -25,8 +25,8 @@ export const ProductCard = ({
     : 0;
 
   return (
-    <article className="group">
-      <div className="relative aspect-[4/5] overflow-hidden bg-paper-2">
+    <article className="group card-surface card-surface-hover flex h-full flex-col p-3 sm:p-4">
+      <div className="card-media card-media-hover relative aspect-[4/5] overflow-hidden">
         <Link
           to={`/products/${product.id}`}
           data-cursor="view"
@@ -39,7 +39,7 @@ export const ProductCard = ({
             alt={product.name}
             loading="lazy"
             decoding="async"
-            className="fade-img h-full w-full object-contain transition-transform duration-[1.3s] ease-expo-out group-hover:scale-[1.06]"
+            className="fade-img h-full w-full object-contain transition-transform duration-[1.3s] ease-expo-out group-hover:-translate-y-1 group-hover:scale-[1.06]"
           />
         </Link>
 
@@ -97,25 +97,27 @@ export const ProductCard = ({
         </div>
       </div>
 
-      <div className="mt-4 flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <p className="eyebrow text-ink-3">{product.category}</p>
-          <Link
-            to={`/products/${product.id}`}
-            className="mt-1.5 block truncate text-[15px] font-medium text-ink transition-colors hover:text-bronze"
-          >
-            {product.name}
-          </Link>
-        </div>
-        <div className="shrink-0 text-right">
-          {discount > 0 && (
-            <p className="font-mono text-[0.68rem] text-ink-3 line-through">
-              {formatter.format(product.price.oldPrice)}
+      <div className="mt-4 flex flex-1 flex-col justify-between gap-3 px-1 pb-1 sm:px-0.5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="eyebrow text-ink-3">{product.category}</p>
+            <Link
+              to={`/products/${product.id}`}
+              className="mt-1.5 block truncate text-[15px] font-medium text-ink transition-colors hover:text-bronze"
+            >
+              {product.name}
+            </Link>
+          </div>
+          <div className="shrink-0 text-right">
+            {discount > 0 && (
+              <p className="font-mono text-[0.68rem] text-ink-3 line-through">
+                {formatter.format(product.price.oldPrice)}
+              </p>
+            )}
+            <p className="font-mono text-sm text-ink">
+              {formatter.format(product.price.newPrice)}
             </p>
-          )}
-          <p className="font-mono text-sm text-ink">
-            {formatter.format(product.price.newPrice)}
-          </p>
+          </div>
         </div>
       </div>
     </article>

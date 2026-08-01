@@ -90,13 +90,13 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <div
             key={idx}
-            className="flex w-[10rem]  text-white rounded-md items-center font-rajdhani px-2 bg-banner dark:bg-background-navbar gap-3"
+            className="card-surface flex w-[10rem] items-center gap-3 rounded-none px-3 py-2 text-ink"
           >
             {item.image}
             {item.icon}
-            <main className="flex justify-center flex-col">
-              <p className="text-white">{item.title}</p>
-              <p className="text-gray-300">{item.description}</p>
+            <main className="flex flex-col justify-center">
+              <p className="text-ink">{item.title}</p>
+              <p className="text-ink-2">{item.description}</p>
             </main>
           </div>
         ))}

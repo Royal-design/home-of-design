@@ -42,7 +42,7 @@ export const Adverts = () => {
             <Reveal key={room.title} delay={i * 0.1}>
               <Link
                 to="/products"
-                className="group relative block aspect-[16/10] overflow-hidden"
+                className="card-media card-media-hover group relative block aspect-[16/10] overflow-hidden"
                 data-cursor="view"
                 data-cursor-label="Shop"
                 aria-label={room.cta}
@@ -54,7 +54,7 @@ export const Adverts = () => {
                   decoding="async"
                   className="fade-img h-full w-full object-cover transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.06]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
+                <div className="card-scrim" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 sm:p-8">
                   <div>
                     <h3 className="font-display text-3xl text-paper sm:text-4xl">

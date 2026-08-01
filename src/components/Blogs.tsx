@@ -28,7 +28,7 @@ export const Blogs = () => {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {displayBlogs.map((blog, i) => (
             <Reveal key={blog.id} delay={(i % 4) * 0.08}>
               <BlogCard blog={blog} />

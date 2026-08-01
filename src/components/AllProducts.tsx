@@ -63,13 +63,13 @@ export const AllProducts = () => {
       )}
 
       {loading ? (
-        <div className="grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3">
           {[...Array(6).keys()].map((index) => (
             <ProductSkeleton key={index} />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 gap-x-5 gap-y-12 max-sm:gap-x-3 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-10 max-sm:gap-x-3 sm:grid-cols-3">
           {currentProducts.map((product) => (
             <ProductCard
               key={product.id}

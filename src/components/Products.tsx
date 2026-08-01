@@ -107,7 +107,7 @@ export const Products = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-x-5 gap-y-12 max-sm:gap-x-3 sm:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-5 gap-y-10 max-sm:gap-x-3 sm:grid-cols-3 lg:grid-cols-4">
               {filterProducts.map((product, i) => (
                 <Reveal key={product.id} delay={(i % 4) * 0.06}>
                   <ProductCard

@@ -132,7 +132,7 @@ export const CartPage = () => {
             </div>
 
             <div>
-              <div className="sticky top-28 border border-line bg-paper-2/40 p-7">
+              <div className="card-surface sticky top-28 p-7">
                 <h2 className="font-display text-2xl text-ink">Order summary</h2>
                 <dl className="mt-6 space-y-4">
                   <div className="flex items-center justify-between">

@@ -1,11 +1,11 @@
-import { ProductType } from "@/types";
-import { ProductCard } from "./ProductCard";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { formatter } from "@/features/formatter";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
-import { Link } from "react-router-dom";
-import { formatter } from "@/features/formatter";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { ProductType } from "@/types";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ProductCard } from "./ProductCard";
 import { Reveal } from "./Reveal";
 
 export const FeaturedProduct = () => {
@@ -51,7 +51,7 @@ export const FeaturedProduct = () => {
         <div className="mt-14 grid gap-5 lg:grid-cols-2 lg:gap-6">
           {hero && (
             <Reveal className="relative h-full">
-              <div className="group relative aspect-[4/5] overflow-hidden bg-paper-2 lg:aspect-auto lg:h-full lg:min-h-[62vh]">
+              <div className="card-media card-media-hover group relative aspect-[4/5] overflow-hidden lg:aspect-auto lg:h-full lg:min-h-[62vh]">
                 <Link
                   to={`/products/${hero.id}`}
                   data-cursor="view"
@@ -67,7 +67,7 @@ export const FeaturedProduct = () => {
                     className="fade-img h-full w-full object-contain p-6 transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.05] sm:p-10"
                   />
                 </Link>
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
+                <div className="card-scrim" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 sm:p-9">
                   <div>
                     <p className="eyebrow text-paper/70">Signature piece</p>
