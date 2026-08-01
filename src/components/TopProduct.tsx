@@ -120,11 +120,11 @@ export const TopProduct = () => {
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
                   <div className="min-w-0">
                     <p className="eyebrow text-paper/70">{product.category}</p>
-                    <h3 className="mt-1 truncate font-display text-2xl text-paper">
+                    <h3 className="mt-1 truncate font-display  text-2xl text-[#f9d171]">
                       {product.name}
                     </h3>
                   </div>
-                  <p className="shrink-0 font-mono text-sm text-paper">
+                  <p className="shrink-0 font-mono text-sm text-[#f9d171]">
                     {formatter.format(product.price.newPrice)}
                   </p>
                 </div>

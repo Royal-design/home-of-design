@@ -1,18 +1,30 @@
+import shopHeader from "@/assets/banner/shop-header.webp";
 import { AllProducts } from "@/components/AllProducts";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
-import { ProductsFilter } from "@/components/ProductsFilter";
 import { ProductFilterSheet } from "@/components/ProductFilterSheet";
-import { ScrollToTop } from "@/components/ScrollToTop";
+import { ProductsFilter } from "@/components/ProductsFilter";
 import { Reveal } from "@/components/Reveal";
-import { Truck, PhoneCall, ShieldCheck } from "lucide-react";
-import shopHeader from "@/assets/banner/shop-header.webp";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { PhoneCall, ShieldCheck, Truck } from "lucide-react";
 
 export const ShopPage = () => {
   const services = [
-    { icon: <Truck size={17} strokeWidth={1.25} />, heading: "White-glove delivery", text: "Delivered, placed and unwrapped" },
-    { icon: <PhoneCall size={17} strokeWidth={1.25} />, heading: "Design advice", text: "A real person, seven days a week" },
-    { icon: <ShieldCheck size={17} strokeWidth={1.25} />, heading: "Secure payment", text: "Encrypted checkout, always" }
+    {
+      icon: <Truck size={17} strokeWidth={1.25} />,
+      heading: "White-glove delivery",
+      text: "Delivered, placed and unwrapped",
+    },
+    {
+      icon: <PhoneCall size={17} strokeWidth={1.25} />,
+      heading: "Design advice",
+      text: "A real person, seven days a week",
+    },
+    {
+      icon: <ShieldCheck size={17} strokeWidth={1.25} />,
+      heading: "Secure payment",
+      text: "Encrypted checkout, always",
+    },
   ];
 
   return (
@@ -29,11 +41,11 @@ export const ShopPage = () => {
         <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
           <Reveal>
-            <p className="eyebrow text-paper/70">The shop</p>
-            <h1 className="mt-4 font-display text-5xl tracking-tight text-paper sm:text-7xl">
+            <p className="eyebrow text-white">The shop</p>
+            <h1 className="mt-4 font-display text-5xl tracking-tight text-[#f9d171] sm:text-7xl">
               The collection
             </h1>
-            <div className="mt-6 text-paper/70">
+            <div className="mt-6 text-[#f9d171]">
               <BreadCrumbs />
             </div>
           </Reveal>
@@ -63,13 +75,18 @@ export const ShopPage = () => {
       <section className="mx-auto max-w-shell px-5 pb-24 sm:px-6">
         <div className="grid gap-4 sm:grid-cols-3">
           {services.map((s) => (
-            <div key={s.heading} className="card-surface flex items-center gap-4 px-6 py-8">
+            <div
+              key={s.heading}
+              className="card-surface flex items-center gap-4 px-6 py-8"
+            >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-bronze text-bronze">
                 {s.icon}
               </span>
               <div>
                 <p className="text-sm font-medium text-ink">{s.heading}</p>
-                <p className="mt-1 text-xs leading-relaxed text-ink-2">{s.text}</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-2">
+                  {s.text}
+                </p>
               </div>
             </div>
           ))}

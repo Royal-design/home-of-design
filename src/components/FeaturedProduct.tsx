@@ -67,24 +67,24 @@ export const FeaturedProduct = () => {
                     className="fade-img h-full w-full object-contain p-6 transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.05] sm:p-10"
                   />
                 </Link>
-                <div className="card-scrim" />
+                <div className="" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 sm:p-9">
                   <div>
                     <p className="eyebrow text-paper/70">Signature piece</p>
-                    <h3 className="mt-2 font-display text-3xl text-paper sm:text-4xl">
+                    <h3 className="mt-2 font-display text-3xl text-neutral sm:text-4xl">
                       {hero.name}
                     </h3>
-                    <p className="mt-2 max-w-xs text-sm leading-relaxed text-paper/80">
+                    <p className="mt-2 max-w-xs text-sm text-neutral dark:text-neutral-2 leading-relaxed">
                       {hero.description}
                     </p>
                   </div>
                   <div className="shrink-0 text-right">
-                    <p className="font-mono text-lg text-paper">
+                    <p className="font-mono text-lg text-neutral-2">
                       {formatter.format(hero.price.newPrice)}
                     </p>
                     <Link
                       to={`/products/${hero.id}`}
-                      className="mt-3 inline-flex items-center gap-2 border border-paper/60 px-4 py-2.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-paper transition-all duration-300 hover:bg-paper hover:text-ink"
+                      className="mt-3 inline-flex text-neutral items-center gap-2 border border-paper/60 px-4 py-2.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] transition-all duration-300 hover:bg-paper hover:text-ink"
                     >
                       Explore <ArrowRight size={12} />
                     </Link>

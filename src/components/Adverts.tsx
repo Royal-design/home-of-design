@@ -1,7 +1,7 @@
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import advert1 from "../assets/adverts/room-living.webp";
 import advert2 from "../assets/adverts/room-office.webp";
-import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const rooms = [
@@ -9,14 +9,14 @@ const rooms = [
     title: "The living room",
     body: "Soft seating, considered tables, lighting that sets the evening.",
     imageUrl: advert1,
-    cta: "Shop living"
+    cta: "Shop living",
   },
   {
     title: "The working room",
     body: "Desks and chairs engineered for long days, styled for the rest of them.",
     imageUrl: advert2,
-    cta: "Shop office"
-  }
+    cta: "Shop office",
+  },
 ];
 
 export const Adverts = () => {
@@ -57,14 +57,14 @@ export const Adverts = () => {
                 <div className="card-scrim" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 sm:p-8">
                   <div>
-                    <h3 className="font-display text-3xl text-paper sm:text-4xl">
+                    <h3 className="font-display text-3xl text-[#f9d171] sm:text-4xl">
                       {room.title}
                     </h3>
-                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-paper/80">
+                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-white">
                       {room.body}
                     </p>
                   </div>
-                  <span className="flex shrink-0 items-center gap-2 border border-paper/60 px-4 py-2.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-paper transition-all duration-300 group-hover:bg-paper group-hover:text-ink">
+                  <span className="flex shrink-0 items-center gap-2 border border-[#f9d171] px-4 py-2.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-[#f9d171] transition-all duration-300 group-hover:bg-paper group-hover:text-ink">
                     {room.cta} <ArrowRight size={12} />
                   </span>
                 </div>

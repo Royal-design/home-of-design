@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { data } from "@/assets/data/data";
-import { useAppDispatch } from "@/redux/store";
 import { filterByCategory } from "@/redux/slice/productSlice";
+import { useAppDispatch } from "@/redux/store";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Reveal } from "./Reveal";
 
 export function Category() {
@@ -56,16 +56,16 @@ export function Category() {
                 <div className="card-scrim opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 sm:p-6">
                   <div>
-                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.24em] text-paper/70">
+                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.24em] text-white">
                       0{i + 1}
                     </p>
-                    <p className="mt-1 font-display text-xl text-paper sm:text-2xl">
+                    <p className="mt-1 font-display text-xl text-[#f9d171] sm:text-2xl">
                       {category.name}
                     </p>
                   </div>
                   <ArrowUpRight
                     size={20}
-                    className="mb-1 text-paper transition-transform duration-500 ease-expo-out group-hover:-translate-y-1 group-hover:translate-x-1"
+                    className="mb-1 text-[#f9d171] transition-transform duration-500 ease-expo-out group-hover:-translate-y-1 group-hover:translate-x-1"
                   />
                 </div>
               </button>

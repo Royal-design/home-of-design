@@ -1,27 +1,27 @@
+import contactHero from "@/assets/banner/contact-hero.webp";
+import BreadCrumbs from "@/components/BreadCrumbs";
+import { Footer } from "@/components/Footer";
+import { Reveal } from "@/components/Reveal";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Footer } from "@/components/Footer";
-import { Reveal } from "@/components/Reveal";
-import { ScrollToTop } from "@/components/ScrollToTop";
+import { db } from "@/firebase/firebaseConfig";
 import { useAppSelector } from "@/redux/store";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "@/firebase/firebaseConfig";
-import { toast } from "sonner";
-import BreadCrumbs from "@/components/BreadCrumbs";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { useEffect } from "react";
-import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
-import contactHero from "@/assets/banner/contact-hero.webp";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 export const ContactPage = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -32,7 +32,7 @@ export const ContactPage = () => {
     email: z
       .string({ invalid_type_error: "Must be a valid email" })
       .email({ message: "It must be a valid email" }),
-    message: z.string().min(1, { message: "Message is required" })
+    message: z.string().min(1, { message: "Message is required" }),
   });
 
   const form = useForm<z.infer<typeof commentSchema>>({
@@ -41,8 +41,8 @@ export const ContactPage = () => {
       email: "",
       name: "",
       subject: "",
-      message: ""
-    }
+      message: "",
+    },
   });
 
   const handleSubmit = async (userData: z.infer<typeof commentSchema>) => {
@@ -54,7 +54,7 @@ export const ContactPage = () => {
         subject: userData.subject,
         email: userData.email,
         message: userData.message,
-        createdAt: serverTimestamp()
+        createdAt: serverTimestamp(),
       });
     }
     toast.success("Message has been sent");
@@ -66,9 +66,21 @@ export const ContactPage = () => {
   }, []);
 
   const details = [
-    { icon: <Phone size={18} strokeWidth={1.25} />, label: "Phone", value: "+234 123 456 7890" },
-    { icon: <Mail size={18} strokeWidth={1.25} />, label: "Email", value: "atelier@homeofdesign.com" },
-    { icon: <MapPin size={18} strokeWidth={1.25} />, label: "Studio", value: "1 Design District, Lagos" }
+    {
+      icon: <Phone size={18} strokeWidth={1.25} />,
+      label: "Phone",
+      value: "+234 123 456 7890",
+    },
+    {
+      icon: <Mail size={18} strokeWidth={1.25} />,
+      label: "Email",
+      value: "atelier@homeofdesign.com",
+    },
+    {
+      icon: <MapPin size={18} strokeWidth={1.25} />,
+      label: "Studio",
+      value: "1 Design District, Lagos",
+    },
   ];
 
   return (
@@ -85,8 +97,8 @@ export const ContactPage = () => {
         <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
           <Reveal>
-            <p className="eyebrow text-paper/70">Contact</p>
-            <h1 className="mt-4 font-display text-5xl tracking-tight text-paper sm:text-7xl">
+            <p className="eyebrow text-white">Contact</p>
+            <h1 className="mt-4 font-display text-5xl tracking-tight text-[#f9d171] sm:text-7xl">
               Let’s talk.
             </h1>
             <div className="mt-6 text-paper/70">
@@ -102,7 +114,8 @@ export const ContactPage = () => {
             <Reveal>
               <p className="eyebrow text-ink-3">Write to us</p>
               <h2 className="mt-5 font-display text-4xl tracking-tight text-ink">
-                Questions, commissions, <em className="italic text-bronze">hello.</em>
+                Questions, commissions,{" "}
+                <em className="italic text-bronze">hello.</em>
               </h2>
               <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-ink-2">
                 Whether you’re planning a room, commissioning a piece, or just
@@ -142,7 +155,9 @@ export const ContactPage = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="eyebrow text-ink-2">Name</FormLabel>
+                          <FormLabel className="eyebrow text-ink-2">
+                            Name
+                          </FormLabel>
                           <FormControl>
                             <Input
                               type="text"
@@ -160,7 +175,9 @@ export const ContactPage = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="eyebrow text-ink-2">Email</FormLabel>
+                          <FormLabel className="eyebrow text-ink-2">
+                            Email
+                          </FormLabel>
                           <FormControl>
                             <Input
                               type="email"
@@ -180,7 +197,9 @@ export const ContactPage = () => {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="eyebrow text-ink-2">Subject</FormLabel>
+                        <FormLabel className="eyebrow text-ink-2">
+                          Subject
+                        </FormLabel>
                         <FormControl>
                           <Input
                             type="text"
@@ -199,7 +218,9 @@ export const ContactPage = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="eyebrow text-ink-2">Message</FormLabel>
+                        <FormLabel className="eyebrow text-ink-2">
+                          Message
+                        </FormLabel>
                         <FormControl>
                           <Textarea
                             className="min-h-[10rem] rounded-none border-line bg-paper-2/50 px-4 py-4 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0"

@@ -1,40 +1,40 @@
-import BreadCrumbs from "@/components/BreadCrumbs";
-import { Footer } from "@/components/Footer";
-import { ScrollToTop } from "@/components/ScrollToTop";
-import { Reveal } from "@/components/Reveal";
-import { Link } from "react-router-dom";
-import { ArrowRight, Hammer, Leaf, HeartHandshake } from "lucide-react";
-import aboutHero from "@/assets/about/about-hero.webp";
 import aboutCraft from "@/assets/about/about-craft.webp";
+import aboutHero from "@/assets/about/about-hero.webp";
 import aboutStory from "@/assets/about/about-story.webp";
 import team1 from "@/assets/about/team-1.webp";
 import team2 from "@/assets/about/team-2.webp";
 import team3 from "@/assets/about/team-3.webp";
 import team4 from "@/assets/about/team-4.webp";
+import BreadCrumbs from "@/components/BreadCrumbs";
+import { Footer } from "@/components/Footer";
+import { Reveal } from "@/components/Reveal";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { ArrowRight, Hammer, HeartHandshake, Leaf } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const values = [
   {
     icon: <Hammer size={20} strokeWidth={1.25} />,
     title: "Material honesty",
-    body: "Solid timber, natural fibres, honest finishes. Nothing veneered for appearance, nothing engineered to fail quietly."
+    body: "Solid timber, natural fibres, honest finishes. Nothing veneered for appearance, nothing engineered to fail quietly.",
   },
   {
     icon: <Leaf size={20} strokeWidth={1.25} />,
     title: "Sustainability",
-    body: "FSC-certified timber, low-waste cutting, and finishes chosen for people and planet alike."
+    body: "FSC-certified timber, low-waste cutting, and finishes chosen for people and planet alike.",
   },
   {
     icon: <HeartHandshake size={20} strokeWidth={1.25} />,
     title: "Built to repair",
-    body: "Replaceable parts and serviceable joints mean our pieces are meant to outlive the room — and the house."
-  }
+    body: "Replaceable parts and serviceable joints mean our pieces are meant to outlive the room — and the house.",
+  },
 ];
 
 const team = [
   { image: team1, name: "Jane Doe", role: "Creative Director" },
   { image: team2, name: "John Smith", role: "Head Carpenter" },
   { image: team3, name: "Alice Brown", role: "Interior Designer" },
-  { image: team4, name: "Michael Green", role: "Project Manager" }
+  { image: team4, name: "Michael Green", role: "Project Manager" },
 ];
 
 export const AboutPage = () => {
@@ -52,8 +52,8 @@ export const AboutPage = () => {
         <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
           <Reveal>
-            <p className="eyebrow text-paper/70">The House</p>
-            <h1 className="mt-4 font-display text-5xl tracking-tight text-paper sm:text-7xl">
+            <p className="eyebrow text-white">The House</p>
+            <h1 className="mt-4 font-display text-5xl tracking-tight text-[#f9d171] sm:text-7xl">
               Craft, considered.
             </h1>
             <div className="mt-6 text-paper/70">
@@ -100,10 +100,7 @@ export const AboutPage = () => {
                 promise. We design in-house, build in small batches, and stand
                 behind what we make for years after it leaves the floor.
               </p>
-              <Link
-                to="/products"
-                className="btn-outline mt-10 inline-flex"
-              >
+              <Link to="/products" className="btn-outline mt-10 inline-flex">
                 See the collection <ArrowRight size={14} />
               </Link>
             </Reveal>
@@ -199,7 +196,8 @@ export const AboutPage = () => {
       <section className="border-t border-line bg-ink py-20 text-center text-paper sm:py-28">
         <Reveal>
           <h2 className="mx-auto max-w-3xl px-5 font-display text-4xl leading-tight tracking-tight sm:text-5xl">
-            Ready to live with pieces <em className="italic text-bronze">made to last?</em>
+            Ready to live with pieces{" "}
+            <em className="italic text-bronze">made to last?</em>
           </h2>
           <Link
             to="/products"
