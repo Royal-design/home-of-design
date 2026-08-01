@@ -1,108 +1,56 @@
 import { useAppSelector } from "@/redux/store";
 import { useParams } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-
-// import required modules
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import { useEffect, useState } from "react";
-import { Swiper as SwiperClass } from "swiper/types";
 import { Footer } from "@/components/Footer";
 import { ProductDetails } from "@/components/ProductDetails";
-import { ProductSwiperMobile } from "@/components/ProductSwiperMobile";
+import { ProductGallery } from "@/components/ProductGallery";
 import { ProductTab } from "@/components/ProductTab";
 import { RelatedProduct } from "@/components/RelatedProduct";
 import { RecentlyViewed } from "@/components/recentlyViewed";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { Reveal } from "@/components/Reveal";
 
 export const ProductPage = () => {
   const { id } = useParams();
   const { products } = useAppSelector((state) => state.products);
   const product = products.find((product) => product.id.toString() === id);
 
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  if (!product) {
+    return (
+      <div className="flex min-h-[70vh] items-center justify-center bg-paper px-5">
+        <p className="font-display text-2xl text-ink">
+          We couldn’t find that piece.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="">
-      <div className="flex h-[30rem] px-[6rem] max-lg:px-8  max-sm:hidden max-md:hidden w-full mt-6 gap-6">
-        <div className="product-swiper h-full w-[50%] max-sm:w-full">
-          {/* Thumbnail Swiper */}
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            loop
-            spaceBetween={10}
-            slidesPerView={4}
-            freeMode
-            watchSlidesProgress
-            modules={[FreeMode, Navigation, Thumbs]}
-            className=""
-          >
-            <SwiperSlide>
-              <figure className="flex w-full h-full overflow-hidden items-center justify-center bg-banner">
-                <img
-                  src={product?.mainImage}
-                  className="w-[4rem] object-contain"
-                />
-              </figure>
-            </SwiperSlide>
-            {product?.images.map((image, i) => (
-              <SwiperSlide key={i}>
-                <figure className="flex w-full h-full overflow-hidden  items-center justify-center bg-banner">
-                  <img src={image} className="w-[4rem] object-contain" />
-                </figure>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+    <div className="bg-paper">
+      <div className="mx-auto max-w-shell px-5 pb-10 pt-28 sm:px-6 sm:pt-32">
+        <Reveal className="hidden sm:block">
+          <p className="eyebrow text-ink-3">The collection</p>
+        </Reveal>
 
-          {/* Main Image Swiper */}
-          <Swiper
-            style={
-              {
-                "--swiper-navigation-color": "#fff",
-                "--swiper-pagination-color": "#fff"
-              } as React.CSSProperties
-            }
-            loop
-            spaceBetween={10}
-            navigation
-            thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper2 w-full"
-          >
-            <SwiperSlide>
-              <figure className="flex h-[30rem] w-full  items-center justify-center bg-banner">
-                <img
-                  src={product?.mainImage}
-                  className="w-[20rem]  object-contain"
-                />
-              </figure>
-            </SwiperSlide>
-            {product?.images.map((image, i) => (
-              <SwiperSlide key={i}>
-                <figure className="flex h-[35rem] w-full items-center justify-center bg-banner">
-                  <img src={image} className="w-[20rem]  object-contain" />
-                </figure>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+        <div className="mt-6 grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-7">
+            <ProductGallery product={product} />
+          </Reveal>
 
-        {/* Product Content */}
-        <div className="product-content w-full h-full ">
-          {product && <ProductDetails product={product} />}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <Reveal delay={0.08}>
+                <ProductDetails product={product} />
+              </Reveal>
+            </div>
+          </div>
         </div>
       </div>
-      <ProductSwiperMobile />
-      {product && <ProductTab product={product} />}
-      {product && <RelatedProduct category={product.category} />}
+
+      <div className="mx-auto max-w-shell px-5 py-16 sm:px-6 sm:py-20">
+        <ProductTab product={product} />
+      </div>
+
+      <RelatedProduct category={product.category} />
       <RecentlyViewed />
       <ScrollToTop />
       <Footer />

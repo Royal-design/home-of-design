@@ -2,64 +2,52 @@ import { BlogCard } from "@/components/BlogCard";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { Reveal } from "@/components/Reveal";
 import { useAppSelector } from "@/redux/store";
-import { motion } from "framer-motion";
+import blogHero from "@/assets/banner/blog-hero.webp";
 
 export const BlogPage = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
+
   return (
-    <div>
-      <main className="pb-12">
-        {/* Hero Section */}
-        <section className="h-[20rem] max-sm:h-full relative font-Titillium-Web">
-          <img
-            src="https://media.istockphoto.com/id/1483031614/photo/modern-interior-design-of-living-room-black-sofa-and-empty-mockup-wall-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=ohYw9BMs6WOt0ajHLwP2Zn401FR5vwi-96gDr4qiwjE="
-            alt="hero"
-            className="h-full w-full object-cover"
-          />
-          <article className="absolute  max-sm:px-4 inset-0 bg-banner-overlay flex flex-col gap-4 items-center justify-center">
-            <motion.h1
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl  text-center max-sm:text-lg max-md:text-2xl font-bold text-white"
-            >
-              Transform Your Space with Inspiration & Ideas
-            </motion.h1>
-
-            <motion.p
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-gray-300 max-w-3xl  max-sm:w-full text-center max-sm:text-base dark:text-gray-300 text-lg leading-[150%]"
-            >
-              Dive into a world of furniture trends, interior design tips, and
-              expert advice to help you craft spaces that reflect your unique
-              style. Whether you're looking for modern minimalism, rustic charm,
-              or timeless elegance, we’ve got you covered.
-            </motion.p>
-            <motion.div
-              initial={{ scale: 0.7, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+    <div className="bg-paper">
+      <section className="relative flex h-[52vh] min-h-[24rem] items-end overflow-hidden">
+        <img
+          src={blogHero}
+          alt="A calm interior in warm natural light"
+          className="fade-img absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
+          <Reveal>
+            <p className="eyebrow text-paper/70">Journal</p>
+            <h1 className="mt-4 font-display text-5xl tracking-tight text-paper sm:text-7xl">
+              Notes from the house
+            </h1>
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-paper/80">
+              Ideas, material notes and room essays from the Home of Design
+              studio — written by the people who make and place the furniture.
+            </p>
+            <div className="mt-6 text-paper/70">
               <BreadCrumbs />
-            </motion.div>
-          </article>
-        </section>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-        {/* Blog Section */}
-        <section className="mt-6 px-[6rem] max-md:px-4 max-sm:px-4 max-lg:px-8">
-          <article>
-            <p className="text-lg font-semibold my-4">Recent Blog Posts</p>
-          </article>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))]  [@media(min-width:380px)_and_(max-width:700px)]:grid-cols-2 max-md:grid-cols-3 max-sm:gap-3 gap-6">
-            {blogs.map((blog) => (
-              <BlogCard blog={blog} key={blog.id} />
-            ))}
-          </div>
-        </section>
-      </main>
+      <section className="mx-auto max-w-shell px-5 py-16 sm:px-6 sm:py-24">
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((blog, i) => (
+            <Reveal key={blog.id} delay={(i % 3) * 0.08}>
+              <BlogCard blog={blog} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       <ScrollToTop />
       <Footer />
     </div>

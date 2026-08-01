@@ -1,247 +1,215 @@
 import BreadCrumbs from "@/components/BreadCrumbs";
-import { TiLeaf } from "react-icons/ti";
-import { FaHandHoldingHeart } from "react-icons/fa6";
-import { FaCouch } from "react-icons/fa";
 import { Footer } from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { useEffect } from "react";
+import { Reveal } from "@/components/Reveal";
+import { Link } from "react-router-dom";
+import { ArrowRight, Hammer, Leaf, HeartHandshake } from "lucide-react";
+import aboutHero from "@/assets/about/about-hero.webp";
+import aboutCraft from "@/assets/about/about-craft.webp";
+import aboutStory from "@/assets/about/about-story.webp";
+import team1 from "@/assets/about/team-1.webp";
+import team2 from "@/assets/about/team-2.webp";
+import team3 from "@/assets/about/team-3.webp";
+import team4 from "@/assets/about/team-4.webp";
+
+const values = [
+  {
+    icon: <Hammer size={20} strokeWidth={1.25} />,
+    title: "Material honesty",
+    body: "Solid timber, natural fibres, honest finishes. Nothing veneered for appearance, nothing engineered to fail quietly."
+  },
+  {
+    icon: <Leaf size={20} strokeWidth={1.25} />,
+    title: "Sustainability",
+    body: "FSC-certified timber, low-waste cutting, and finishes chosen for people and planet alike."
+  },
+  {
+    icon: <HeartHandshake size={20} strokeWidth={1.25} />,
+    title: "Built to repair",
+    body: "Replaceable parts and serviceable joints mean our pieces are meant to outlive the room — and the house."
+  }
+];
+
+const team = [
+  { image: team1, name: "Jane Doe", role: "Creative Director" },
+  { image: team2, name: "John Smith", role: "Head Carpenter" },
+  { image: team3, name: "Alice Brown", role: "Interior Designer" },
+  { image: team4, name: "Michael Green", role: "Project Manager" }
+];
 
 export const AboutPage = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
   return (
-    <div className="overflow-hidden">
-      <section className="h-[20rem] relative font-Titillium-Web">
+    <div className="bg-paper">
+      <section className="relative flex h-[55vh] min-h-[26rem] items-end overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1489269637500-aa0e75768394?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGFib3V0JTIwdXMlMjBmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D"
-          alt="hero"
-          className="h-full w-full object-cover"
+          src={aboutHero}
+          alt="A warm, sunlit living room furnished by Home of Design"
+          className="fade-img absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
-        <article className="absolute flex-col inset-0 gap-4 px-4 bg-banner-overlay flex items-center justify-center">
-          <motion.h1
-            initial={{ y: -10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl font-bold text-gray-300"
-          >
-            About{" "}
-            <span
-              style={{
-                color: "#f5b955"
-              }}
-            >
-              Us
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-lg text-white text-center max-sm:text-base max-w-3xl max-sm:w-full"
-          >
-            At Furniture Haven, we bring you the perfect blend of craftsmanship
-            and modern design to transform your spaces into a sanctuary.
-          </motion.p>
-          <motion.div
-            initial={{ scale: 0.7, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <BreadCrumbs />
-          </motion.div>
-        </article>
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
+          <Reveal>
+            <p className="eyebrow text-paper/70">The House</p>
+            <h1 className="mt-4 font-display text-5xl tracking-tight text-paper sm:text-7xl">
+              Craft, considered.
+            </h1>
+            <div className="mt-6 text-paper/70">
+              <BreadCrumbs />
+            </div>
+          </Reveal>
+        </div>
       </section>
 
-      <motion.section
-        className="py-16 bg-banner"
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: -100 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <img
-              src="https://plus.unsplash.com/premium_photo-1682089766121-1f999ad0c7fe?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVvcGxlJTIwY3JhZnRpbmclMjBmdXJuaXR1cmV8ZW58MHx8MHx8fDA%3D"
-              alt="Our Mission"
-              className="rounded-2xl shadow-lg"
-            />
-          </div>
-          <div>
-            <h2 className="text-3xl dark:text-gray-100 max-sm:text-2xl font-bold text-gray-800">
-              Our Mission
-            </h2>
-            <p className="mt-4 dark:text-gray-200 text-gray-600">
-              Our mission is to craft premium furniture that inspires a
-              lifestyle of comfort and elegance. We are committed to sustainable
-              practices and bringing you timeless designs that last for
-              generations.
-            </p>
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="py-16 bg-background"
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: 100 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold dark:text-gray-100 text-gray-800 max-sm:text-2xl">
-              Our Story
-            </h2>
-            <p className="mt-4 dark:text-gray-200 text-gray-600">
-              Founded in 2010, Furniture Haven started as a small family
-              business. Today, we have grown into a trusted brand, providing
-              homes worldwide with bespoke furniture pieces that reflect
-              individual tastes and styles.
-            </p>
-          </div>
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1583468982228-19f19164aee2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3RvcnklMjBvZiUyMGZ1cm5pdHVyZXxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Our Story"
-              className="rounded-2xl shadow-lg"
-            />
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="py-16 bg-banner"
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: -100 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container mx-auto px-6 lg:px-20">
-          <h2 className="text-3xl dark:text-gray-100 max-sm:text-2xl font-bold text-gray-800 text-center">
-            Our Core Values
-          </h2>
-          <div className="grid  grid-cols-1 md:grid-cols-3 gap-8 mt-6">
-            <div className="text-center">
-              <div className="bg-[#f5b955] p-4 rounded-full flex justify-center items-center w-16 h-16 mx-auto text-white">
-                <TiLeaf size={30} />
-              </div>
-              <h3 className="text-xl font-semibold mt-4">Sustainability</h3>
-              <p className="text-gray-600 dark:text-gray-200 mt-2">
-                We use eco-friendly materials and processes to minimize our
-                impact on the planet.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-[#f5b955] p-4 flex justify-center items-center rounded-full w-16 h-16 mx-auto text-white">
-                <FaCouch size={30} />
-              </div>
-              <h3 className="text-xl font-semibold mt-4">Quality</h3>
-              <p className="text-gray-600 dark:text-gray-200 mt-2">
-                Every piece is designed and crafted with attention to detail for
-                ultimate durability.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-[#f5b955] p-4 flex justify-center items-center rounded-full w-16 h-16 mx-auto text-white">
-                <FaHandHoldingHeart size={30} />
-              </div>
-              <h3 className="text-xl font-semibold mt-4">Customer Focus</h3>
-              <p className="text-gray-600 dark:text-gray-200 mt-2">
-                We prioritize your satisfaction, delivering exceptional service
-                and tailored solutions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-      <motion.section
-        className="py-16 bg-background"
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: -100 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container mx-auto px-6 lg:px-20 text-center">
-          <h2 className="text-3xl max-sm:text-2xl dark:text-gray-100 font-bold text-gray-800">
-            Meet Our Team
-          </h2>
-          <p className="text-lg dark:text-gray-200 text-gray-600 mt-4">
-            Behind every masterpiece is a team of passionate artisans and
-            designers.
+      <section className="mx-auto max-w-shell px-5 py-24 sm:px-6 sm:py-32">
+        <Reveal>
+          <p className="max-w-4xl font-display text-[clamp(1.8rem,4vw,3.4rem)] leading-[1.18] tracking-tight text-ink">
+            Home of Design began as a small workshop with a simple conviction:{" "}
+            <em className="italic text-bronze">
+              that furniture should be built for the life it leads
+            </em>{" "}
+            — joined by hand, measured against the human body, and designed to
+            age with grace.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-            <div>
+        </Reveal>
+      </section>
+
+      <section className="border-t border-line bg-paper">
+        <div className="mx-auto grid max-w-shell gap-10 px-5 py-24 sm:px-6 sm:py-32 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden bg-paper-2">
               <img
-                src="https://media.istockphoto.com/id/1316250494/photo/photographer-is-finishing-work-in-his-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=Woh5WI-TbeLgQxujVEef2CWTjgjlL8fiAODiqhpizVE="
-                alt="Team Member"
-                className="w-full h-64 rounded-xl object-cover shadow-md"
+                src={aboutCraft}
+                alt="A craftsman working wood in the Home of Design workshop"
+                loading="lazy"
+                decoding="async"
+                className="fade-img h-full w-full object-cover"
               />
-              <h3 className="text-xl font-semibold mt-4">Jane Doe</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Creative Director
+            </div>
+          </Reveal>
+          <div className="flex flex-col justify-center lg:col-span-7">
+            <Reveal>
+              <p className="eyebrow text-ink-3">Our mission</p>
+              <h2 className="mt-5 font-display text-4xl tracking-tight text-ink sm:text-5xl">
+                Made slowly, <em className="italic text-bronze">on purpose.</em>
+              </h2>
+              <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-ink-2">
+                Every piece leaves our workshop with a maker’s mark and a
+                promise. We design in-house, build in small batches, and stand
+                behind what we make for years after it leaves the floor.
               </p>
-            </div>
-            <div>
-              <img
-                src="https://plus.unsplash.com/premium_photo-1664910747098-9dd7b830d4cc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGhlYWQlMjBjYXJwZW50ZXJ8ZW58MHx8MHx8fDA%3D"
-                alt="Team Member"
-                className="w-full h-64 rounded-xl object-cover shadow-md"
-              />
-              <h3 className="text-xl font-semibold mt-4">John Smith</h3>
-              <p className="text-gray-600 dark:text-gray-400">Head Carpenter</p>
-            </div>
-            <div>
-              <img
-                src="https://plus.unsplash.com/premium_photo-1663047346199-9516fe33fce1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8aW50ZXJpb3IlMjBkZXNpZ25lcnxlbnwwfHwwfHx8MA%3D%3D"
-                alt="Team Member"
-                className="w-full h-64 rounded-xl object-cover shadow-md"
-              />
-              <h3 className="text-xl font-semibold mt-4">Alice Brown</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Interior Designer
-              </p>
-            </div>
-            <div>
-              <img
-                src="https://media.istockphoto.com/id/1336501054/photo/architect-making-a-video-call-with-clients.webp?a=1&b=1&s=612x612&w=0&k=20&c=2v1GMHpmfwfyUOhu42GXlsc1pm9cBjsmIdk4z0hSN5g="
-                alt="Team Member"
-                className="w-full h-64 rounded-xl object-cover shadow-md"
-              />
-              <h3 className="text-xl font-semibold mt-4">Michael Green</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Project Manager
-              </p>
-            </div>
+              <Link
+                to="/products"
+                className="btn-outline mt-10 inline-flex"
+              >
+                See the collection <ArrowRight size={14} />
+              </Link>
+            </Reveal>
           </div>
         </div>
-      </motion.section>
+      </section>
 
-      <motion.section
-        className="py-10 bg-[#d7d7d7] dark:bg-[#1a1a1a]"
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: 100 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container flex flex-col gap-4 mx-auto px-6 lg:px-20 text-center text-white">
-          <h2 className="text-2xl dark:text-gray-100 text-gray-800 font-bold max-sm:text-xl">
-            Ready to Transform Your Space?
+      <section className="border-t border-line bg-paper-2/60">
+        <div className="mx-auto max-w-shell px-5 py-24 sm:px-6 sm:py-28">
+          <Reveal>
+            <p className="eyebrow text-ink-3">What we stand for</p>
+            <div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-3">
+              {values.map((v) => (
+                <div key={v.title} className="bg-paper p-8 sm:p-10">
+                  <span className="flex h-12 w-12 items-center justify-center border border-bronze text-bronze">
+                    {v.icon}
+                  </span>
+                  <h3 className="mt-6 font-display text-2xl text-ink">
+                    {v.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-2">
+                    {v.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-paper">
+        <div className="mx-auto grid max-w-shell items-center gap-10 px-5 py-24 sm:px-6 sm:py-32 lg:grid-cols-12 lg:gap-16">
+          <div className="order-2 lg:order-1 lg:col-span-7">
+            <Reveal>
+              <p className="eyebrow text-ink-3">Our story</p>
+              <h2 className="mt-5 font-display text-4xl tracking-tight text-ink sm:text-5xl">
+                From workbench to living room
+              </h2>
+              <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-ink-2">
+                What began as a two-person workshop now furnishes homes across
+                the country — but the process hasn’t changed. Pieces are drawn,
+                prototyped, and built in-house, by the same hands that sign
+                them. Growth changed the scale, never the standard.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal className="order-1 lg:order-2 lg:col-span-5">
+            <div className="relative aspect-[4/3] overflow-hidden bg-paper-2">
+              <img
+                src={aboutStory}
+                alt="The Home of Design showroom in natural light"
+                loading="lazy"
+                decoding="async"
+                className="fade-img h-full w-full object-cover"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-paper py-24 sm:py-32">
+        <div className="mx-auto max-w-shell px-5 sm:px-6">
+          <Reveal>
+            <div className="border-b border-line pb-10">
+              <p className="eyebrow text-ink-3">The people</p>
+              <h2 className="mt-5 font-display text-4xl tracking-tight text-ink sm:text-6xl">
+                Behind every piece
+              </h2>
+            </div>
+          </Reveal>
+          <div className="mt-14 grid grid-cols-2 gap-x-5 gap-y-12 lg:grid-cols-4">
+            {team.map((member, i) => (
+              <Reveal key={member.name} delay={i * 0.08}>
+                <div className="aspect-[4/5] overflow-hidden bg-paper-2">
+                  <img
+                    src={member.image}
+                    alt={`${member.name}, ${member.role}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="fade-img h-full w-full object-cover"
+                  />
+                </div>
+                <h3 className="mt-4 font-display text-xl text-ink">
+                  {member.name}
+                </h3>
+                <p className="eyebrow mt-1 text-ink-3">{member.role}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-ink py-20 text-center text-paper sm:py-28">
+        <Reveal>
+          <h2 className="mx-auto max-w-3xl px-5 font-display text-4xl leading-tight tracking-tight sm:text-5xl">
+            Ready to live with pieces <em className="italic text-bronze">made to last?</em>
           </h2>
-          <p className="dark:text-gray-200 text-gray-800 text-lg max-sm:text-base">
-            Explore our collection and find furniture that fits your style and
-            needs.
-          </p>
-          <Link to="/products">
-            <Button className="">Shop Now</Button>
+          <Link
+            to="/products"
+            className="mt-10 inline-flex items-center gap-3 bg-paper px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink transition-all duration-500 ease-expo-out hover:bg-bronze hover:text-paper"
+          >
+            Shop the collection <ArrowRight size={14} />
           </Link>
-        </div>
-      </motion.section>
+        </Reveal>
+      </section>
+
       <ScrollToTop />
       <Footer />
     </div>

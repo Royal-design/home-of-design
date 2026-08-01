@@ -63,11 +63,7 @@ const CartPage = lazy(() =>
 
 const router = createBrowserRouter([
   {
-    element: (
-      <Suspense fallback={<SpinnerLoader />}>
-        <RootLayout />
-      </Suspense>
-    ),
+    element: <RootLayout />,
     errorElement: (
       <Suspense fallback={<SpinnerLoader />}>
         <ErrorPage />

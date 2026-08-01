@@ -1,17 +1,8 @@
-import { IoIosEye } from "react-icons/io";
-import { FaCirclePlus } from "react-icons/fa6";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "./ui/card";
+import { Heart, Plus } from "lucide-react";
 import { formatter } from "@/features/formatter";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProductType } from "@/types";
-import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ProductCardProps {
   product: ProductType;
@@ -19,107 +10,114 @@ interface ProductCardProps {
   toggleFavorite: (product: ProductType) => void;
   addToCartClick: (product: ProductType) => void;
 }
+
 export const ProductCard = ({
   product,
   addToCartClick,
   toggleFavorite,
   favourites
 }: ProductCardProps) => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`/products/${product.id}`);
-  };
+  const isFavourite = favourites.some((item) => item.id === product.id);
+  const discount = product.price.oldPrice
+    ? Math.round(
+        (1 - product.price.newPrice / product.price.oldPrice) * 100
+      )
+    : 0;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.03, border: "1px solid yellow" }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 1
-      }}
-    >
-      <Card className="w-full bg-background border h-full shadow-none border-border-line overflow-hidden rounded-none">
-        <CardHeader className="p-0">
-          <CardTitle />
-        </CardHeader>
-        <CardContent
-          onClick={handleClick}
-          className="bg-banner cursor-pointer p-0 relative"
+    <article className="group">
+      <div className="relative aspect-[4/5] overflow-hidden bg-paper-2">
+        <Link
+          to={`/products/${product.id}`}
+          data-cursor="view"
+          data-cursor-label="View"
+          aria-label={`View ${product.name}`}
+          className="block h-full w-full"
         >
-          <figure className="h-[150px] w-full">
-            <img
-              src={product.mainImage}
-              alt={product.name}
-              className="h-full w-full "
-            />
-          </figure>
-        </CardContent>
-        <CardFooter className="flex px-2 max-sm:h-full pb-2 flex-col gap-2 justify-start items-start">
-          <div className="flex gap-1 items-center">
-            <p className="text-yellow-500">
-              {"★".repeat(product.rating)} {"☆".repeat(5 - product.rating)}
-            </p>
-            {product.reviews.length > 1 ? (
-              <p className="text-xs">- {product.reviews.length} Reviews</p>
-            ) : (
-              <p className="text-xs">- {product.reviews.length} Review</p>
+          <img
+            src={product.mainImage}
+            alt={product.name}
+            loading="lazy"
+            decoding="async"
+            className="fade-img h-full w-full object-contain transition-transform duration-[1.3s] ease-expo-out group-hover:scale-[1.06]"
+          />
+        </Link>
+
+        <div className="absolute left-4 top-4 flex flex-col gap-2">
+          {discount > 0 && (
+            <span className="bg-bronze px-2.5 py-1 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-paper">
+              −{discount}%
+            </span>
+          )}
+          {product.bestSelling && (
+            <span className="border border-line bg-paper/85 px-2.5 py-1 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-ink backdrop-blur-sm">
+              Best seller
+            </span>
+          )}
+        </div>
+
+        <div className="absolute inset-x-4 bottom-4 flex translate-y-2 items-center justify-between gap-2 opacity-100 transition-all duration-500 ease-expo-out max-sm:opacity-100 max-sm:translate-y-0 group-hover:translate-y-0 group-hover:opacity-100">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              addToCartClick(product);
+            }}
+            aria-label={`Add ${product.name} to cart`}
+            className={cn(
+              "flex cursor-pointer items-center gap-2 px-4 py-3 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-paper transition-colors duration-300",
+              "bg-ink hover:bg-bronze"
             )}
-          </div>
-          <p className="text-sm font-bold">{product.name}</p>
-          <div className="flex items-center justify-between w-full">
-            <div className="flex gap-2  items-center">
-              <p className="text-xs line-through text-gray-400">
-                {formatter.format(product.price.oldPrice)}
-              </p>
-              <p className="text-base">
-                {formatter.format(product.price.newPrice)}
-              </p>
-            </div>
-          </div>
+          >
+            <Plus size={13} /> Add
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleFavorite(product);
+            }}
+            aria-label={
+              isFavourite
+                ? `Remove ${product.name} from wishlist`
+                : `Add ${product.name} to wishlist`
+            }
+            className={cn(
+              "flex h-11 w-11 cursor-pointer items-center justify-center border backdrop-blur-sm transition-all duration-300",
+              isFavourite
+                ? "border-bronze bg-bronze text-paper"
+                : "border-line bg-paper/85 text-ink hover:border-bronze hover:text-bronze"
+            )}
+          >
+            <Heart
+              size={15}
+              className={isFavourite ? "fill-paper" : ""}
+            />
+          </button>
+        </div>
+      </div>
 
-          <div className="flex cursor-pointer w-full justify-between  items-center">
-            <div
-              className="cursor-pointer text-orange-400"
-              onClick={() => addToCartClick(product)}
-            >
-              <FaCirclePlus size="25" />
-            </div>
-
-            <div className="flex items-center gap-2">
-              <motion.div
-                animate={{
-                  scale: favourites.find((item) => item.id === product.id)
-                    ? 1.1
-                    : 1
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 1000,
-                  damping: 10
-                }}
-                className="text-orange-400"
-                onClick={() => toggleFavorite(product)}
-              >
-                {favourites.some((item) => item.id === product.id) ? (
-                  <Heart
-                    size="20"
-                    className="fill-orange-400 max-sm:w-[1rem]"
-                  />
-                ) : (
-                  <Heart size="20" className=" max-sm:w-[1rem]" />
-                )}
-              </motion.div>
-              <div
-                onClick={handleClick}
-                className="cursor-pointer text-orange-400"
-              >
-                <IoIosEye size="25" />
-              </div>
-            </div>
-          </div>
-        </CardFooter>
-      </Card>
-    </motion.div>
+      <div className="mt-4 flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <p className="eyebrow text-ink-3">{product.category}</p>
+          <Link
+            to={`/products/${product.id}`}
+            className="mt-1.5 block truncate text-[15px] font-medium text-ink transition-colors hover:text-bronze"
+          >
+            {product.name}
+          </Link>
+        </div>
+        <div className="shrink-0 text-right">
+          {discount > 0 && (
+            <p className="font-mono text-[0.68rem] text-ink-3 line-through">
+              {formatter.format(product.price.oldPrice)}
+            </p>
+          )}
+          <p className="font-mono text-sm text-ink">
+            {formatter.format(product.price.newPrice)}
+          </p>
+        </div>
+      </div>
+    </article>
   );
 };

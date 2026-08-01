@@ -6,54 +6,46 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import React from "react";
 import { useLocation, Link } from "react-router-dom";
-interface BreadcrumbItem {
+import { cn } from "@/lib/utils";
+
+interface BreadcrumbSegment {
   name: string;
   href: string;
 }
 
 const BreadCrumbs = () => {
-  const location = useLocation(); // Get the current URL from React Router
+  const location = useLocation();
   const segments = location.pathname
     .split("/")
-    .filter((segment) => segment !== ""); // Split and clean the path
+    .filter((segment) => segment !== "");
 
-  // Create breadcrumb items dynamically
-  const breadcrumbs = segments.map((segment, index) => {
+  const breadcrumbs: BreadcrumbSegment[] = segments.map((segment, index) => {
     const href = "/" + segments.slice(0, index + 1).join("/");
     const name =
-      segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " "); // Capitalize and clean up segment names
+      segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " ");
     return { name, href };
   });
 
   return (
     <Breadcrumb>
-      <BreadcrumbList>
+      <BreadcrumbList className="font-mono text-[0.62rem] uppercase tracking-[0.18em]">
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link
-              className="text-gray-400"
-              to="/"
-              onClick={() => {
-                window.scrollTo(0, 0);
-              }}
-            >
+            <Link className="text-ink-3 transition-colors hover:text-bronze" to="/">
               Home
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         {breadcrumbs.map((breadcrumb, index) => (
-          <React.Fragment key={index}>
-            <BreadcrumbSeparator className="text-gray-400" />
+          <span key={index} className="flex items-center">
+            <BreadcrumbSeparator className="text-ink-3" />
             {index !== breadcrumbs.length - 1 ? (
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
                   <Link
                     to={breadcrumb.href}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
+                    className="text-ink-3 transition-colors hover:text-bronze"
                   >
                     {breadcrumb.name}
                   </Link>
@@ -61,12 +53,14 @@ const BreadCrumbs = () => {
               </BreadcrumbItem>
             ) : (
               <BreadcrumbItem>
-                <BreadcrumbPage className="font-semibold  text-red-500">
+                <BreadcrumbPage
+                  className={cn("font-medium text-ink")}
+                >
                   {breadcrumb.name}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             )}
-          </React.Fragment>
+          </span>
         ))}
       </BreadcrumbList>
     </Breadcrumb>

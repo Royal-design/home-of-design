@@ -1,34 +1,28 @@
-import { Advert } from "@/components/Advert";
-import { Adverts } from "@/components/Adverts";
-import { Banner } from "@/components/Banner";
-import { Blogs } from "@/components/Blogs";
+import { Hero } from "@/components/Hero";
+import { Marquee } from "@/components/Marquee";
 import { Category } from "@/components/Category";
 import { FeaturedProduct } from "@/components/FeaturedProduct";
-import { Footer } from "@/components/Footer";
-import { PartnerInfiniteCard } from "@/components/PartnerInfiniteCard";
-import { Products } from "@/components/Products";
-import { ScrollToTop } from "@/components/ScrollToTop";
+import { CraftStatement } from "@/components/CraftStatement";
 import { TopProduct } from "@/components/TopProduct";
-import { useEffect } from "react";
+import { Products } from "@/components/Products";
+import { Adverts } from "@/components/Adverts";
+import { Advert } from "@/components/Advert";
+import { Blogs } from "@/components/Blogs";
+import { Footer } from "@/components/Footer";
 
 export const HomePage = () => {
-  useEffect(() => {
-    window.scrollTo({
-      top: 0
-    });
-  }, []);
   return (
-    <div className="bg-background font-Titillium-Web">
-      <Banner />
+    <div className="bg-paper">
+      <Hero />
+      <Marquee />
       <Category />
       <FeaturedProduct />
-      <Adverts />
+      <CraftStatement />
       <TopProduct />
       <Products />
+      <Adverts />
       <Advert />
-      <PartnerInfiniteCard />
       <Blogs />
-      <ScrollToTop />
       <Footer />
     </div>
   );

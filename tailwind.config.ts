@@ -1,5 +1,5 @@
 import tailwindcssAnimate from "tailwindcss-animate";
-/** @type {import('tailwindcss').Config} */
+
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
@@ -9,29 +9,40 @@ export default {
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out"
+        "accordion-up": "accordion-up 0.2s ease-out",
+        marquee: "marquee 36s linear infinite",
+        "marquee-reverse": "marquee-reverse 36s linear infinite",
+        "spin-slow": "spin 14s linear infinite",
+        "pulse-line": "pulse-line 2.4s ease-in-out infinite",
+        "fade-up": "fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both"
       },
       keyframes: {
         scroll: {
-          to: {
-            transform: "translate(calc(-50% - 0.5rem))"
-          }
+          to: { transform: "translate(calc(-50% - 0.5rem))" }
         },
         "accordion-down": {
-          from: {
-            height: "0"
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)"
-          }
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" }
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)"
-          },
-          to: {
-            height: "0"
-          }
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" }
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" }
+        },
+        "marquee-reverse": {
+          from: { transform: "translateX(-50%)" },
+          to: { transform: "translateX(0)" }
+        },
+        "pulse-line": {
+          "0%, 100%": { transform: "scaleX(0.4)", opacity: "0.6" },
+          "50%": { transform: "scaleX(1)", opacity: "1" }
+        },
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(24px)" },
+          to: { opacity: "1", transform: "translateY(0)" }
         }
       },
       borderRadius: {
@@ -40,27 +51,41 @@ export default {
         sm: "calc(var(--radius) - 4px)"
       },
       fontFamily: {
-        "Titillium-Web": ["Titillium Web", "sans-serif"]
+        sans: ["Manrope Variable", "Manrope", "system-ui", "sans-serif"],
+        display: ["Instrument Serif", "Georgia", "serif"],
+        mono: ["IBM Plex Mono", "ui-monospace", "SFMono-Regular", "monospace"]
+      },
+      letterSpacing: {
+        eyebrow: "0.22em",
+        tightest: "-0.045em"
+      },
+      maxWidth: {
+        shell: "92rem"
+      },
+      transitionTimingFunction: {
+        "expo-out": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "expo-in-out": "cubic-bezier(0.87, 0, 0.13, 1)"
       },
       screens: {
-        "max-sm": {
-          max: "700px"
-        },
-        "max-md": {
-          min: "701px",
-          max: "900px"
-        },
-        "max-lg": {
-          min: "901px",
-          max: "1100px"
-        },
-        "max-xl": {
-          min: "1101px",
-          max: "1535px"
-        },
+        "max-sm": { max: "700px" },
+        "max-md": { min: "701px", max: "900px" },
+        "max-lg": { min: "901px", max: "1100px" },
+        "max-xl": { min: "1101px", max: "1535px" },
         "2xl": "1536px"
       },
       colors: {
+        paper: "var(--paper)",
+        "paper-2": "var(--paper-2)",
+        ink: "var(--ink)",
+        "ink-2": "var(--ink-2)",
+        "ink-3": "var(--ink-3)",
+        line: "var(--line)",
+        "line-soft": "var(--line-soft)",
+        bronze: "var(--bronze)",
+        "bronze-2": "var(--bronze-2)",
+        forest: "var(--forest)",
+        "on-dark": "var(--on-dark)",
+
         button: "var(--button)",
         background: "var(--background)",
         foreground: "hsl(var(--foreground))",
@@ -69,7 +94,6 @@ export default {
         "border-line": "var(--border-line)",
         "banner-overlay": "var(--banner-overlay)",
         "button-hover": "var(--button-hover)",
-
         category: "var(--category)",
         banner: "var(--banner)",
         card: {
@@ -113,17 +137,5 @@ export default {
       }
     }
   },
-  plugins: [tailwindcssAnimate, addVariablesForColors]
+  plugins: [tailwindcssAnimate]
 };
-
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = theme("colors");
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
-
-  addBase({
-    ":root": newVars
-  });
-}

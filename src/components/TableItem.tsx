@@ -1,13 +1,15 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import { X } from "lucide-react";
-import { Button } from "./ui/button";
+import { X, Minus, Plus } from "lucide-react";
 import { CartItem, removeFromCart, updateCart } from "@/redux/slice/cartSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { formatter } from "@/features/formatter";
+import { Link } from "react-router-dom";
+
 interface ItemType {
   item: CartItem;
 }
+
 export const TableItem = ({ item }: ItemType) => {
   const [updateQuantity, setupdateQuantity] = useState<number>(item.qty);
   const dispatch = useDispatch();
@@ -37,45 +39,67 @@ export const TableItem = ({ item }: ItemType) => {
       dispatch(updateCart({ id, qty: newQuantity }));
     }
   };
-  return (
-    <TableRow className="h-[1rem] border-t border-border-line hover:bg-button">
-      <TableCell className="font-medium  w-[20rem]">
-        <figure className="flex items-center  gap-3">
-          <img
-            src={item.mainImage}
-            alt="image"
-            className="w-[3rem] h-[3rem] "
-          />
-          <p className="max-sm:text-xs w-full">{item.name}</p>
-        </figure>
-      </TableCell>
-      <TableCell className="max-sm:text-xs">{item.price.newPrice}</TableCell>
-      <TableCell>
-        <div className="w-[5rem]  max-sm:h-[2rem] dark:bg-transparent flex h-[3rem] justify-around items-center bg-white border-border-line border">
-          <Button
-            onClick={(e) => handleDecrement(e, item.id)}
-            variant="ghost"
-            className="cursor-pointer  dark:hover:bg-transparent hover:bg-transparent"
-          >
-            -
-          </Button>
 
-          <p>{updateQuantity}</p>
-          <Button
-            onClick={(e) => handleIncrement(e, item.id)}
-            variant="ghost"
-            className="cursor-pointer  dark:hover:bg-transparent hover:bg-transparent"
+  return (
+    <TableRow className="group border-b border-line">
+      <TableCell className="w-[22rem] py-6">
+        <Link to={`/products/${item.id}`} className="flex items-center gap-4">
+          <span className="flex h-20 w-20 shrink-0 items-center justify-center bg-paper-2">
+            <img
+              src={item.mainImage}
+              alt={item.name}
+              className="h-full w-full object-contain"
+              loading="lazy"
+            />
+          </span>
+          <span className="min-w-0">
+            <span className="block truncate text-sm font-medium text-ink transition-colors hover:text-bronze">
+              {item.name}
+            </span>
+            <span className="eyebrow mt-1 block text-ink-3">
+              {item.category}
+            </span>
+          </span>
+        </Link>
+      </TableCell>
+      <TableCell className="font-mono text-sm text-ink">
+        {formatter.format(item.price.newPrice)}
+      </TableCell>
+      <TableCell>
+        <div className="flex items-center border border-line">
+          <button
+            type="button"
+            onClick={(e) => handleDecrement(e, item.id)}
+            aria-label="Decrease quantity"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center text-ink-2 transition-colors hover:text-bronze"
           >
-            +
-          </Button>
+            <Minus size={13} />
+          </button>
+          <span className="min-w-8 text-center font-mono text-xs text-ink">
+            {updateQuantity}
+          </span>
+          <button
+            type="button"
+            onClick={(e) => handleIncrement(e, item.id)}
+            aria-label="Increase quantity"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center text-ink-2 transition-colors hover:text-bronze"
+          >
+            <Plus size={13} />
+          </button>
         </div>
       </TableCell>
-      <TableCell>{formatter.format(item.totalPrice)}</TableCell>
-      <TableCell className="flex justify-end items-center h-[4rem] ">
-        <X
+      <TableCell className="font-mono text-sm text-ink">
+        {formatter.format(item.totalPrice)}
+      </TableCell>
+      <TableCell className="text-right">
+        <button
+          type="button"
           onClick={() => handleRemoveFromCart(item.id)}
-          className="w-[1.3rem] cursor-pointer h-[1.3rem] bg-button hover:bg-button-hover text-primary rounded-full p-1"
-        />
+          aria-label={`Remove ${item.name}`}
+          className="inline-flex h-9 w-9 cursor-pointer items-center justify-center text-ink-3 transition-colors hover:text-destructive"
+        >
+          <X size={16} />
+        </button>
       </TableCell>
     </TableRow>
   );

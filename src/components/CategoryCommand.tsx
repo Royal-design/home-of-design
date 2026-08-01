@@ -3,14 +3,15 @@ import { ChangeEvent, useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { setFilterProducts, setLoading } from "@/redux/slice/productSlice";
+import { cn } from "@/lib/utils";
 
 export const CategoryCommand = () => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector((state) => state.products.products);
   const [categories, setCategories] = useState<string[]>([]);
   const [filterCategory, setFilterCategory] = useState<string[]>([]);
+  const [search, setSearch] = useState("");
 
-  // Fetch unique categories
   useEffect(() => {
     const uniqueCategories = Array.from(
       new Set(allProducts.map((product) => product.category))
@@ -18,7 +19,6 @@ export const CategoryCommand = () => {
     setFilterCategory(uniqueCategories);
   }, [allProducts]);
 
-  // Handle category filter change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.target;
     const updatedCategories = checked
@@ -26,11 +26,8 @@ export const CategoryCommand = () => {
       : categories.filter((category) => category !== value);
 
     setCategories(updatedCategories);
-
-    // Trigger loading state
     dispatch(setLoading(true));
 
-    // Filter products by selected categories
     setTimeout(() => {
       const filteredProducts =
         updatedCategories.length === 0
@@ -40,57 +37,75 @@ export const CategoryCommand = () => {
             );
       dispatch(setFilterProducts(filteredProducts));
       dispatch(setLoading(false));
-    }, 700); // Simulated delay for UX
+    }, 500);
   };
 
-  // Handle category search input
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value.trim().toLowerCase();
-
-    const filteredCategories = allProducts
-      .map((product) => product.category)
-      .filter((category, index, self) => self.indexOf(category) === index)
-      .filter((category) => category.toLowerCase().includes(searchValue));
-
-    setFilterCategory(filteredCategories);
-  };
+  const visible = filterCategory.filter((category) =>
+    category.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   return (
     <div>
-      <div className="search-group relative mb-3">
+      <div className="relative mb-4">
+        <Search
+          size={13}
+          className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-3"
+        />
         <input
           type="text"
-          onChange={handleSearchChange}
-          placeholder="Search categories..."
-          className="h-[2rem] dark:bg-transparent overflow-hidden focus:border-none border px-2 w-full pl-7"
-        />
-        <Search
-          size={15}
-          className="absolute top-[25%] left-2 hover:text-gray-400"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Find a room…"
+          aria-label="Search rooms"
+          className="h-9 w-full border border-line bg-transparent pl-9 pr-3 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:outline-none"
         />
       </div>
 
-      {filterCategory.map((category: string) => (
-        <div
-          className="checkbox-group flex items-center gap-2 mb-2"
-          key={category}
-        >
-          <Label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              id={category.toLowerCase()}
-              value={category}
-              onChange={handleChange}
-              checked={categories.includes(category)}
-              className="peer sr-only"
-            />
-
-            <span className="inline-block w-4 h-4 border-2 relative cursor-pointer after:content-[''] after:absolute after:top-2/4 after:left-2/4 after:-translate-x-1/2 after:-translate-y-1/2 after:w-[10px] after:h-[10px] dark:after:bg-white after:bg-[#333] after:rounded-[2px] after:opacity-0 peer-checked:after:opacity-100"></span>
-
-            <span>{category}</span>
-          </Label>
-        </div>
-      ))}
+      {visible.length === 0 ? (
+        <p className="py-2 text-xs text-ink-3">No rooms found.</p>
+      ) : (
+        <ul className="flex flex-col gap-1">
+          {visible.map((category: string) => {
+            const checked = categories.includes(category);
+            return (
+              <li key={category}>
+                <Label className="flex cursor-pointer items-center gap-3 py-1.5 text-sm text-ink-2 transition-colors hover:text-ink">
+                  <input
+                    type="checkbox"
+                    value={category}
+                    onChange={handleChange}
+                    checked={checked}
+                    className="peer sr-only"
+                  />
+                  <span
+                    className={cn(
+                      "relative h-[15px] w-[15px] shrink-0 border transition-all duration-300",
+                      checked
+                        ? "border-bronze bg-bronze"
+                        : "border-line bg-transparent"
+                    )}
+                    aria-hidden="true"
+                  >
+                    {checked && (
+                      <svg
+                        viewBox="0 0 10 8"
+                        className="absolute inset-0 m-auto h-2 w-2.5"
+                        fill="none"
+                        stroke="var(--paper)"
+                        strokeWidth="1.8"
+                        strokeLinecap="square"
+                      >
+                        <path d="M1 4l3 3 5-6" />
+                      </svg>
+                    )}
+                  </span>
+                  <span className="capitalize">{category}</span>
+                </Label>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

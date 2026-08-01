@@ -1,29 +1,23 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-
-// import required modules
 import { Navigation } from "swiper/modules";
 import { data } from "@/assets/data/data";
-import { RelatedProductCard } from "./RelatedProductCard";
+import { ProductCard } from "./ProductCard";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { ProductType } from "@/types";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
+import { Reveal } from "./Reveal";
 
-interface CategoryType {
-  category: string;
-}
-export const RelatedProduct = ({ category }: CategoryType) => {
+export const RelatedProduct = ({ category }: { category: string }) => {
   const relatedProducts = data.products.filter(
     (product) => product.category === category
   );
 
   const dispatch = useAppDispatch();
-
   const favourites = useAppSelector((state) => state.favourite.items);
+
   const toggleFavorite = (product: ProductType) => {
     if (favourites.find((item: ProductType) => item.id === product.id)) {
       dispatch(removeFavorite(product.id));
@@ -35,96 +29,45 @@ export const RelatedProduct = ({ category }: CategoryType) => {
     dispatch(addToCart({ ...product, qty: 1 }));
   };
 
-  return (
-    <div className="related-swiper  px-[6rem] max-sm:px-[1rem] max-lg:px-8 max-md:px-[1rem] h-[20rem]  my-[1rem]">
-      <p className="text-2xl max-sm:text-lg my-4">
-        Related <span className="uppercase font-bold">Products</span>{" "}
-      </p>
-      <div className="max-sm:hidden max-md:hidden">
-        <Swiper
-          slidesPerView={4}
-          loop={true}
-          spaceBetween={10}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper h-full w-full"
-        >
-          {relatedProducts.map((product, i) => (
-            <SwiperSlide key={i}>
-              <RelatedProductCard
-                favourites={favourites}
-                toggleFavorite={toggleFavorite}
-                product={product}
-                addToCartClick={addToCartClick}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+  if (relatedProducts.length === 0) return null;
 
-      <div className="hidden [@media(min-width:380px)_and_(max-width:700px)]:block">
-        <Swiper
-          slidesPerView={2}
-          spaceBetween={10}
-          loop={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper h-full w-full"
-        >
-          {relatedProducts.map((product, i) => (
-            <SwiperSlide key={i}>
-              <RelatedProductCard
-                favourites={favourites}
-                toggleFavorite={toggleFavorite}
-                product={product}
-                addToCartClick={addToCartClick}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+  return (
+    <section className="border-t border-line bg-paper py-20 sm:py-28">
+      <div className="mx-auto max-w-shell px-5 sm:px-6">
+        <Reveal>
+          <div className="border-b border-line pb-8">
+            <p className="eyebrow text-ink-3">Continue browsing</p>
+            <h2 className="mt-3 font-display text-3xl tracking-tight text-ink sm:text-4xl">
+              You may also like
+            </h2>
+          </div>
+        </Reveal>
+
+        <div className="swiper-free-navigation mt-10">
+          <Swiper
+            slidesPerView={1.15}
+            spaceBetween={20}
+            breakpoints={{
+              640: { slidesPerView: 2.2 },
+              1024: { slidesPerView: 3.2 },
+              1280: { slidesPerView: 4.2 }
+            }}
+            navigation
+            modules={[Navigation]}
+          >
+            {relatedProducts.map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard
+                  product={product}
+                  favourites={favourites}
+                  toggleFavorite={toggleFavorite}
+                  addToCartClick={addToCartClick}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
-      <div className="hidden [@media(max-width:379px)]:block">
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
-          loop={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper h-full w-full"
-        >
-          {relatedProducts.map((product, i) => (
-            <SwiperSlide key={i}>
-              <RelatedProductCard
-                favourites={favourites}
-                toggleFavorite={toggleFavorite}
-                product={product}
-                addToCartClick={addToCartClick}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <div className="max-md:block hidden">
-        <Swiper
-          slidesPerView={3}
-          spaceBetween={10}
-          loop={true}
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper h-full w-full"
-        >
-          {relatedProducts.map((product, i) => (
-            <SwiperSlide key={i}>
-              <RelatedProductCard
-                favourites={favourites}
-                toggleFavorite={toggleFavorite}
-                product={product}
-                addToCartClick={addToCartClick}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </div>
+    </section>
   );
 };

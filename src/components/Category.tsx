@@ -1,44 +1,78 @@
+import { useNavigate } from "react-router-dom";
 import { data } from "@/assets/data/data";
-import { motion } from "framer-motion";
+import { useAppDispatch } from "@/redux/store";
+import { filterByCategory } from "@/redux/slice/productSlice";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "./Reveal";
 
-export const Category = () => {
+export function Category() {
   const categories = data.categories;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const go = (name: string) => {
+    dispatch(filterByCategory(name));
+    navigate("/products");
+  };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <div className="h-auto px-[6rem] max-md:px-4 max-md:-mt-8 max-lg:px-8 absolute max-sm:static max-sm:px-[1rem] mt-[-4rem] max-sm:mt-0  w-full flex justify-center">
-        <div className=" bg-background w-full">
-          <div className="flex gap-4 p-6 max-sm:p-2 w-full justify-between items-center">
-            {categories.map((category) => (
-              <motion.div
-                whileHover={{ scale: 1.1, border: "1px solid yellow" }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className=" h-[6rem] max-sm:h-[3rem] max-sm:w-[8rem] w-[8rem] "
-                key={category.id}
-              >
-                <div className="relative bg-banner  h-full w-full">
-                  <figure className="h-full p-2  w-full justify-center flex items-center">
-                    <img
-                      src={category.image}
-                      alt={category.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </figure>
-
-                  <div className="absolute flex justify-center items-center h-full w-full top-0">
-                    <div className="bg-banner opacity-[0.8] px-2 max-sm:px-1">
-                      <p className="text-center text-[10px] text-primary">
-                        {category.name}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+    <section className="bg-paper py-24 sm:py-32" aria-label="Shop by room">
+      <div className="mx-auto max-w-shell px-5 sm:px-6">
+        <Reveal>
+          <div className="flex flex-col gap-6 border-b border-line pb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow text-ink-3">02 — Collections</p>
+              <h2 className="mt-5 font-display text-4xl tracking-tight text-ink sm:text-6xl">
+                Rooms, considered
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm leading-relaxed text-ink-2">
+              Six families of furniture, each built around the way a room is
+              actually lived in.
+            </p>
           </div>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+          {categories.map((category, i) => (
+            <Reveal key={category.id} delay={(i % 3) * 0.08}>
+              <button
+                type="button"
+                onClick={() => go(category.name)}
+                className="group relative block w-full cursor-pointer overflow-hidden text-left"
+                data-cursor="view"
+                data-cursor-label="Explore"
+                aria-label={`Shop ${category.name}`}
+              >
+                <div className="aspect-[4/5] overflow-hidden bg-paper-2">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    loading="lazy"
+                    decoding="async"
+                    className="fade-img h-full w-full object-cover transition-transform duration-[1.2s] ease-expo-out group-hover:scale-[1.06]"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 sm:p-6">
+                  <div>
+                    <p className="font-mono text-[0.6rem] uppercase tracking-[0.24em] text-paper/70">
+                      0{i + 1}
+                    </p>
+                    <p className="mt-1 font-display text-xl text-paper sm:text-2xl">
+                      {category.name}
+                    </p>
+                  </div>
+                  <ArrowUpRight
+                    size={20}
+                    className="mb-1 text-paper transition-transform duration-500 ease-expo-out group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </div>
+              </button>
+            </Reveal>
+          ))}
         </div>
       </div>
-    </motion.div>
+    </section>
   );
-};
+}

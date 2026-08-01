@@ -1,41 +1,41 @@
 import { useAppSelector } from "@/redux/store";
 import { BlogCard } from "./BlogCard";
-import { Separator } from "./ui/separator";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 export const Blogs = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
   const displayBlogs = blogs.slice(0, 4);
+
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{
-        duration: 1
-      }}
-    >
-      <div className="px-[6rem] max-md:px-4 max-lg:px-8 max-sm:mt-[1rem] my-[2rem] max-sm:px-[1rem] pb-12">
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex items-center gap-2 w-full justify-between">
-            <Separator className="flex-1 border border-border-line" />
-            <h1 className="text-3xl max-sm:text-2xl font-bold text-center">
-              Blogs
-            </h1>
-            <Separator className="flex-1 border border-border-line" />
+    <section className="border-t border-line bg-paper py-24 sm:py-32">
+      <div className="mx-auto max-w-shell px-5 sm:px-6">
+        <Reveal>
+          <div className="flex flex-col gap-6 border-b border-line pb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="eyebrow text-ink-3">07 — Journal</p>
+              <h2 className="mt-5 font-display text-4xl tracking-tight text-ink sm:text-6xl">
+                Notes from the house
+              </h2>
+            </div>
+            <Link
+              to="/blogs"
+              className="link-underline self-start font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink-2 transition-colors hover:text-bronze sm:self-auto"
+            >
+              All notes <ArrowRight size={14} />
+            </Link>
           </div>
-          <p className="text-center max-sm:text-sm leading-[150%] text-base">
-            Explore design inspiration, expert tips, and the latest trends in
-            furniture and home decor. Our blog is your go-to resource for
-            creating spaces you’ll love.
-          </p>
-        </div>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))]  max-md:grid-cols-3 h-full  [@media(min-width:380px)_and_(max-width:700px)]:grid-cols-2 mt-[2rem] max-sm:mt-[2rem]  gap-4">
-          {displayBlogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+        </Reveal>
+
+        <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          {displayBlogs.map((blog, i) => (
+            <Reveal key={blog.id} delay={(i % 4) * 0.08}>
+              <BlogCard blog={blog} />
+            </Reveal>
           ))}
         </div>
       </div>
-    </motion.div>
+    </section>
   );
 };

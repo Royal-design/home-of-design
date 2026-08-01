@@ -1,70 +1,50 @@
 import { setFilterProducts, setLoading } from "@/redux/slice/productSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
+
+type SortTab = "recommended" | "bestSelling" | "topProduct" | "featured";
 
 export const Sort = () => {
-  const [selectedTab, setSelectedTab] = useState<
-    "recommended" | "bestSelling" | "topProduct" | "featured" | null
-  >(null);
+  const [selectedTab, setSelectedTab] = useState<SortTab | null>(null);
 
   const dispatch = useAppDispatch();
   const { products } = useAppSelector((state) => state.products);
 
-  const tabActions: {
-    id: number;
-    text: string;
-    selectedTab: "recommended" | "bestSelling" | "topProduct" | "featured";
-  }[] = [
-    { id: 1, text: "Recommended", selectedTab: "recommended" },
-    { id: 2, text: "Best Selling", selectedTab: "bestSelling" },
-    { id: 3, text: "Top Products", selectedTab: "topProduct" },
-    { id: 4, text: "Feautured", selectedTab: "featured" }
+  const tabActions: { id: number; text: string; value: SortTab }[] = [
+    { id: 1, text: "Recommended", value: "recommended" },
+    { id: 2, text: "Best sellers", value: "bestSelling" },
+    { id: 3, text: "Top pieces", value: "topProduct" },
+    { id: 4, text: "Signature", value: "featured" }
   ];
 
-  const handleTabChange = (
-    tab: "recommended" | "bestSelling" | "topProduct" | "featured"
-  ) => {
+  const handleTabChange = (tab: SortTab) => {
     dispatch(setLoading(true));
     setSelectedTab(tab);
-    window.scroll({
-      top: 0,
-      behavior: "smooth"
-    });
     setTimeout(() => {
-      let filteredProducts;
-
-      filteredProducts = products.filter((product) => {
-        if (
-          tab === "recommended" ||
-          tab === "bestSelling" ||
-          tab === "featured" ||
-          tab === "topProduct"
-        ) {
-          return product[tab];
-        }
-        return false;
-      });
-
+      const filteredProducts = products.filter((product) => product[tab]);
       dispatch(setFilterProducts(filteredProducts));
       dispatch(setLoading(false));
-    }, 500);
+    }, 400);
   };
+
   return (
     <div className="grid grid-cols-2 gap-2">
       {tabActions.map((tab) => (
-        <Button
+        <button
           key={tab.id}
-          variant="ghost"
-          onClick={() => handleTabChange(tab.selectedTab)}
-          className={`px-4 py-2 text-xs p-1 h-6 ${
-            selectedTab === tab.selectedTab
-              ? "bg-slate-400 text-white"
-              : "border-2"
-          }  mr-2`}
+          type="button"
+          onClick={() => handleTabChange(tab.value)}
+          aria-pressed={selectedTab === tab.value}
+          className={cn(
+            "cursor-pointer border px-3 py-2 text-left font-mono text-[0.6rem] uppercase tracking-[0.14em] transition-all duration-300",
+            selectedTab === tab.value
+              ? "border-bronze bg-bronze text-paper"
+              : "border-line text-ink-2 hover:border-bronze hover:text-bronze"
+          )}
         >
           {tab.text}
-        </Button>
+        </button>
       ))}
     </div>
   );

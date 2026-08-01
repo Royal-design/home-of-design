@@ -1,204 +1,112 @@
-import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
-import { useEffect, useState } from "react";
-import clsx from "clsx";
-import { FiHome } from "react-icons/fi";
-import { CiShoppingCart } from "react-icons/ci";
-import { CiCircleInfo } from "react-icons/ci";
-import { CiShop } from "react-icons/ci";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter
-} from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import { data } from "@/assets/data/data";
+import { Reveal } from "./Reveal";
+
+const shopLinks = [
+  { to: "/products", label: "All pieces" },
+  ...data.categories.slice(0, 4).map((c) => ({
+    to: "/products",
+    label: c.name
+  }))
+];
+
+const houseLinks = [
+  { to: "/about", label: "The House" },
+  { to: "/blogs", label: "Journal" },
+  { to: "/contact", label: "Contact" },
+  { to: "/profile", label: "My account" }
+];
+
 export const Footer = () => {
-  const [showFooter, setShowFooter] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const year = new Date().getFullYear();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const fullHeight = document.body.scrollHeight;
-
-      const isAtBottom = currentScrollY + windowHeight >= fullHeight - 10;
-
-      if (isAtBottom) {
-        setShowFooter(true);
-      } else if (currentScrollY > lastScrollY) {
-        setShowFooter(false);
-      } else {
-        setShowFooter(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
   return (
-    <div className="">
-      <footer className="md:hidden pt-[5rem]">
-        <div
-          className={clsx(
-            "fixed bottom-0 left-0 w-full z-10 bg-banner border-t rounded-t-[2rem] border-border-line shadow-md transition-transform duration-300",
-            showFooter ? "translate-y-0" : "translate-y-full"
-          )}
-        >
-          <div className="flex justify-around py-2">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `flex flex-col p-1 items-center text-sm transition-colors ${
-                  isActive
-                    ? "border border-border-line rounded-lg  transition-all duration-200"
-                    : "text-light-color"
-                }`
-              }
-            >
-              <FiHome size={22} />
-              <span className="text-lighter-color">Home</span>
-            </NavLink>
-            <NavLink
-              to="/products"
-              className={({ isActive }) =>
-                `flex flex-col p-1 items-center text-sm transition-colors ${
-                  isActive
-                    ? "border border-border-line rounded-lg  transition-all duration-200"
-                    : "text-light-color"
-                }`
-              }
-            >
-              <CiShop size={22} />
-              <span className="text-lighter-color">Shop</span>
-            </NavLink>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                `flex flex-col p-1 items-center text-sm transition-colors ${
-                  isActive
-                    ? "border border-border-line rounded-lg  transition-all duration-200"
-                    : "text-light-color"
-                }`
-              }
-            >
-              <CiCircleInfo size={22} />
-              <span className="text-lighter-color">About</span>
-            </NavLink>
-            <NavLink
-              to="/shopping-cart"
-              className={({ isActive }) =>
-                `flex flex-col p-1 items-center text-sm transition-colors ${
-                  isActive
-                    ? "border border-border-line rounded-lg  transition-all duration-200"
-                    : "text-light-color"
-                }`
-              }
-            >
-              <CiShoppingCart size={22} />
-              <span className="text-lighter-color">Cart</span>
-            </NavLink>
-          </div>
-        </div>
-      </footer>
-      <footer className="bg-banner max-md:px-4 max-lg:px-8  text-black dark:text-white py-12 px-[6rem] max-sm:px-[1rem] max-sm:hidden">
-        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-4">
-          {/* Logo and Info Section */}
-          <div className="flex flex-col items-center max-md:items-start max-sm:items-start">
-            <img src={logo} alt="HD" className="w-[3rem]" />
-            <p className="text-sm max-w-4xl text-slate-700 leading-[150%] dark:text-slate-200">
-              Elevate your living spaces with timeless designs and innovative
-              furniture. Crafted for comfort, built to last.
-            </p>
-          </div>
-
-          {/* Contact Info Section */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
-            <p className="text-sm text-slate-700 dark:text-slate-200 ">
-              123 Furniture Street, Lagos, Nigeria
-            </p>
-            <p className="text-sm text-slate-700 dark:text-slate-200  mt-2">
-              Phone: +234 123 456 7890
-            </p>
-            <p className="text-sm text-slate-700 dark:text-slate-200  mt-2">
-              Email: info@furniturehub.com
-            </p>
-          </div>
-
-          {/* Connect Section */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <ul className="space-y-2">
-              <li className="text-sm text-slate-700 dark:text-slate-200 ">
-                <Link to="/" className="link">
-                  Home
-                </Link>
-              </li>
-              <li className="text-sm text-slate-700 dark:text-slate-200 ">
-                <Link to="/products" className="link">
-                  Shop
-                </Link>
-              </li>
-              <li className="text-sm text-slate-700 dark:text-slate-200 ">
-                <Link to="/blogs" className="link">
-                  Blogs
-                </Link>
-              </li>
-              <li className="text-sm text-slate-700 dark:text-slate-200 ">
-                <Link to="/about" className="link">
-                  About Us
-                </Link>
-              </li>
-              <li className="text-sm text-slate-700 dark:text-slate-200 ">
-                <Link to="/contact" className="link">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Follow Us Section */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-            <div className="flex dark:text-slate-700 text-slate-200  space-x-4">
-              <Link
-                to="#"
-                className="p-2 rounded-full dark:bg-slate-200  bg-gray-700 hover:bg-gray-600"
-              >
-                <FaFacebookF />
-              </Link>
-              <Link
-                to="#"
-                className="p-2 rounded-full dark:bg-slate-200  bg-gray-700 hover:bg-gray-600"
-              >
-                <FaTwitter />
-              </Link>
-              <Link
-                to="#"
-                className="p-2 rounded-full dark:bg-slate-200  bg-gray-700 hover:bg-gray-600"
-              >
-                <FaInstagram />
-              </Link>
-              <Link
-                to="#"
-                className="p-2 rounded-full dark:bg-slate-200  bg-gray-700 hover:bg-gray-600"
-              >
-                <FaLinkedinIn />
-              </Link>
+    <footer className="mt-28 border-t border-line bg-paper">
+      <div className="mx-auto max-w-shell px-5 py-16 sm:px-6 sm:py-20">
+        <div className="grid gap-12 md:grid-cols-12">
+          <Reveal className="md:col-span-5">
+            <div className="flex items-center gap-3">
+              <span className="flex h-9 w-9 items-center justify-center border border-bronze font-display text-sm text-ink">
+                H·D
+              </span>
+              <span className="font-mono text-[0.58rem] uppercase tracking-[0.32em] text-ink-2">
+                Home of Design
+              </span>
             </div>
-          </div>
+            <h2 className="mt-8 max-w-sm font-display text-4xl leading-[1.05] text-ink sm:text-5xl">
+              Objects for living, made with material honesty.
+            </h2>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-2">
+              {data.storeDetails.description} Each piece is designed in-house,
+              built to outlive trends, and finished to age beautifully.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1} className="md:col-span-2">
+            <p className="eyebrow text-ink-3">Shop</p>
+            <ul className="mt-5 space-y-3">
+              {shopLinks.map((l) => (
+                <li key={l.label}>
+                  <Link
+                    to={l.to}
+                    className="text-sm text-ink-2 transition-colors duration-300 hover:text-bronze"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.15} className="md:col-span-2">
+            <p className="eyebrow text-ink-3">The House</p>
+            <ul className="mt-5 space-y-3">
+              {houseLinks.map((l) => (
+                <li key={l.label}>
+                  <Link
+                    to={l.to}
+                    className="text-sm text-ink-2 transition-colors duration-300 hover:text-bronze"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal delay={0.2} className="md:col-span-3">
+            <p className="eyebrow text-ink-3">Studio</p>
+            <address className="mt-5 space-y-3 text-sm not-italic text-ink-2">
+              <p>1 Design District, Lagos</p>
+              <p>
+                <a href="tel:+2341234567890" className="transition-colors hover:text-bronze">
+                  +234 123 456 7890
+                </a>
+              </p>
+              <p>
+                <a
+                  href="mailto:atelier@homeofdesign.com"
+                  className="transition-colors hover:text-bronze"
+                >
+                  atelier@homeofdesign.com
+                </a>
+              </p>
+            </address>
+            <p className="mt-6 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-3">
+              Tues — Sat, 10:00 — 18:00
+            </p>
+          </Reveal>
         </div>
 
-        <div className="mt-8 border-t border-gray-700 dark:border-white pt-4 text-center">
-          <p className="text-sm text-slate-700 dark:text-slate-200">
-            © {new Date().getFullYear()} Emmanuel All rights reserved.
+        <div className="mt-16 flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-3">
+            © {year} Home of Design
+          </p>
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-3">
+            Furniture & objects for living
           </p>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 };

@@ -1,40 +1,31 @@
-import advert from "../assets/adverts/advert.png";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { Reveal } from "./Reveal";
 
 export const Advert = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{
-        duration: 1
-      }}
-    >
-      <div className="px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] mt-[2rem]  h-[10rem] max-sm:h-full w-full">
-        <div className=" px-[2rem] bg-banner">
-          <div className="flex items-center gap-[1rem] [@media(max-width:399px)]:flex-col [@media(max-width:399px)]:p-2  h-full">
-            <figure className="h-[10rem] max-sm:w-full max-sm:h-full">
-              <img
-                src={advert}
-                alt="advert"
-                className="w-full h-full object-cover"
-              />
-            </figure>
-            <article className="ml-[10rem] max-sm:ml-0 max-md:ml-16 max-lg:ml-16 flex flex-col gap-2 font-Titillium-Web">
-              <h2 className="text-base max-sm:text-sm">
-                Big Savings Alert! 🛋️
-              </h2>
-              <h3 className="text-xl max-sm:text-base">
-                Get up to{" "}
-                <span className="text-2xl max-sm:text-lg">30% OFF</span> on
-                select furniture
-              </h3>
-              <p className="max-sm:text-sm">Upgrade your space today!</p>
-            </article>
+    <section className="border-t border-line bg-ink text-paper">
+      <div className="mx-auto max-w-shell px-5 py-24 text-center sm:px-6 sm:py-32">
+        <Reveal>
+          <p className="eyebrow text-bronze">The seasonal edit</p>
+          <h2 className="mx-auto mt-6 max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-tight">
+            Up to 30% off the pieces{" "}
+            <em className="italic text-bronze">we love most.</em>
+          </h2>
+          <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-paper/70">
+            A short list of favourites from the collection — reduced until the
+            season turns. When they’re gone, they’re gone.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-3 bg-paper px-8 py-4 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink transition-all duration-500 ease-expo-out hover:bg-bronze hover:text-paper"
+            >
+              Shop the edit <ArrowRight size={14} />
+            </Link>
           </div>
-        </div>
+        </Reveal>
       </div>
-    </motion.div>
+    </section>
   );
 };

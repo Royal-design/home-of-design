@@ -13,6 +13,9 @@ import { auth, db } from "@/firebase/firebaseConfig";
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { Timestamp } from "firebase/firestore";
 
+const errorMessage = (error: unknown): string =>
+  error instanceof Error ? error.message : String(error);
+
 export type UserType = {
   id: string;
   firstname: string;
@@ -22,7 +25,7 @@ export type UserType = {
   photoPath: string | null;
   isAdmin: boolean;
   description?: string;
-  updatedAt?: any;
+  updatedAt?: string;
 };
 
 interface AuthState {
@@ -99,9 +102,9 @@ export const registerUser =
       dispatch(setUser(userData));
 
       return { success: true };
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Check if the error is a network issue
-      if (error.code === "auth/network-request-failed") {
+      if ((error as { code?: string }).code === "auth/network-request-failed") {
         dispatch(
           setError("Network error. Please check your internet connection.")
         );
@@ -111,8 +114,8 @@ export const registerUser =
         };
       }
       // Handle other errors
-      dispatch(setError(error.message));
-      return { success: false, message: error.message };
+      dispatch(setError(errorMessage(error)));
+      return { success: false, message: errorMessage(error) };
     } finally {
       dispatch(setLoading(false));
     }
@@ -141,9 +144,9 @@ export const loginUser =
         dispatch(setError(errorMessage));
         return { success: false, message: errorMessage };
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Check if the error is a network issue
-      if (error.code === "auth/network-request-failed") {
+      if ((error as { code?: string }).code === "auth/network-request-failed") {
         dispatch(
           setError("Network error. Please check your internet connection.")
         );
@@ -154,8 +157,8 @@ export const loginUser =
       }
 
       // Handle other errors
-      dispatch(setError(error.message));
-      return { success: false, message: error.message };
+      dispatch(setError(errorMessage(error)));
+      return { success: false, message: errorMessage(error) };
     } finally {
       dispatch(setLoading(false));
     }
@@ -185,9 +188,9 @@ export const loginWithGoogle =
       dispatch(setUser(userData));
 
       return { success: true };
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Check if the error is a network issue
-      if (error.code === "auth/network-request-failed") {
+      if ((error as { code?: string }).code === "auth/network-request-failed") {
         dispatch(
           setError("Network error. Please check your internet connection.")
         );
@@ -198,8 +201,8 @@ export const loginWithGoogle =
       }
 
       // Handle other errors
-      dispatch(setError(error.message));
-      return { success: false, message: error.message };
+      dispatch(setError(errorMessage(error)));
+      return { success: false, message: errorMessage(error) };
     } finally {
       dispatch(setLoading(false));
     }
@@ -214,8 +217,8 @@ export const logoutUser =
       dispatch(clearUser());
 
       return { success: true };
-    } catch (error: any) {
-      if (error.code === "auth/network-request-failed") {
+    } catch (error: unknown) {
+      if ((error as { code?: string }).code === "auth/network-request-failed") {
         dispatch(
           setError("Network error. Please check your internet connection.")
         );
@@ -225,8 +228,8 @@ export const logoutUser =
         };
       }
 
-      dispatch(setError(error.message));
-      return { success: false, message: error.message };
+      dispatch(setError(errorMessage(error)));
+      return { success: false, message: errorMessage(error) };
     } finally {
       dispatch(setLoading(false));
     }
@@ -247,7 +250,7 @@ export const checkAuthState = (): AppThunk => (dispatch) => {
   });
 };
 
-export const formatUserData = (data: any): any => {
+export const formatUserData = (data: unknown): unknown => {
   if (data === null || data === undefined) return data;
 
   if (data instanceof Timestamp) {
@@ -260,7 +263,10 @@ export const formatUserData = (data: any): any => {
 
   if (typeof data === "object") {
     return Object.fromEntries(
-      Object.entries(data).map(([key, value]) => [key, formatUserData(value)])
+      Object.entries(data as Record<string, unknown>).map(([key, value]) => [
+        key,
+        formatUserData(value)
+      ])
     );
   }
 
@@ -278,8 +284,8 @@ export const getUserData = (): AppThunk => (dispatch) => {
           const formattedUser = formatUserData(userDoc.data());
           dispatch(setUser(formattedUser as UserType));
         }
-      } catch (error: any) {
-        dispatch(setError(error.message));
+      } catch (error: unknown) {
+        dispatch(setError(errorMessage(error)));
       } finally {
         dispatch(setLoading(false));
       }
@@ -299,8 +305,8 @@ export const getUsers = (): AppThunk => async (dispatch) => {
     ) as UserType[];
 
     dispatch(setUsers(usersData));
-  } catch (error: any) {
-    dispatch(setError(error.message));
+  } catch (error: unknown) {
+    dispatch(setError(errorMessage(error)));
   } finally {
     dispatch(setLoading(false));
   }

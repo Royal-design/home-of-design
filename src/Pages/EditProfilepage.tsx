@@ -174,7 +174,7 @@ export const EditProfilepage = () => {
               <FormField
                 control={form.control}
                 name="photo"
-                render={({}) => (
+                render={() => (
                   <FormItem>
                     <FormLabel className="require">
                       Upload Profile Image

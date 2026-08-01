@@ -1,9 +1,6 @@
 import { useAppSelector } from "@/redux/store";
 import { useParams } from "react-router-dom";
 import BreadCrumbs from "@/components/BreadCrumbs";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@radix-ui/react-separator";
-import { motion } from "framer-motion";
 import { CalendarDays, MessageCircle, Tag } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,13 +23,7 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { db } from "@/firebase/firebaseConfig";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
@@ -41,8 +32,11 @@ import { RecentBlogs } from "@/components/RecentBlogs";
 import { Footer } from "@/components/Footer";
 import { BlogFilter } from "@/components/ui/BlogFilter";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { Reveal } from "@/components/Reveal";
+import { Link } from "react-router-dom";
 
 type BlogType = (typeof blogs)[0];
+
 export const BlogDetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -52,11 +46,6 @@ export const BlogDetailPage = () => {
   const { user } = useAppSelector((state) => state.auth);
   const topProducts = products.filter((product) => product.topProduct);
   const blogCategory = blogs.map((blog) => blog.category);
-  useEffect(() => {
-    window.scrollTo({
-      top: 0
-    });
-  }, []);
 
   const commentSchema = z.object({
     firstname: z
@@ -69,11 +58,11 @@ export const BlogDetailPage = () => {
     email: z
       .string({ invalid_type_error: "Must be a valid email" })
       .email({ message: "It must be a valid email" }),
-
     comment: z
       .string()
       .min(3, { message: "Comment must be at least 3 characters" })
   });
+
   const form = useForm<z.infer<typeof commentSchema>>({
     resolver: zodResolver(commentSchema),
     defaultValues: {
@@ -97,9 +86,8 @@ export const BlogDetailPage = () => {
           blogId: blog?.id,
           content: userData.comment,
           image: user.photo,
-          date: new Date().toISOString() // Standard date format
+          date: new Date().toISOString()
         });
-
         toast.success("New comment added");
         form.reset();
       } catch (error) {
@@ -120,7 +108,6 @@ export const BlogDetailPage = () => {
       where("blogId", "==", blog.id)
     );
 
-    // Listen for real-time updates
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedComments = snapshot.docs.map((doc) => {
         const data = doc.data();
@@ -132,8 +119,6 @@ export const BlogDetailPage = () => {
           comment: data.content
         };
       });
-
-      // Update local storage with the latest comments
       localStorage.setItem(
         `hdcomments-${blog.id}`,
         JSON.stringify(fetchedComments)
@@ -169,352 +154,327 @@ export const BlogDetailPage = () => {
     }
   }, [blog]);
 
+  if (!blog) {
+    return (
+      <div className="flex min-h-[70vh] items-center justify-center bg-paper px-5">
+        <div className="text-center">
+          <p className="font-display text-3xl text-ink">Note not found</p>
+          <Link to="/blogs" className="btn-outline mt-6 inline-flex">
+            Back to the journal
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const fieldClass =
+    "h-11 rounded-none border-line bg-paper-2/50 px-4 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0";
+
   return (
-    <div>
-      <header className="h-[20rem] max-sm:h-auto font-Titillium-Web relative w-full">
+    <div className="bg-paper">
+      <header className="relative flex min-h-[46vh] items-end overflow-hidden">
         <img
-          src={blog?.backgroundImage}
-          alt={blog?.author}
-          className="h-full w-full object-cover"
+          src={blog.backgroundImage}
+          alt=""
+          aria-hidden="true"
+          className="fade-img absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
         />
-        <article className="absolute inset-0  bg-banner-overlay gap-4 flex flex-col max-sm:px-4 items-center justify-center">
-          <h1 className="text-3xl text-center font-bold max-sm:text-xl max-md:text-xl max-sm:text-center text-white dark:text-gray-100">
-            {blog?.title}
-          </h1>
-          <p className="text-lg max-sm:text-base max-w-3xl text-center max-sm:px-2 max-sm:w-full text-gray-300 dark:text-gray-300 ">
-            {blog?.shortDescription}
-          </p>
-          <div className="">
-            <BreadCrumbs />
-          </div>
-        </article>
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-12 sm:px-6">
+          <Reveal>
+            <p className="eyebrow text-paper/70">{blog.category}</p>
+            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] tracking-tight text-paper sm:text-6xl">
+              {blog.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-paper/80">
+              {blog.shortDescription}
+            </p>
+            <div className="mt-6 text-paper/70">
+              <BreadCrumbs />
+            </div>
+          </Reveal>
+        </div>
       </header>
 
-      <main className="main flex flex-col gap-4 my-[2rem] px-[6rem] max-md:px-4 max-lg:px-8 max-sm:px-4">
-        <div className="hidden max-sm:block max-md:block">
+      <main className="mx-auto max-w-shell px-5 py-14 sm:px-6 sm:py-20">
+        <div className="lg:hidden">
           <BlogFilter
             blogCategory={blogCategory}
             handleBlogClick={handleBlogClick}
             topProducts={topProducts}
           />
         </div>
-        <div className="flex max-md:flex-col max-sm:flex-col gap-8">
-          <section className="w-[70%] max-md:w-full max-sm:w-full flex flex-col gap-4 h-auto">
-            <div className="h-[15rem] w-full">
-              <img
-                src={blog?.image}
-                alt={blog?.author}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <article className="w-full justify-between my-[1rem] flex gap-3">
-              <div className=" items-center flex   gap-2">
+
+        <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
+          <article>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-line pb-6">
+              <div className="flex items-center gap-3">
                 <img
-                  src={blog?.authorImage}
-                  alt={blog?.author}
-                  className="h-8 w-8 rounded-full object-cover"
+                  src={blog.authorImage}
+                  alt={blog.author}
+                  className="h-9 w-9 rounded-full object-cover"
                 />
-                <p className="text-xs max-sm:text-[10px] w-full">
-                  {blog?.author}
+                <p className="text-sm text-ink">{blog.author}</p>
+              </div>
+              <div className="flex items-center gap-2 text-ink-3">
+                <CalendarDays size={15} strokeWidth={1.5} />
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em]">
+                  {blog.date}
                 </p>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 ">
-                  <CalendarDays size={20} />
-                  <p className="text-xs max-sm:text-[10px]">{blog?.date}</p>
-                </div>
-                <Separator
-                  orientation="vertical"
-                  className="border-[1px]  h-full"
-                />
-
-                <div className="flex items-center gap-2">
-                  <Tag size={20} />
-                  <p className="text-xs max-sm:text-[10px]">{blog?.category}</p>
-                </div>
-                <Separator
-                  orientation="vertical"
-                  className="border-[1px] h-full"
-                />
-
-                <div className="flex items-center gap-2">
-                  <MessageCircle size={20} />
-                  <p className="text-xs max-sm:text-[10px]">
-                    {updateComments.length}
-                  </p>
-                </div>
+              <div className="flex items-center gap-2 text-ink-3">
+                <Tag size={15} strokeWidth={1.5} />
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em]">
+                  {blog.category}
+                </p>
               </div>
-            </article>
-            <div className="flex flex-col gap-1">
-              <h1 className="text-xl max-sm:text-base font-bold dark:text-slate-300 text-slate-700">
-                {blog?.title}
-              </h1>
-              <Separator className="border-[1px] my-2 dark:border-slate-800 border-black" />
-              <p className="text-sm text-slate-700  dark:text-slate-300">
-                {blog?.shortDescription}
-              </p>
-
-              <p className="leading-[2rem] text-sm text-slate-700 dark:text-slate-300">
-                {blog?.longDescription}
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p>TAGS:</p>
-              <div className="text-black flex gap-2 flex-wrap">
-                {blog?.tags.map((tag, i) => (
-                  <Button
-                    className=" h-[1.5rem] px-2 py-1 text-primary duration-200 hover:bg-button-hover bg-button text-xs rounded-md"
-                    key={i}
-                  >
-                    {tag}
-                  </Button>
-                ))}
+              <div className="flex items-center gap-2 text-ink-3">
+                <MessageCircle size={15} strokeWidth={1.5} />
+                <p className="font-mono text-[0.62rem] uppercase tracking-[0.16em]">
+                  {updateComments.length}
+                </p>
               </div>
             </div>
-            <div className=" flex my-2 gap-2 w-full items-center">
-              <p className="text-slate-700 dark:text-slate-300">Comments </p>
-              <p className="h-5 w-5 bg-background-card text-slate-700 dark:text-slate-300 rounded-full p-2 flex items-center justify-center">
-                {updateComments.length}
-              </p>
+
+            <div className="mt-8 aspect-[16/9] overflow-hidden bg-paper-2">
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="fade-img h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
-            <div className="flex flex-col gap-[1rem] w-full">
-              {updateComments.length >= 1 &&
-                updateComments.map((comment, i) => (
-                  <motion.div
-                    initial={{ scale: 1 }}
-                    whileHover={{
-                      scale: 1.01,
-                      boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="h-auto p-2 flex flex-col gap-2 w-full bg-transparent border-slate-700 border rounded-lg"
-                    key={i}
-                  >
-                    <div className="flex gap-2 items-center">
+
+            <p className="mt-8 text-lg leading-[1.9] text-ink-2">
+              {blog.shortDescription}
+            </p>
+            <p className="mt-6 text-[15px] leading-[1.9] text-ink-2">
+              {blog.longDescription}
+            </p>
+
+            <div className="mt-10 flex flex-wrap items-center gap-3 border-t border-line pt-6">
+              <p className="eyebrow text-ink-3">Tags</p>
+              {blog.tags.map((tag, i) => (
+                <span
+                  key={i}
+                  className="border border-line px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-ink-2"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <section className="mt-14">
+              <h2 className="font-display text-3xl text-ink">
+                Comments{" "}
+                <span className="font-mono text-base text-ink-3">
+                  ({updateComments.length})
+                </span>
+              </h2>
+
+              <div className="mt-8 space-y-5">
+                {updateComments.map((comment, i) => (
+                  <div key={i} className="border border-line bg-paper-2/40 p-5">
+                    <div className="flex items-center gap-3">
                       <img
                         src={comment.avatar}
                         alt={comment.name}
-                        className="h-8 w-8 rounded-full object-cover"
+                        className="h-9 w-9 rounded-full object-cover"
                       />
-                      <article>
-                        <div className="flex flex-col text-slate-700 dark:text-slate-400">
-                          <p className="text-sm font-bold">{comment.name}</p>{" "}
-                          <p className="text-xs">{comment.date}</p>
-                        </div>
-                      </article>
-                    </div>
-
-                    <p className="text-slate-700 dark:text-slate-300">
-                      {" "}
-                      {comment.comment}
-                    </p>
-                  </motion.div>
-                ))}
-            </div>
-            <div className="w-full">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)}>
-                  <Card className="bg-background overflow-hidden text-primary max-sm:w-full w-[25rem]">
-                    <CardHeader>
-                      <CardTitle className=" text-lg">
-                        Leave a comment
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex flex-col gap-2">
-                      <div className="flex w-full max-md:flex-col max-sm:flex-col gap-5 max-sm:gap-2">
-                        <FormField
-                          control={form.control}
-                          name="firstname"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="require">
-                                First Name
-                              </FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="text"
-                                  className="focus:border-green-400 border-primary focus:border-1 duration-150"
-                                  placeholder="Enter your firstname"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="lastname"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="require">
-                                Last Name
-                              </FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="text"
-                                  className="focus:border-green-400 border-primary focus:border-1 duration-150"
-                                  placeholder="Enter your lastname"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      <div className="flex w-full max-sm:flex-col max-md:flex-col gap-5 max-sm:gap-2">
-                        <FormField
-                          control={form.control}
-                          name="address"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="require">Address</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="text"
-                                  className="focus:border-green-400 border-primary focus:border-1 duration-150"
-                                  placeholder="Enter your address"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="require">Email</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="email"
-                                  className="focus:border-green-400 border-primary focus:border-1 duration-150"
-                                  placeholder="Enter a valid email"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="comment"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="require">Comment</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                className=" focus:border-green-400 h-[5rem] border-primary focus:border-1 duration-150"
-                                placeholder="Leave a comment..."
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </CardContent>
-                    <CardFooter className="flex flex-col bg-background justify-center items-center">
-                      <Button
-                        disabled={form.formState.isSubmitting}
-                        type="submit"
-                        className="w-full text-primary duration-200 hover:bg-button-hover bg-button "
-                      >
-                        {form.formState.isSubmitting ? (
-                          <>
-                            <svg
-                              className="animate-spin h-5 w-5 mr-2 text-white"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              ></circle>
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8v8H4z"
-                              ></path>
-                            </svg>
-                            Posting
-                          </>
-                        ) : (
-                          "Post"
-                        )}
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </form>
-              </Form>
-            </div>
-          </section>
-          <section className="max-sm:hidden max-md:hidden px-4 ">
-            <RecentBlogs handleBlogClick={handleBlogClick} />
-            <div className="my-[1rem]">
-              <h2>Top Products</h2>
-              {topProducts.map((product) => (
-                <motion.div
-                  initial={{ scale: 1 }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"
-                  }}
-                  key={product.id}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => {
-                    navigate(`/products/${product.id}`);
-                  }}
-                  className="cursor-pointer"
-                >
-                  <div className="flex rounded-md p-2 items-center bg-background gap-2 h-auto">
-                    <img
-                      src={product.mainImage}
-                      alt={product.name}
-                      className="h-[3rem] rounded-full bg-banner w-[3rem] object-cover"
-                    />
-                    <article className="flex flex-col gap-1">
-                      <div className="flex gap-2 items-center">
-                        <p className="text-yellow-500">
-                          {"★".repeat(product.rating)}{" "}
-                          {"☆".repeat(5 - product.rating)}
+                      <div>
+                        <p className="text-sm font-medium text-ink">
+                          {comment.name}
+                        </p>
+                        <p className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-ink-3">
+                          {comment.date}
                         </p>
                       </div>
-                      <p className="text-xs dark:text-slate-400">
-                        {product.name}
-                      </p>
-                    </article>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-2">
+                      {comment.comment}
+                    </p>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-            <div className="flex flex-col gap-1 mt-6 bg-background-card p-1">
-              <p className="dark:text-slate-300 text-lg">Blog Category</p>
-              <ul className="grid grid-cols-2  gap-2 ">
-                {blogCategory.map((category, i) => (
-                  <li
-                    key={i}
-                    className="flex p-1 rounded-md text-primary duration-200 hover:bg-button-hover bg-button text-xs justify-between items-center w-full"
-                  >
-                    <p>{category}</p>
-                  </li>
                 ))}
-              </ul>
+              </div>
+
+              <div className="mt-12 border border-line bg-paper-2/40 p-7 sm:p-9">
+                <h3 className="font-display text-2xl text-ink">
+                  Leave a comment
+                </h3>
+                {!user && (
+                  <p className="mt-3 text-sm text-ink-2">
+                    Please{" "}
+                    <Link to="/login" className="text-bronze underline underline-offset-4">
+                      sign in
+                    </Link>{" "}
+                    to join the conversation.
+                  </p>
+                )}
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(handleSubmit)}>
+                    <Card className="border-0 bg-transparent shadow-none">
+                      <CardContent className="space-y-5 p-0">
+                        <div className="grid gap-5 sm:grid-cols-2">
+                          <FormField
+                            control={form.control}
+                            name="firstname"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="eyebrow text-ink-2">
+                                  First name
+                                </FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="text"
+                                    className={fieldClass}
+                                    placeholder="Jane"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="lastname"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="eyebrow text-ink-2">
+                                  Last name
+                                </FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="text"
+                                    className={fieldClass}
+                                    placeholder="Doe"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <div className="grid gap-5 sm:grid-cols-2">
+                          <FormField
+                            control={form.control}
+                            name="address"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="eyebrow text-ink-2">
+                                  Address
+                                </FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="text"
+                                    className={fieldClass}
+                                    placeholder="Your address"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="eyebrow text-ink-2">
+                                  Email
+                                </FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="email"
+                                    className={fieldClass}
+                                    placeholder="you@example.com"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                        <FormField
+                          control={form.control}
+                          name="comment"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="eyebrow text-ink-2">
+                                Comment
+                              </FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  className="min-h-[8rem] rounded-none border-line bg-paper-2/50 px-4 py-3 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0"
+                                  placeholder="Your thoughts…"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </CardContent>
+                      <CardFooter className="px-0 pt-6">
+                        <button
+                          type="submit"
+                          disabled={form.formState.isSubmitting}
+                          className="btn-primary w-full sm:w-auto"
+                        >
+                          {form.formState.isSubmitting ? "Posting…" : "Post comment"}
+                        </button>
+                      </CardFooter>
+                    </Card>
+                  </form>
+                </Form>
+              </div>
+            </section>
+          </article>
+
+          <aside className="hidden lg:block">
+            <div className="sticky top-28 space-y-10">
+              <RecentBlogs handleBlogClick={handleBlogClick} />
+              <div>
+                <p className="eyebrow text-ink-3">Top pieces</p>
+                <div className="mt-5 space-y-3">
+                  {topProducts.map((product) => (
+                    <button
+                      key={product.id}
+                      type="button"
+                      onClick={() => navigate(`/products/${product.id}`)}
+                      className="group flex w-full cursor-pointer items-center gap-3 border border-line p-3 text-left transition-colors hover:border-bronze"
+                    >
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-paper-2">
+                        <img
+                          src={product.mainImage}
+                          alt={product.name}
+                          className="h-full w-full object-contain"
+                          loading="lazy"
+                        />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block truncate text-sm text-ink">
+                          {product.name}
+                        </span>
+                        <span className="eyebrow mt-1 block text-bronze">
+                          {product.category}
+                        </span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-          </section>
+          </aside>
         </div>
       </main>
+
       <ScrollToTop />
       <Footer />
     </div>

@@ -1,5 +1,4 @@
 import { ProductCard } from "@/components/ProductCard";
-import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -7,6 +6,7 @@ import { ProductSkeleton } from "./ProductSkeleton";
 import { ProductType } from "@/types";
 import { addFavorite, removeFavorite } from "@/redux/slice/favouriteSlice";
 import { addToCart } from "@/redux/slice/cartSlice";
+import { cn } from "@/lib/utils";
 
 export const AllProducts = () => {
   const { filterProducts, loading } = useAppSelector((state) => state.products);
@@ -25,105 +25,102 @@ export const AllProducts = () => {
     dispatch(addToCart({ ...product, qty: 1 }));
   };
 
-  //paginantion
   const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(1);
-  // Calculate total pages
-  const totalPages = Math.ceil(filterProducts.length / itemsPerPage);
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filterProducts.length / itemsPerPage)
+  );
 
-  // Get the items for the current page
   const currentProducts = filterProducts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  // Handle page change
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filterProducts.length]);
 
-  // Handle next page
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  // Handle previous page
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   return (
     <section className="w-full">
-      {filterProducts.length === 0 && (
-        <p className="mt-4 text-primary text-center">
-          No products found. Check back later :)
+      <div className="mb-8 flex items-center justify-between">
+        <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink-3">
+          {filterProducts.length} {filterProducts.length === 1 ? "piece" : "pieces"}
         </p>
-      )}
-      <div className=" ">
-        {loading ? (
-          <div className=" grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] max-sm:grid-cols-2   max-md:grid-cols-3 gap-4">
-            {[...Array(6).keys()].map((index) => (
-              <ProductSkeleton key={index} />
-            ))}
-          </div>
-        ) : (
-          <div className="">
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] max-sm:grid-cols-2  max-md:grid-cols-3 gap-4">
-              {currentProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  addToCartClick={addToCartClick}
-                  favourites={favourites}
-                  toggleFavorite={toggleFavorite}
-                />
-              ))}
-            </div>
-            {filterProducts.length !== 0 && (
-              <div className="pagination mt-2 flex justify-between items-center gap-2 w-full">
-                <span>
-                  Page {currentPage} of {totalPages}
-                </span>
-                <div className="action flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    onClick={handlePrevPage}
-                    disabled={currentPage === 1}
-                  >
-                    <MoveLeft />
-                  </Button>
-                  {Array.from({ length: totalPages }, (_, i) => (
-                    <Button
-                      key={i + 1}
-                      onClick={() => handlePageChange(i + 1)}
-                      className={
-                        currentPage === i + 1
-                          ? "active w-[1rem] h-[1rem]"
-                          : "w-[1rem] h-[1rem]"
-                      }
-                    >
-                      {i + 1}
-                    </Button>
-                  ))}
-                  <Button
-                    variant="ghost"
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                  >
-                    <MoveRight />
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
       </div>
+
+      {filterProducts.length === 0 && !loading && (
+        <div className="flex flex-col items-center gap-4 py-24 text-center">
+          <p className="font-display text-2xl text-ink">Nothing matched</p>
+          <p className="max-w-xs text-sm text-ink-2">
+            Try clearing a filter or choosing a different room.
+          </p>
+        </div>
+      )}
+
+      {loading ? (
+        <div className="grid grid-cols-2 gap-x-5 gap-y-12 sm:grid-cols-3">
+          {[...Array(6).keys()].map((index) => (
+            <ProductSkeleton key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-x-5 gap-y-12 max-sm:gap-x-3 sm:grid-cols-3">
+          {currentProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              addToCartClick={addToCartClick}
+              favourites={favourites}
+              toggleFavorite={toggleFavorite}
+            />
+          ))}
+        </div>
+      )}
+
+      {!loading && totalPages > 1 && (
+        <div className="mt-16 flex items-center justify-center gap-2">
+          <button
+            type="button"
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            aria-label="Previous page"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center border border-line text-ink-2 transition-all hover:border-bronze hover:text-bronze disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <MoveLeft size={15} />
+          </button>
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              type="button"
+              onClick={() => setCurrentPage(i + 1)}
+              aria-label={`Page ${i + 1}`}
+              aria-current={currentPage === i + 1 ? "page" : undefined}
+              className={cn(
+                "flex h-10 w-10 cursor-pointer items-center justify-center border font-mono text-xs transition-all duration-300",
+                currentPage === i + 1
+                  ? "border-bronze bg-bronze text-paper"
+                  : "border-line text-ink-2 hover:border-bronze hover:text-bronze"
+              )}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            aria-label="Next page"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center border border-line text-ink-2 transition-all hover:border-bronze hover:text-bronze disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <MoveRight size={15} />
+          </button>
+        </div>
+      )}
     </section>
   );
 };

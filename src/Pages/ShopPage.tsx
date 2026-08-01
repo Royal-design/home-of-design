@@ -2,113 +2,82 @@ import { AllProducts } from "@/components/AllProducts";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { Footer } from "@/components/Footer";
 import { ProductsFilter } from "@/components/ProductsFilter";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { PiPhoneCallLight } from "react-icons/pi";
-import { LiaShippingFastSolid } from "react-icons/lia";
-import { RiSecurePaymentLine } from "react-icons/ri";
 import { ProductFilterSheet } from "@/components/ProductFilterSheet";
-import { useEffect } from "react";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/Reveal";
+import { Truck, PhoneCall, ShieldCheck } from "lucide-react";
+import shopHeader from "@/assets/banner/shop-header.webp";
 
 export const ShopPage = () => {
-  const deliveryInfo = [
-    {
-      id: 1,
-      icon: <LiaShippingFastSolid size={30} />,
-      heading: "Free Shipping",
-      text: "Fast and reliable delivery at no extra cost"
-    },
-    {
-      id: 2,
-      icon: <PiPhoneCallLight size={30} />,
-      heading: "Customer Support",
-      text: "24/7 friendly and professional assistance"
-    },
-    {
-      id: 3,
-      icon: <RiSecurePaymentLine size={30} />,
-      heading: "Secure Payment",
-      text: "Safe and encrypted transactions guaranteed"
-    }
+  const services = [
+    { icon: <Truck size={17} strokeWidth={1.25} />, heading: "White-glove delivery", text: "Delivered, placed and unwrapped" },
+    { icon: <PhoneCall size={17} strokeWidth={1.25} />, heading: "Design advice", text: "A real person, seven days a week" },
+    { icon: <ShieldCheck size={17} strokeWidth={1.25} />, heading: "Secure payment", text: "Encrypted checkout, always" }
   ];
-  useEffect(() => {
-    window.scrollTo({
-      top: 0
-    });
-  }, []);
+
   return (
-    <div>
-      <main className="w-full">
-        <section className="h-[20rem] max-sm:h-auto relative font-Titillium-Web">
-          <img
-            src="https://images.unsplash.com/photo-1680946496238-5272d3c407fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGZ1cm5pdHVyZSUyMGRhcmt8ZW58MHx8MHx8fDA%3D"
-            alt="hero"
-            className="h-full w-full object-cover"
-          />
-          <article className="absolute h-full gap-4 w-full flex flex-col max-sm:px-4 items-center justify-center top-0 bg-banner-overlay ">
-            <motion.h1
-              initial={{ y: -10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl text-center font-bold max-sm:text-lg max-md:text-xl text-white dark:text-gray-100"
-            >
-              Redefine Comfort, Redefine Style
-            </motion.h1>
-
-            <motion.p
-              initial={{ y: 10, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg max-sm:text-base leading-[150%] text-gray-300 dark:text-gray-300  max-sm:w-full w-[60%] text-center"
-            >
-              Discover expertly crafted furniture that blends luxury,
-              functionality, and timeless design. Whether you're furnishing your
-              living room, dining area, or workspace, we have everything you
-              need to create a space you'll love for years to come.
-            </motion.p>
-            <motion.div
-              initial={{ scale: 0.7, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+    <main className="bg-paper">
+      <section className="relative flex h-[52vh] min-h-[24rem] items-end overflow-hidden">
+        <img
+          src={shopHeader}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/45 to-ink/15" />
+        <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">
+          <Reveal>
+            <p className="eyebrow text-paper/70">The shop</p>
+            <h1 className="mt-4 font-display text-5xl tracking-tight text-paper sm:text-7xl">
+              The collection
+            </h1>
+            <div className="mt-6 text-paper/70">
               <BreadCrumbs />
-            </motion.div>
-          </article>
-        </section>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-        <div className="mt-[2rem] px-[5rem] max-md:px-4 max-lg:px-8 max-sm:px-[1rem] gap-8 grid grid-cols-[repeat(4,1fr)] max-md:flex max-md:flex-col max-sm:flex max-sm:flex-col  w-full">
-          <div className="pr-2 col-span-1 w-full max-md:hidden max-sm:hidden h-[55rem]">
-            <ProductsFilter />
+      <section className="mx-auto max-w-shell px-5 py-14 sm:px-6 sm:py-20">
+        <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:gap-12">
+          <div className="hidden lg:block">
+            <div className="sticky top-28 border-t border-line pt-8">
+              <ProductsFilter />
+            </div>
           </div>
-          <div className="hidden max-md:block max-sm:block">
-            <ProductFilterSheet />
-          </div>
-          <div className="w-full col-span-3">
+
+          <div>
+            <div className="mb-8 flex items-center justify-between border-b border-line pb-5 lg:hidden">
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-ink-2">
+                Filter & sort
+              </p>
+              <ProductFilterSheet />
+            </div>
             <AllProducts />
           </div>
         </div>
-      </main>
-      <div className="flex max-md:px-4 max-lg:px-8 max-sm:flex-col gap-2 items-center justify-between w-full my-[4rem] px-[6rem] max-sm:px-[1rem] ">
-        {deliveryInfo.map((info) => (
-          <Card
-            key={info.id}
-            className="h-auto max-sm:h-full max-sm:w-[18rem] hover:scale-[1.1] transition-all hover:border-orange-200 hover:skew-x-2  hover:skew-y-2 duration-200 bg-background p-0 rounded-sm"
-          >
-            <CardHeader className="p-0" />
-            <CardContent className="flex gap-2 p-2 items-center">
-              <div className="">{info.icon}</div>
-              <div className="flex flex-col gap-1">
-                <h1 className="font-bold">{info.heading}</h1>
-                <p className="text-sm">{info.text}</p>
+      </section>
+
+      <section className="mx-auto max-w-shell px-5 pb-24 sm:px-6">
+        <div className="grid gap-px border border-line bg-line sm:grid-cols-3">
+          {services.map((s) => (
+            <div key={s.heading} className="flex items-center gap-4 bg-paper px-6 py-8">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center border border-line text-bronze">
+                {s.icon}
+              </span>
+              <div>
+                <p className="text-sm font-medium text-ink">{s.heading}</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-2">{s.text}</p>
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <ScrollToTop />
-      <div className=""></div>
       <Footer />
-    </div>
+    </main>
   );
 };

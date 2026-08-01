@@ -9,23 +9,14 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import googleImage from "../assets/google.webp";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import logo from "../assets/logo.png";
 import { useAppDispatch } from "@/redux/store";
 import { loginUser, loginWithGoogle } from "@/redux/slice/authSlice";
 import { FormEvent } from "react";
 import { toast } from "sonner";
-import { Separator } from "@/components/ui/separator";
+import { ArrowRight } from "lucide-react";
 
 const userSchema = z.object({
   email: z
@@ -72,30 +63,68 @@ export const LoginPage = () => {
     }
   };
 
+  const fieldClass =
+    "h-12 rounded-none border-line bg-paper-2/50 px-4 text-sm text-ink placeholder:text-ink-3 focus:border-bronze focus:ring-0";
+
   return (
-    <div className=" bg-background max-sm:p-4  max-sm:w-full text-primary justify-center flex  items-center h-screen">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleSubmit)}
-          className="max-sm:w-full"
-        >
-          <Card className="p-0 py-2 bg-background max-sm:shadow-none max-sm:border-none text-primary w-[25rem]  max-sm:w-full ">
-            <CardHeader className=" p-0 flex items-center my-8 justify-center">
-              <img src={logo} className="w-[3rem] " />
-              <CardTitle className="text-xl text-center">Login </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
+    <div className="grid min-h-screen bg-paper lg:grid-cols-2">
+      <div className="relative hidden flex-col justify-between overflow-hidden bg-forest p-12 text-paper lg:flex">
+        <Link to="/" className="flex items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center border border-bronze font-display text-sm">
+            H·D
+          </span>
+          <span className="font-mono text-[0.6rem] uppercase tracking-[0.32em] text-paper/70">
+            Home of Design
+          </span>
+        </Link>
+        <div>
+          <p className="eyebrow text-bronze">Members</p>
+          <h1 className="mt-6 max-w-md font-display text-5xl leading-[1.05] tracking-tight">
+            Welcome back to the <em className="italic text-bronze">house.</em>
+          </h1>
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-paper/70">
+            Sign in to track orders, save pieces to your wishlist and manage
+            your account.
+          </p>
+        </div>
+        <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-paper/40">
+          Furniture & objects for living
+        </p>
+      </div>
+
+      <div className="flex items-center justify-center px-5 py-16 sm:px-12">
+        <div className="w-full max-w-md">
+          <div className="lg:hidden">
+            <Link to="/" className="inline-flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center border border-bronze font-display text-sm text-ink">
+                H·D
+              </span>
+            </Link>
+          </div>
+
+          <p className="eyebrow text-ink-3">Account</p>
+          <h2 className="mt-4 font-display text-4xl tracking-tight text-ink">
+            Sign in
+          </h2>
+
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="mt-10 space-y-6"
+            >
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="require">Email</FormLabel>
+                    <FormLabel className="eyebrow text-ink-2">Email</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        className="focus:border-green-400 focus:border-1 border-primary duration-150"
-                        placeholder="Enter a valid email"
+                        className={fieldClass}
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        spellCheck={false}
                         {...field}
                       />
                     </FormControl>
@@ -108,87 +137,63 @@ export const LoginPage = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="require">Password</FormLabel>
+                    <FormLabel className="eyebrow text-ink-2">
+                      Password
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="password"
-                        className=" focus:border-green-400 border-primary focus:border-1 duration-150"
-                        placeholder="Enter your password"
+                        className={fieldClass}
+                        placeholder="••••••••"
+                        autoComplete="current-password"
                         {...field}
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            </CardContent>
-            <CardFooter className="flex flex-col w-full gap-3 items-center">
-              <Button
-                disabled={form.formState.isSubmitting}
-                type="submit"
-                className="w-full text-white dark:text-primary bg-slate-600 hover:bg-slate-700 duration-200 hover:outline-green-500 hover:outline-1 outline outline-1"
-              >
-                {form.formState.isSubmitting ? (
-                  <>
-                    <svg
-                      className="animate-spin h-5 w-5 mr-2 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v8H4z"
-                      ></path>
-                    </svg>
-                    Signing in...
-                  </>
-                ) : (
-                  `Sign in`
-                )}
-              </Button>
 
-              <div className="flex items-center justify-center gap-6 w-full">
-                <Separator className="w-[100px] max-sm:w-[60px]" />
-                <p className="text-center text-sm mb-2">Or With</p>
-                <Separator className="w-[100px] max-sm:w-[60px]" />
-              </div>
-
-              <Button
-                disabled={form.formState.isSubmitting}
+              <button
                 type="submit"
-                onClick={handleGoogleLogin}
-                variant="ghost"
-                className="w-full  border-2"
+                disabled={form.formState.isSubmitting}
+                className="btn-primary w-full"
               >
-                <div className="items-center  flex text-black">
-                  <img src={googleImage} className="w-[2rem]" />
-                  <p>Google</p>
-                </div>
-              </Button>
-              <p className="text-center text-sm mt-2">
-                Don't have an account?{" "}
-                <Link
-                  to="/register"
-                  className="text-blue-600 hover:text-blue-500 transition"
-                >
-                  Sign Up
-                </Link>
-              </p>
-            </CardFooter>
-          </Card>
-        </form>
-      </Form>
+                {form.formState.isSubmitting ? "Signing in…" : "Sign in"}
+                <ArrowRight size={14} />
+              </button>
+            </form>
+          </Form>
+
+          <div className="my-8 flex items-center gap-4">
+            <span className="h-px flex-1 bg-line" />
+            <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-3">
+              or continue with
+            </span>
+            <span className="h-px flex-1 bg-line" />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={form.formState.isSubmitting}
+            className="flex w-full cursor-pointer items-center justify-center gap-3 border border-line px-6 py-3.5 text-sm text-ink transition-all duration-300 hover:border-bronze hover:text-bronze disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <img src={googleImage} alt="" className="h-5 w-5" />
+            Google
+          </button>
+
+          <p className="mt-8 text-center text-sm text-ink-2">
+            Don’t have an account?{" "}
+            <Link
+              to="/register"
+              className="text-bronze underline underline-offset-4 transition-colors hover:text-bronze-2"
+            >
+              Create one
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
