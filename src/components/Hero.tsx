@@ -1,7 +1,7 @@
+import { gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import { gsap, useGSAP, prefersReducedMotion } from "@/lib/motion";
 import heroImage from "../assets/banner/hero-main.webp";
 
 export function Hero() {
@@ -13,7 +13,8 @@ export function Hero() {
     const img = imgRef.current;
     const wrap = imageWrapRef.current;
     if (!img || !wrap) return;
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches)
+      return;
 
     const onMove = (e: MouseEvent) => {
       const r = wrap.getBoundingClientRect();
@@ -23,7 +24,7 @@ export function Hero() {
         x: dx * -16,
         y: dy * -12,
         duration: 1.1,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -43,30 +44,34 @@ export function Hero() {
               ".hero-copy",
               ".hero-cta",
               ".hero-meta",
-              imageWrapRef.current
+              imageWrapRef.current,
             ],
-            { clearProps: "opacity,transform,clipPath" }
+            { clearProps: "opacity,transform,clipPath" },
           );
-        }
+        },
       });
 
       tl.from(".hero-eyebrow", { opacity: 0, y: 16, duration: 1 }, 0.15)
         .from(
           ".hero-line",
           { opacity: 0, y: 26, duration: 1.1, stagger: 0.09 },
-          0.25
+          0.25,
         )
         .from(
           imageWrapRef.current,
-          { clipPath: "inset(0 0 100% 0)", duration: 1.4, ease: "power4.inOut" },
-          0.35
+          {
+            clipPath: "inset(0 0 100% 0)",
+            duration: 1.4,
+            ease: "power4.inOut",
+          },
+          0.35,
         )
         .from(imgRef.current, { scale: 1.12, duration: 1.6 }, 0.4)
         .from(".hero-copy", { opacity: 0, y: 20, duration: 1 }, 0.75)
         .from(
           ".hero-cta",
           { opacity: 0, y: 14, duration: 0.8, stagger: 0.08 },
-          0.85
+          0.85,
         )
         .from(".hero-meta", { opacity: 0, duration: 0.9 }, 1.05);
 
@@ -77,11 +82,11 @@ export function Hero() {
           trigger: sectionRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: true
-        }
+          scrub: true,
+        },
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
@@ -106,9 +111,9 @@ export function Hero() {
 
           <div className="hero-copy mt-8 max-w-md space-y-4">
             <p className="text-[15px] leading-relaxed text-ink-2">
-              Modern furniture built with material honesty — solid wood,
-              honest joints, considered proportions. Designed in-house, crafted
-              to outlive trends.
+              Modern furniture built with material honesty — solid wood, honest
+              joints, considered proportions. Designed in-house, crafted to
+              outlive trends.
             </p>
           </div>
 
@@ -140,7 +145,7 @@ export function Hero() {
               fetchPriority="high"
             />
             <div className="absolute bottom-4 left-4 border border-line bg-paper/85 px-3 py-2 shadow-[0_14px_30px_-14px_rgba(20,16,11,0.45)] backdrop-blur-sm">
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-ink-2">
+              <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-[#f9d171]">
                 Signature Sofa No. 01
               </p>
             </div>
