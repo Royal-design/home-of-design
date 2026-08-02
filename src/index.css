@@ -260,6 +260,14 @@
     @apply font-mono text-[0.65rem] uppercase tracking-eyebrow;
   }
 
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+
   .hairline {
     @apply bg-line;
   }

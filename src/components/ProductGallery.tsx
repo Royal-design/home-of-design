@@ -49,7 +49,7 @@ export function ProductGallery({ product }: ProductGalleryProps) {
         )}
       </div>
 
-      <div className="mt-4 flex gap-3">
+      <div className="mt-4 flex gap-3 overflow-x-auto scrollbar-hidden">
         {images.map((img, i) => (
           <button
             key={i}

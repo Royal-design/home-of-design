@@ -44,6 +44,7 @@ const WishlistSheet = () => {
 
       <SheetContent
         side="right"
+        hideClose
         className="w-full border-line bg-paper p-0 sm:max-w-md"
       >
         <SheetTitle className="sr-only">Wishlist</SheetTitle>

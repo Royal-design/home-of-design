@@ -21,7 +21,7 @@ export const ProductTab = ({ product }: PropsType) => {
 
   return (
     <Tabs defaultValue="description" className="w-full">
-      <TabsList className="flex w-full justify-start gap-8 border-b border-line bg-transparent">
+      <TabsList className="flex w-full justify-start gap-8 overflow-x-auto border-b border-line bg-transparent scrollbar-hidden">
         {[
           ["description", "Description"],
           ["additionalinfo", "Details"],
