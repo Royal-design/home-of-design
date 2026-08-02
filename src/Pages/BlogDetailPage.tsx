@@ -1,39 +1,37 @@
-import { useAppSelector } from "@/redux/store";
-import { useParams } from "react-router-dom";
+import { blogs } from "@/assets/data/blogs";
 import BreadCrumbs from "@/components/BreadCrumbs";
-import { CalendarDays, MessageCircle, Tag } from "lucide-react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  addDoc,
-  collection,
-  onSnapshot,
-  query,
-  where
-} from "firebase/firestore";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Footer } from "@/components/Footer";
+import { RecentBlogs } from "@/components/RecentBlogs";
+import { Reveal } from "@/components/Reveal";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { BlogFilter } from "@/components/ui/BlogFilter";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { db } from "@/firebase/firebaseConfig";
 import { Textarea } from "@/components/ui/textarea";
+import { db } from "@/firebase/firebaseConfig";
+import { useAppSelector } from "@/redux/store";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+import { CalendarDays, MessageCircle, Tag } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { blogs } from "@/assets/data/blogs";
-import { RecentBlogs } from "@/components/RecentBlogs";
-import { Footer } from "@/components/Footer";
-import { BlogFilter } from "@/components/ui/BlogFilter";
-import { ScrollToTop } from "@/components/ScrollToTop";
-import { Reveal } from "@/components/Reveal";
-import { Link } from "react-router-dom";
+import { z } from "zod";
 
 type BlogType = (typeof blogs)[0];
 
@@ -60,7 +58,7 @@ export const BlogDetailPage = () => {
       .email({ message: "It must be a valid email" }),
     comment: z
       .string()
-      .min(3, { message: "Comment must be at least 3 characters" })
+      .min(3, { message: "Comment must be at least 3 characters" }),
   });
 
   const form = useForm<z.infer<typeof commentSchema>>({
@@ -70,8 +68,8 @@ export const BlogDetailPage = () => {
       comment: "",
       firstname: "",
       lastname: "",
-      address: ""
-    }
+      address: "",
+    },
   });
 
   const handleSubmit = async (userData: z.infer<typeof commentSchema>) => {
@@ -86,7 +84,7 @@ export const BlogDetailPage = () => {
           blogId: blog?.id,
           content: userData.comment,
           image: user.photo,
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
         });
         toast.success("New comment added");
         form.reset();
@@ -105,7 +103,7 @@ export const BlogDetailPage = () => {
     const q = query(
       commentsRef,
       where("userId", "==", user.id),
-      where("blogId", "==", blog.id)
+      where("blogId", "==", blog.id),
     );
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -116,12 +114,12 @@ export const BlogDetailPage = () => {
           name: `${data.firstname} ${data.lastname}`,
           date: new Date(data.date).toLocaleDateString(),
           avatar: data.image,
-          comment: data.content
+          comment: data.content,
         };
       });
       localStorage.setItem(
         `hdcomments-${blog.id}`,
-        JSON.stringify(fetchedComments)
+        JSON.stringify(fetchedComments),
       );
     });
 
@@ -129,7 +127,7 @@ export const BlogDetailPage = () => {
   }, [blog, user]);
 
   const storedComments = JSON.parse(
-    localStorage.getItem(`hdcomments-${blog?.id}`) || "[]"
+    localStorage.getItem(`hdcomments-${blog?.id}`) || "[]",
   );
   const updateComments = [...(blog?.comments || []), ...storedComments];
 
@@ -141,15 +139,15 @@ export const BlogDetailPage = () => {
   useEffect(() => {
     if (blog) {
       const viewedBlogs = JSON.parse(
-        localStorage.getItem("recentBlogs") || "[]"
+        localStorage.getItem("recentBlogs") || "[]",
       );
       const updatedBlogs = viewedBlogs.filter(
-        (item: BlogType) => item.id !== blog.id
+        (item: BlogType) => item.id !== blog.id,
       );
       updatedBlogs.unshift(blog);
       localStorage.setItem(
         "recentBlogs",
-        JSON.stringify(updatedBlogs.slice(0, 5))
+        JSON.stringify(updatedBlogs.slice(0, 5)),
       );
     }
   }, [blog]);
@@ -172,7 +170,7 @@ export const BlogDetailPage = () => {
 
   return (
     <div className="bg-paper">
-      <header className="relative flex min-h-[46vh] items-end overflow-hidden">
+      <header className="relative flex min-h-[60vh] items-end overflow-hidden">
         <img
           src={blog.backgroundImage}
           alt=""
@@ -184,14 +182,14 @@ export const BlogDetailPage = () => {
         <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-12 sm:px-6">
           <Reveal>
-            <p className="eyebrow text-paper/70">{blog.category}</p>
-            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] tracking-tight text-paper sm:text-6xl">
+            <p className="eyebrow text-[#f9d171]">{blog.category}</p>
+            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] tracking-tight text-white sm:text-6xl">
               {blog.title}
             </h1>
-            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-paper/80">
+            <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-[#f9d171]">
               {blog.shortDescription}
             </p>
-            <div className="mt-6 text-paper/70">
+            <div className="mt-6 text-[#f9d171]">
               <BreadCrumbs />
             </div>
           </Reveal>
@@ -307,7 +305,10 @@ export const BlogDetailPage = () => {
                 {!user && (
                   <p className="mt-3 text-sm text-ink-2">
                     Please{" "}
-                    <Link to="/login" className="text-bronze underline underline-offset-4">
+                    <Link
+                      to="/login"
+                      className="text-bronze underline underline-offset-4"
+                    >
                       sign in
                     </Link>{" "}
                     to join the conversation.
@@ -427,7 +428,9 @@ export const BlogDetailPage = () => {
                           disabled={form.formState.isSubmitting}
                           className="btn-primary w-full sm:w-auto"
                         >
-                          {form.formState.isSubmitting ? "Posting…" : "Post comment"}
+                          {form.formState.isSubmitting
+                            ? "Posting…"
+                            : "Post comment"}
                         </button>
                       </CardFooter>
                     </Card>

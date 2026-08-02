@@ -22,7 +22,7 @@ export const BlogCard = ({ blog }: BlogCardProps) => {
             alt={blog.title}
             loading="lazy"
             decoding="async"
-            className="fade-img h-full w-full object-cover transition-transform duration-[1.3s] ease-expo-out group-hover:-translate-y-1 group-hover:scale-[1.06]"
+            className="fade-img h-full w-full object-cover transition-transform [transition-duration:1.3s] ease-expo-out group-hover:-translate-y-1 group-hover:scale-[1.06]"
           />
         </div>
       </Link>

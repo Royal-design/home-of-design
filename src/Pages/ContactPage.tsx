@@ -92,7 +92,7 @@ export const ContactPage = () => {
           className="fade-img absolute inset-0 h-full w-full object-cover"
           loading="eager"
           decoding="async"
-          fetchPriority="high"
+          fetchpriority="high"
         />
         <div className="page-scrim" />
         <div className="relative z-10 mx-auto w-full max-w-shell px-5 pb-14 sm:px-6">

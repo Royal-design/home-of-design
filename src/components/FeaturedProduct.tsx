@@ -64,7 +64,7 @@ export const FeaturedProduct = () => {
                     alt={hero.name}
                     loading="lazy"
                     decoding="async"
-                    className="fade-img h-full w-full object-contain p-6 transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.05] sm:p-10"
+                    className="fade-img h-full w-full object-contain p-6 transition-transform [transition-duration:1.4s] ease-expo-out group-hover:scale-[1.05] sm:p-10"
                   />
                 </Link>
                 <div className="" />

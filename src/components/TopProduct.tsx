@@ -27,6 +27,7 @@ export const TopProduct = () => {
   useGSAP(
     () => {
       if (reduce || items.length === 0) return;
+
       const track = trackRef.current;
       if (!track) return;
 
@@ -68,6 +69,7 @@ export const TopProduct = () => {
             : "flex h-[100svh] items-stretch gap-8 pl-[6vw] pr-[12vw]"
         }
       >
+        {/* Intro */}
         <div
           className={
             reduce
@@ -76,13 +78,16 @@ export const TopProduct = () => {
           }
         >
           <p className="eyebrow text-bronze">04 — Most desired</p>
+
           <h2 className="mt-6 font-display text-5xl leading-[1] tracking-tight sm:text-7xl">
             Pieces people <em className="italic text-bronze">return to.</em>
           </h2>
+
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-on-dark/70">
             The furniture our customers come back for — resized, re-finished, or
             re-gifted. Scroll to browse the hall of favourites.
           </p>
+
           <Link
             to="/products"
             className="link-underline mt-8 inline-flex items-center gap-2 self-start font-mono text-[0.7rem] uppercase tracking-[0.18em] text-on-dark/80 transition-colors hover:text-bronze"
@@ -91,8 +96,10 @@ export const TopProduct = () => {
           </Link>
         </div>
 
+        {/* Products */}
         {items.map((product, i) => {
           const img = GALLERY_IMAGES[product.id] ?? product.mainImage;
+
           return (
             <div
               key={product.id}
@@ -102,10 +109,10 @@ export const TopProduct = () => {
             >
               <Link
                 to={`/products/${product.id}`}
-                className="group relative block overflow-hidden"
                 data-cursor="view"
                 data-cursor-label="View"
                 aria-label={`View ${product.name}`}
+                className="group relative block overflow-hidden"
               >
                 <div className="card-media card-media-hover aspect-[4/5] overflow-hidden">
                   <img
@@ -113,22 +120,29 @@ export const TopProduct = () => {
                     alt={product.name}
                     loading="lazy"
                     decoding="async"
-                    className="fade-img h-full w-full object-cover transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.06]"
+                    className="fade-img h-full w-full object-cover transition-transform [transition-duration:1.4s] ease-expo-out group-hover:scale-[1.06]"
                   />
                 </div>
-                <div className="card-scrim" />
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6">
-                  <div className="min-w-0">
+
+                {/* Stronger overlay for better text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
+
+                {/* Content */}
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-end sm:justify-between sm:gap-4 sm:p-6">
+                  <div className="min-w-0 flex-1">
                     <p className="eyebrow text-paper/70">{product.category}</p>
-                    <h3 className="mt-1 truncate font-display  text-2xl text-[#f9d171]">
+
+                    <h3 className="mt-1 line-clamp-2 font-display text-xl leading-tight text-[#F6D98C] sm:text-2xl">
                       {product.name}
                     </h3>
                   </div>
-                  <p className="shrink-0 font-mono text-sm text-[#f9d171]">
+
+                  <p className="shrink-0 font-mono text-base font-semibold text-paper sm:text-lg">
                     {formatter.format(product.price.newPrice)}
                   </p>
                 </div>
               </Link>
+
               <p className="mt-3 font-mono text-[0.6rem] uppercase tracking-[0.22em] text-paper/40">
                 No. {String(i + 1).padStart(2, "0")}
               </p>

@@ -142,7 +142,7 @@ export function Hero() {
               className="fade-img h-full w-full scale-[1.04] object-cover"
               loading="eager"
               decoding="async"
-              fetchPriority="high"
+              fetchpriority="high"
             />
             <div className="absolute bottom-4 left-4 border border-line bg-paper/85 px-3 py-2 shadow-[0_14px_30px_-14px_rgba(20,16,11,0.45)] backdrop-blur-sm">
               <p className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-[#f9d171]">

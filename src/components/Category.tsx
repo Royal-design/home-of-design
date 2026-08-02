@@ -50,7 +50,7 @@ export function Category() {
                     alt={category.name}
                     loading="lazy"
                     decoding="async"
-                    className="fade-img h-full w-full object-cover transition-transform duration-[1.2s] ease-expo-out group-hover:scale-[1.06]"
+                    className="fade-img h-full w-full object-cover transition-transform [transition-duration:1.2s] ease-expo-out group-hover:scale-[1.06]"
                   />
                 </div>
                 <div className="card-scrim opacity-70 transition-opacity duration-500 group-hover:opacity-90" />

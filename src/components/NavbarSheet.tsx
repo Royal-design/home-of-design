@@ -8,7 +8,6 @@ import {
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Search } from "./Search";
-import { Theme } from "./Theme";
 import { ProfileMenu } from "./ProfileMenu";
 import { Menu, X } from "lucide-react";
 import { useAppSelector } from "@/redux/store";
@@ -51,12 +50,9 @@ const NavbarSheet = () => {
         <SheetDescription className="sr-only">Site navigation</SheetDescription>
 
         <div className="flex min-h-full flex-col px-6 pb-10 pt-5">
-          <div className="flex items-center justify-between">
-            <span className="font-mono text-[0.6rem] uppercase tracking-[0.32em] text-ink-2">
-              Home&nbsp;of&nbsp;Design
-            </span>
-            <Theme />
-          </div>
+          <span className="font-mono text-[0.6rem] uppercase tracking-[0.32em] text-ink-2">
+            Home&nbsp;of&nbsp;Design
+          </span>
 
           <div className="mt-14">
             <p className="eyebrow text-ink-3">Menu</p>

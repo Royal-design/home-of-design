@@ -52,7 +52,7 @@ export const Adverts = () => {
                   alt={room.title}
                   loading="lazy"
                   decoding="async"
-                  className="fade-img h-full w-full object-cover transition-transform duration-[1.4s] ease-expo-out group-hover:scale-[1.06]"
+                  className="fade-img h-full w-full object-cover transition-transform [transition-duration:1.4s] ease-expo-out group-hover:scale-[1.06]"
                 />
                 <div className="card-scrim" />
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 sm:p-8">
