@@ -66,7 +66,7 @@ export const TopProduct = () => {
         className={
           reduce
             ? "mx-auto grid max-w-shell grid-cols-1 gap-10 px-5 py-24 sm:grid-cols-2 sm:px-6 lg:grid-cols-4"
-            : "flex h-[100svh] items-stretch gap-8 pl-[6vw] pr-[12vw]"
+            : "flex h-auto min-h-[30rem] items-stretch gap-6 px-5 py-16 sm:gap-8 sm:px-[6vw] sm:py-20 lg:h-[100svh] lg:min-h-0 lg:py-0 lg:pr-[12vw]"
         }
       >
         {/* Intro */}
@@ -74,12 +74,12 @@ export const TopProduct = () => {
           className={
             reduce
               ? "sm:col-span-2 lg:col-span-4"
-              : "flex w-[70vw] shrink-0 flex-col justify-center sm:w-[34vw]"
+              : "flex w-full shrink-0 flex-col justify-center lg:w-[34vw]"
           }
         >
           <p className="eyebrow text-bronze">04 — Most desired</p>
 
-          <h2 className="mt-6 font-display text-5xl leading-[1] tracking-tight sm:text-7xl">
+          <h2 className="mt-6 font-display text-4xl leading-[1] tracking-tight sm:text-5xl lg:text-7xl">
             Pieces people <em className="italic text-bronze">return to.</em>
           </h2>
 
@@ -96,7 +96,6 @@ export const TopProduct = () => {
           </Link>
         </div>
 
-        {/* Products */}
         {items.map((product, i) => {
           const img = GALLERY_IMAGES[product.id] ?? product.mainImage;
 
@@ -104,7 +103,7 @@ export const TopProduct = () => {
             <div
               key={product.id}
               className={
-                reduce ? "" : "w-[78vw] shrink-0 sm:w-[44vw] lg:w-[32rem]"
+                reduce ? "" : "w-[82vw] shrink-0 sm:w-[44vw] lg:w-[32rem]"
               }
             >
               <Link
@@ -124,11 +123,9 @@ export const TopProduct = () => {
                   />
                 </div>
 
-                {/* Stronger overlay for better text contrast */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent" />
 
-                {/* Content */}
-                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-end sm:justify-between sm:gap-4 sm:p-6">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 p-4 sm:flex-row sm:items-end sm:justify-between sm:p-6">
                   <div className="min-w-0 flex-1">
                     <p className="eyebrow text-paper/70">{product.category}</p>
 
